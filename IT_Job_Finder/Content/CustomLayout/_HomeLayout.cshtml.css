@@ -7,7 +7,7 @@
 
 body {
     position: relative;
-    background: #fafafb;
+    background: #f5f5f5;
     font-family: Arial, Helvetica, sans-serif, Courier, monospace;
     overflow: hidden;
 }
@@ -135,7 +135,7 @@ div {
     height: calc(100vh - 100px);
     overflow: auto;
     scrollbar-width: 10px;
-    background: #fafafb;
+    background: #f5f5f5;
 }
 
 ._NoneSigninLayout-main::-webkit-scrollbar {
@@ -160,7 +160,7 @@ div {
             position: relative;
             display: flex;
             place-items: center;
-            border-right: 7px solid #fafafb;
+            border-right: 7px solid #f5f5f5;
         }
 
         .search-container {

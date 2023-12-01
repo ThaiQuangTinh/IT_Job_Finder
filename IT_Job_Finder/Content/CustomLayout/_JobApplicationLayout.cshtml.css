@@ -8,13 +8,12 @@
 body {
     position: relative;
     font-family: Arial, Helvetica, sans-serif, Courier, monospace;
-    height: calc(100vh + 90px);
-    background: #fafafb;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -100px;
 }
-
-body::-webkit-scrollbar {
-    width: 0px;
-  }
 
 div {
     display: flex;
@@ -133,134 +132,258 @@ div {
 
 /* Main */
 ._JobApplicationLayout-main {
-    padding: 20px 140px 0 140px;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px 140px 0px 140px;
+    display: grid;
     justify-content: center;
-    align-items: top;
-    height: calc(100vh + 20px);
+    min-width: calc(100vh - 90px);
     width: 100%;
-    overflow: auto;
     background: #f5f5f5;
     position: relative;
+    grid-template-columns: 900px calc(100% - 900px);
+    grid-column-gap: 20px;
+    align-items: start;
 }
 
-    ._JobApplicationLayout-main::-webkit-scrollbar {
-        width: 0px;
-    }
-
-    .application-header-container {
-        display: grid;
-        grid-template-columns: 188px calc(100% - 188px);
-        height: 180px;
-        width: 100%;
-        background: #ffffff;
+    .application-info-container{
+        display: flex;
+        justify-content: start;
         position: relative;
+        flex-direction: column;
     }
 
-        .business-image-container {
+        /* HEADER SESSION  */
+        .application-header-container {
+            display: grid;
+            grid-template-columns: 188px calc(100% - 188px);
+            width: 100%;
+            background: #ffffff;
+            position: relative;
+            padding-block: 15px;
+            margin-bottom: 15px;
+            transition: 0.5;
+        }
+
+            .business-image-container {
+                display: flex;
+                align-items: start;
+                height: 100%;
+                padding: 20px;
+            }
+
+            img {
+                height: 100px;
+            }
+
+            .application-title-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+                align-items: start;
+            }
+
+                .application-title-container div {
+                    width: 100%;
+                    justify-content: left;
+                }
+
+                .application-title-container h1 {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+
+                .application-title-container h2 {
+                    font-size: 17px;
+                    font-weight: 700;
+                    color: #5c5b5b;
+                }
+
+                .icon-and-text{
+                    display: flex;
+                    position: relative;
+                    align-items: start;
+                    margin-bottom: 5px;
+                }
+
+                .icon-and-text span {
+                    margin-left: 30px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #5c5b5b;
+                }
+
+                .icon-and-text i {
+                    margin-top: 5px;
+                    position: absolute;
+                    color: #a6a1a1;
+                    font-size: 20px;
+                }
+
+            .bookmark-container {
+                position: absolute;
+                top: 25px;
+                right: 25px;
+                border: none;
+                outline: none;
+                background: transparent;
+                height: 30px;
+                width: 20px;
+                display: grid;
+                place-items: center;
+            }
+
+            .bookmark-container:hover {
+                color: #4d677c;
+            }
+
+            .bookmark-container:active {
+                color: #7f97aa;
+            }
+
+                .bookmark-container input{
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+                .front-icon {
+                    opacity: 1;
+                }
+
+                .hiden-icon {
+                    opacity: 0;
+                }
+
+                .bookmark-container input:checked + .front-icon {
+                    opacity: 0;
+                    z-index: -1;
+                }
+
+                .bookmark-container input:checked + .hiden-icon {
+                    opacity: 1;
+                    z-index: 1;
+                }
+
+                .bookmark-container i {
+                    position: absolute;
+                    font-size: 2em;
+                }
+
+        .application-header-container-minimize {
             display: flex;
-            align-items: start;
-            height: 100%;
+            padding: 10px;
+            justify-content: start;
+        }
+
+        .application-info-container nav {
+            width: 100%;
+            height: 50px;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            justify-items: center;
+            align-items: center;
+            background: #ffffff;
+        }
+
+        .application-content-container {
+            width: 100%;
+            overflow: auto;
+            justify-content: start;
+            scroll-behavior: smooth;
             padding: 20px;
         }
 
-        img {
-            height: 100px;
-        }
-
-        .application-title-container {
+        .content-box {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: left;
             align-items: start;
+            justify-content: start;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
-            .application-title-container div {
-                width: 100%;
-                justify-content: left;
-            }
+    /* SIDEBAR SESSION */
+    .application-info-sidebar {
+        display: flex;
+        flex-direction: column;
+        row-gap: 17px;
+    }
 
-            .application-title-container h1 {
-                font-size: 24px;
-                font-weight: 700;
-            }
-
-            .application-title-container h2 {
-                font-size: 17px;
-                font-weight: 700;
-                color: #5c5b5b;
-            }
-
-            .icon-and-text{
-                display: flex;
-                position: relative;
-                align-items: start;
-                margin-bottom: 5px;
-            }
-
-            .icon-and-text span {
-                margin-left: 30px;
-                font-size: 16px;
-                font-weight: 500;
-                color: #5c5b5b;
-            }
-
-            .icon-and-text i {
-                margin-top: 5px;
-                position: absolute;
-                color: #a6a1a1;
-                font-size: 20px;
-            }
-
-        .bookmark-container {
-            position: absolute;
-            top: 25px;
-            right: 25px;
+        #btnApplyNow {
             border: none;
             outline: none;
-            background: transparent;
-            height: 30px;
-            width: 20px;
-            display: grid;
-            place-items: center;
+            height: 55px;
+            font-weight: 600;
+            font-size: 1.2em;
         }
 
-        .bookmark-container:hover {
-            color: #4d677c;
+        .application-info-summary {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
         }
 
-        .bookmark-container:active {
-            color: #7f97aa;
-        }
-
-            .bookmark-container input{
-                opacity: 0;
-                width: 0;
-                height: 0;
+            .application-info-summary h3,
+            .application-info-summary > div {
+                padding: 18px 18px 0 18px;
             }
 
-            .front-icon {
-                opacity: 1;
+            .application-info-summary h3 {
+                font-size: 1.2em;
+                padding-bottom: 18px;
+                border-bottom: 1px solid #868484;
+                color: #5c5b5b;
+                font-weight: 700;
+                margin: 0;
             }
+                .application-info-summary > div {
+                    display: flex;
+                    justify-content: left;
+                    flex-direction: column;
+                    align-items: start;
+                }
+                    .application-info-summary h4 {
+                        font-size: 1.1em;
+                        font-weight: 700;
+                    }
 
-            .hiden-icon {
-                opacity: 0;
-            }
+                    .application-info-summary span {
+                        font-size: 1.1em;
+                        font-weight: 400;
+                    }
 
-            .bookmark-container input:checked + .front-icon {
-                opacity: 0;
-                z-index: -1;
-            }
+                    .skill-requirement-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-bottom: 20px;
+                        flex: 1;
+                    }
 
-            .bookmark-container input:checked + .hiden-icon {
-                opacity: 1;
-                z-index: 1;
-            }
+                    .skill-requirement-container a {
+                        font-weight: 400;
+                        background: #edfbff;
+                        padding: 1px 6px;
+                        text-decoration: none;
+                        color: #1047b2;
+                        border: 1px solid #ffffff;
+                        transition: 0.3s;
+                    }
 
-            .bookmark-container i {
-                position: absolute;
-                font-size: 2em;
-            }
+                    .skill-requirement-container a:hover {
+                        border: 1px solid #0f3e9d;
+                    }
 
-            
+/* ------------- */
+
+.hiden-container {
+    display: none;
+}
+
+.border-radius-5px {
+    border-radius: 5px;
+}
+
+.flex-direction-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}

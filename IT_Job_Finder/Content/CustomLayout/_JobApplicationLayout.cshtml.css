@@ -387,3 +387,10 @@ div {
     flex-direction: column;
     flex-wrap: nowrap;
 }
+
+
+/*..............*/
+.hide-jobApp-main {
+    position: relative;
+    z-index: 0;
+}

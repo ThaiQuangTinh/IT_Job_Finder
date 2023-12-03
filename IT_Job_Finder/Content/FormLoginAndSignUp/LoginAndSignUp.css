@@ -1,0 +1,191 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+div{
+    display: block;
+}
+
+.container_Login,
+.container_SignUp {
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: containerLogSign_Show ease 1s;
+}
+
+@keyframes containerLogSign_Show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes containerLogSign_Hide {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* CSS for login form */
+
+.form_Login,
+.form_SignUp {
+    position: relative;
+    border: 4px solid #0776ff;
+    padding: 20px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    animation: formLogSign_Show ease 1.5s;
+}
+
+
+/* CSS animation for login form */
+
+@keyframes formLogSign_Show {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes formLogSign_Hide {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+.title_Login,
+.title_SignUp {
+    margin: 20px 0;
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    color: #1200ff;
+}
+
+.title_IpForm {
+    margin: 10px 0;
+}
+
+.input_LgSignForm {
+    height: 40px;
+    padding: 10px 6px;
+    margin: 0 0 20px 0;
+    min-width: 340px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.input_LgSignForm:focus {
+    outline: none;
+    border: 1px solid #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button_Form {
+    display: flex;
+    justify-content: center;
+}
+
+#btnLoginForm {
+    margin: 10px 0;
+    font-size: 18px;
+    min-width: 100%;
+    border: none;
+    outline: none;
+    padding: 8px 6px;
+    color: #fff;
+    background-color: #1f96ff;
+    border-radius: 10px;
+}
+
+#btnLoginForm:hover {
+    background-color: #045bc5;
+    cursor: pointer;
+    transition: .7s;
+}
+
+.Rember_Forgot_Form {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.direct_SignUp_Form {
+    margin: 10px 0;
+}
+
+.link_In_Form {
+    color: rgb(76, 76, 240);
+}
+
+.link_In_Form:hover {
+    opacity: 0.7;
+    transition: .5s;
+}
+
+
+/* CSS for login input tag and eye */
+
+.contain_Password_Eye {
+    position: relative;
+    display: inline-block;
+}
+
+#eye_in_FormLogin,
+#eye1_in_FormSignUp,
+#eye2_in_FormSignUp {
+    display: none;
+    position: absolute;
+    right: 6px;
+    top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+
+/* Additional css for sign up form */
+
+.icon_withIp_SignForm {
+    min-width: 30px;
+    display: inline-block;
+}
+
+.container_SignUp {
+    display: flex;
+    background-color: #000;
+}

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../Content/CustomLayout/_JobApplicationLayout.cshtml.css">
+    <link rel="stylesheet" href="../../Content/FormLoginAndSignUp/LoginAndSignUp.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- @Styles.Render("~/Content/css") -->
     <script src="../../Scripts/CustomScripts/JobPosting/JobApplicationUI.js"></script>
@@ -16,18 +17,69 @@
         <div class="image-logo-container">
             <a href="" class="logo-name">Logo</a>
         </div>
-        
+
         <div class="account-container">
             <div class="user-info">
                 <a href="" class="users-name-info">Guest</a>
             </div>
             <div class="vertical-line"></div>
-            <div class="login-signup"> 
+            <div class="login-signup">
                 <a href="" class="login-link blue-button">Log in</a>
-                <a href="" class="signup-link">Sign Up</a>
+                <a href="./_SignUp.html" class="signup-link">Sign Up</a>
             </div>
         </div>
     </nav>
+
+    <!-- Login form -->
+    <div class="container_Login">
+        <form action="" class="form_Login">
+            <div class="hi">
+                <p class="title_Login">Login</p>
+            </div>
+
+            <!-- User name -->
+            <div class="hi">
+                <div class="title_IpForm">
+                    <i class="fa-solid fa-user"></i>
+                    <label for="ipUserName_Login">User name</label>
+                </div>
+
+                <input type="text" name="txtUserName_Login" required id="ipUserName_Login" class="input_LgSignForm">
+            </div>
+
+            <!-- Password -->
+            <div class="hi">
+                <div class="title_IpForm">
+                    <i class="fa-solid fa-key"></i>
+                    <label for="ipPassword_Login">Password</label>
+                </div>
+                <div class="contain_Password_Eye">
+                    <input type="password" name="txtPassword_Login" required id="ipPassword_Login" class="input_LgSignForm">
+                    <i class="fa-solid fa-eye" id="eye_in_FormLogin"></i>
+                </div>
+            </div>
+
+            <div class="Rember_Forgot_Form">
+                <div>
+                    <input type="checkbox" name="" id="chk_RememberMe">
+                    <label class="labelFoChk">Remember me</label>
+                </div>
+
+                <div class="hi">
+                    <a href="" class="link_In_Form">Forgot password</a>
+                </div>
+            </div>
+
+            <div class="button_Form">
+                <input type="button" value="Login" id="btnLoginForm">
+            </div>
+
+            <div class="direct_SignUp_Form">
+                <label>Don't have an account?</label> <a href="./_SignUp.html" class="link_In_Form">Sign up</a>
+            </div>
+
+        </form>
+    </div>
 
     <!-- posision: sticky -->
     <main class="_JobApplicationLayout-main">
@@ -63,7 +115,7 @@
                 </nav>
             </div>
             <div class="application-content-container flex-direction-column">
-                 <div id="jobDescription" class="flex-direction-column content-box">
+                <div id="jobDescription" class="flex-direction-column content-box">
                     <div>begin</div>
                     <div>a</div>
                     <div>a</div>
@@ -106,7 +158,7 @@
                     <div>a</div>
                     <div>a</div>
                     <div>a</div>
-                </div> 
+                </div>
                 <div id="bussinessInfo" class="flex-direction-column content-box">
                     <div>begin</div>
                     <div>b</div>
@@ -148,7 +200,7 @@
                     <div>b</div>
                     <div>b</div>
                     <div>b</div>
-                </div> 
+                </div>
             </div>
         </div>
 
@@ -181,5 +233,7 @@
             </section>
         </aside>
     </main>
+
+    <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/CommonForm.js"></script>
 </body>
 </html>

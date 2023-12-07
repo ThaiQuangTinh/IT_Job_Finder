@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Content//FormLoginAndSignUp/ForgotPW.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Quên mật khẩu</title>
+</head>
+
+<body>
+    <form class="form_Fp">
+        <p class="title_FpForm">Forgot password</p>
+        <div class="contain_ForgotPW">
+            <input type="email" name="txtEmail_FpForm" id="ipEmail_FpForm" class="ip_FpForm" placeholder="Email">
+            <div class="contain_btn_FpForm">
+                <input type="submit" id="btnResetPassword" class="btn_FpForm" value="Reset my password" name="btnResetPassword" />
+            </div>
+
+        </div>
+
+        <div class="contain_ChangePassword">
+            <div class="contain_Password_Eye">
+                <input type="password" name="txtPassword_FpForm" placeholder="Password" id="ipPassword_FpForm" class="ip_FpForm">
+                <i class="fa-solid fa-eye" id="eye1_in_FormSignUp"></i>
+            </div>
+
+            <div class="contain_Password_Eye">
+                <input type="password" name="txtRePassword_FpForm" placeholder="Re-password" id="ipRePassword_FpForm" class="ip_FpForm">
+                <i class="fa-solid fa-eye" id="eye2_in_FormSignUp"></i>
+            </div>
+
+            <!-- <input type="password" name="txtPassword_FpForm" id="ipPassword_FpForm" class="ip_FpForm" placeholder="Nhập mật khẩu">
+        <input type="password" name="txtRePassword_FpForm" id="ipRePassword_FpForm" class="ip_FpForm" placeholder="Nhập lại mật khẩu"> -->
+            <div class="contain_btn_FpForm">
+                <input type="submit" id="btn_updatePassowrd" class="btn_FpForm" value="Update my password" name="btn_updatePassowrd" />
+            </div>
+        </div>
+
+        <!--<a href="../Shared/_NoneSigninHomeLayout.html">Back to home</a>-->
+    
+    </form>
+
+    <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/ForgotPW.js"></script>
+</body>
+
+</html>

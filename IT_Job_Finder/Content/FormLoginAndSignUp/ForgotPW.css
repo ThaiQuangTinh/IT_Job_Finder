@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #3f51b57d;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_Fp {
+    min-height: 262px;
+    padding: 20px 40px;
+    background-color: #fff;
+    border: 4px solid #2d07ff;
+    border-radius: 10px;
+    animation: formLogSign_Show ease 1s;
+    overflow: hidden;
+}
+
+@keyframes formLogSign_Show {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.title_FpForm {
+    font-size: 40px;
+    color: #0f5acf;
+    text-align: center;
+}
+
+.contain_ForgotPW {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* animation: contain_ForgotPW ease 1s; */
+}
+
+@keyframes contain_ForgotPW {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-400px);
+    }
+}
+
+.ip_FpForm {
+    margin: 14px 0;
+    min-width: 300px;
+    font-size: 16px;
+    padding: 6px 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.ip_FpForm:focus {
+    outline: none;
+    border: 1px solid #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contain_btn_FpForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_FpForm {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #002effbd;
+    border: none;
+    outline: none;
+    padding: 8px 20px;
+    font-weight: normal;
+    border-radius: 5px;
+}
+
+.btn_FpForm:hover {
+    cursor: pointer;
+    background-color: #002efff0;
+    transition: 1s;
+}
+
+.contain_ChangePassword {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.show_contain_changePassword {
+    display: flex;
+    animation: showContainChangePw ease 1s;
+}
+
+@keyframes showContainChangePw {
+    from {
+        transform: translateX(300px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+#btnResetPassword{
+    margin-top: 20px;
+}
+/* CSS for eye */
+.contain_Password_Eye {
+    position: relative;
+    display: inline-block;
+}
+
+#eye1_in_FormSignUp,
+#eye2_in_FormSignUp {
+    display: none;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}

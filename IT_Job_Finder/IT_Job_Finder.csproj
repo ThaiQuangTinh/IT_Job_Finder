@@ -133,6 +133,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomLayout\_HomeLayout.cshtml.css" />
     <Content Include="Content\CustomLayout\_JobApplicationLayout.cshtml.css" />
+    <Content Include="Content\FormLoginAndSignUp\ForgotPW.css" />
     <Content Include="Content\FormLoginAndSignUp\LoginAndSignUp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -144,6 +145,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\EmployerMaintain\CKEditorSetup.js" />
     <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\CommonForm.js" />
+    <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\ForgotPW.js" />
     <Content Include="Scripts\CustomScripts\JobPosting\JobApplicationUI.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -155,6 +157,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Shared\_ForgotPW.html" />
     <Content Include="Views\Shared\_SignUp.html" />
     <Content Include="Views\Shared\_MaintainEmployerLayout.html" />
     <Content Include="Views\Shared\_NoneSigninHomeLayout.html" />

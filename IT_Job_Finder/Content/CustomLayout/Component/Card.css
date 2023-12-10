@@ -1,0 +1,49 @@
+﻿.flex-direction-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.job .card-body a {
+    text-decoration: none;
+}
+
+.job .card-body .card-title {
+    font-size: 18px;
+    line-height: 1.5rem;
+    letter-spacing: .00563rem;
+}
+
+.job .card-body .company-name {
+    font-weight: 600;
+    color: #5c5b5b;
+}
+
+.job .card-body .job-salary {
+    color: #e77764;
+    font-weight: 400;
+}
+
+.job .card-body .address {
+    color: #696969;
+    font-weight: 400;
+}
+
+.skill-container {
+    display: flex;
+    overflow: hidden;
+    gap: .5rem;
+}
+
+    .skill-container a {
+        font-weight: 400;
+        background: #edfbff;
+        padding: 2px 10px;
+        text-decoration: none;
+        color: #1047b2;
+        border: 1px solid #ffffff;
+        transition: 0.3s;
+    }
+
+        .skill-container a:hover {
+            border: 1px solid #0f3e9d;
+        }

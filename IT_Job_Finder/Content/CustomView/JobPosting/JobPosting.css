@@ -1,0 +1,26 @@
+﻿.form-jobposting {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#skillsContainer {
+    width: 50%;
+}
+
+#skillsContainer div {
+    display: flex;
+    justify-content: space-between;
+    margin-inline-start: 2rem;
+    margin-block-end: 0.5rem;
+    align-items: center;
+    border: 1px solid aqua;
+    border-radius: 5px;
+    background: #fff;
+    padding-inline-start: .5rem;
+}
+
+.not-null {
+    color: red;
+    font-weight: 600;
+}

@@ -1,0 +1,17 @@
+﻿.pdfContainer {
+    height: 500px;
+}
+
+#myPdf {
+    height: 100%;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: right;
+}
+
+.candidate-info-container span {
+    color: #5c5b5b;
+}

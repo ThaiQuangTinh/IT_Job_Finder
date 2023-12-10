@@ -25,7 +25,7 @@ div {
 /* Blue-Button */
 .blue-button {
     border-radius: 5px;
-    background: #1f96ff ;
+    background: #1f96ff;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -34,21 +34,21 @@ div {
     transition: 0.2s;
 }
 
-.blue-button:hover {
-    background: #0776ff;
-    transition: 0s;
-    color: #ffffff;
-}
+    .blue-button:hover {
+        background: #0776ff;
+        transition: 0s;
+        color: #ffffff;
+    }
 
-.blue-button:active {
-    background: #0162fe;
-    color: #ffffff;
-}
+    .blue-button:active {
+        background: #0162fe;
+        color: #ffffff;
+    }
 
-.blue-button:disabled {
-    color: #0162fe;
-    background: #b6e3ff;
-}
+    .blue-button:disabled {
+        color: #0162fe;
+        background: #b6e3ff;
+    }
 
 /* Vertical-line */
 .vertical-line {
@@ -68,67 +68,70 @@ div {
     align-items: center;
 }
 
-    .image-logo-container {
-        height: 100%;
-        width: 110px;
+.image-logo-container {
+    height: 100%;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.logo-name {
+    text-decoration: none;
+    color: #1f96ff;
+}
+
+.account-container {
+    height: 40px;
+    width: 400px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+}
+
+    .account-container a {
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 30px;
-        font-weight: bolder;
-        /* font-family: Arial, Helvetica, sans-serif; */
     }
 
-    .logo-name {
-        text-decoration: none;
-        color: #1f96ff;
+.user-info {
+    height: 40px;
+    width: 200px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: right;
+    position: relative;
+}
+
+    .user-info i {
+        font-size: 1.5em;
+        margin-right: 10px;
     }
 
-    .account-container {
-        height: 40px;
-        width: 400px;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        position: relative;
+.users-name-info {
+    margin-left: 10px;
+    color: #323c4e;
+    text-decoration: none;
+}
+
+.login-signup {
+    height: 40px;
+    display: flex;
+}
+
+    .login-signup a {
+        margin-inline: 5px;
     }
-        .account-container a{
-            display: flex;
-            align-items: center;
-        }
 
-        .user-info {
-            height: 40px;
-            width: 200px;
-            margin-right: 10px;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: right;
-            position: relative;
-        }
-            .user-info i {
-                font-size: 1.5em;
-                margin-right: 10px;
-            }
-            .users-name-info {
-                margin-left: 10px;
-                color: #323c4e;
-                text-decoration: none;
-            }
-
-        .login-signup {
-            height: 40px;
-            display: flex;
-        }
-
-        .login-signup a {
-            margin-inline: 5px;
-        }
-
-            .login-link {
-                height: 100%;
-                width: 90px;
-            }
+.login-link {
+    height: 100%;
+    width: 90px;
+}
 
 /* Main */
 ._JobApplicationLayout-main {
@@ -144,233 +147,235 @@ div {
     align-items: start;
 }
 
-    .application-info-container{
-        display: flex;
-        justify-content: start;
-        position: relative;
-        flex-direction: column;
+.application-info-container {
+    display: flex;
+    justify-content: start;
+    position: relative;
+    flex-direction: column;
+}
+
+/* HEADER SESSION  */
+.application-header-container {
+    display: grid;
+    grid-template-columns: 188px calc(100% - 188px);
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+    padding-block: 15px;
+    margin-bottom: 15px;
+    transition: 0.5s;
+}
+
+.business-image-container {
+    display: flex;
+    align-items: start;
+    height: 100%;
+    padding: 20px;
+}
+
+img {
+    height: 100px;
+}
+
+.application-title-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: start;
+}
+
+    .application-title-container div {
+        width: 100%;
+        justify-content: left;
     }
 
-        /* HEADER SESSION  */
-        .application-header-container {
-            display: grid;
-            grid-template-columns: 188px calc(100% - 188px);
-            width: 100%;
-            background: #ffffff;
-            position: relative;
-            padding-block: 15px;
-            margin-bottom: 15px;
-            transition: 0.5;
-        }
-
-            .business-image-container {
-                display: flex;
-                align-items: start;
-                height: 100%;
-                padding: 20px;
-            }
-
-            img {
-                height: 100px;
-            }
-
-            .application-title-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: left;
-                align-items: start;
-            }
-
-                .application-title-container div {
-                    width: 100%;
-                    justify-content: left;
-                }
-
-                .application-title-container h1 {
-                    font-size: 24px;
-                    font-weight: 700;
-                }
-
-                .application-title-container h2 {
-                    font-size: 17px;
-                    font-weight: 700;
-                    color: #5c5b5b;
-                }
-
-                .icon-and-text{
-                    display: flex;
-                    position: relative;
-                    align-items: start;
-                    margin-bottom: 5px;
-                }
-
-                .icon-and-text span {
-                    margin-left: 30px;
-                    font-size: 16px;
-                    font-weight: 500;
-                    color: #5c5b5b;
-                }
-
-                .icon-and-text i {
-                    margin-top: 5px;
-                    position: absolute;
-                    color: #a6a1a1;
-                    font-size: 20px;
-                }
-
-            .bookmark-container {
-                position: absolute;
-                top: 25px;
-                right: 25px;
-                border: none;
-                outline: none;
-                background: transparent;
-                height: 30px;
-                width: 20px;
-                display: grid;
-                place-items: center;
-            }
-
-            .bookmark-container:hover {
-                color: #4d677c;
-            }
-
-            .bookmark-container:active {
-                color: #7f97aa;
-            }
-
-                .bookmark-container input{
-                    opacity: 0;
-                    width: 0;
-                    height: 0;
-                }
-
-                .front-icon {
-                    opacity: 1;
-                }
-
-                .hiden-icon {
-                    opacity: 0;
-                }
-
-                .bookmark-container input:checked + .front-icon {
-                    opacity: 0;
-                    z-index: -1;
-                }
-
-                .bookmark-container input:checked + .hiden-icon {
-                    opacity: 1;
-                    z-index: 1;
-                }
-
-                .bookmark-container i {
-                    position: absolute;
-                    font-size: 2em;
-                }
-
-        .application-header-container-minimize {
-            display: flex;
-            padding: 10px;
-            justify-content: start;
-        }
-
-        .application-info-container nav {
-            width: 100%;
-            height: 50px;
-            display: grid;
-            grid-template-columns: 50% 50%;
-            justify-items: center;
-            align-items: center;
-            background: #ffffff;
-        }
-
-        .application-content-container {
-            width: 100%;
-            overflow: auto;
-            justify-content: start;
-            scroll-behavior: smooth;
-            padding: 20px;
-        }
-
-        .content-box {
-            display: flex;
-            align-items: start;
-            justify-content: start;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-    /* SIDEBAR SESSION */
-    .application-info-sidebar {
-        display: flex;
-        flex-direction: column;
-        row-gap: 17px;
+    .application-title-container h1 {
+        font-size: 24px;
+        font-weight: 700;
     }
 
-        #btnApplyNow {
-            border: none;
-            outline: none;
-            height: 55px;
-            font-weight: 600;
-            font-size: 1.2em;
+    .application-title-container h2 {
+        font-size: 17px;
+        font-weight: 700;
+        color: #5c5b5b;
+    }
+
+.icon-and-text {
+    display: flex;
+    position: relative;
+    align-items: start;
+    margin-bottom: 5px;
+}
+
+    .icon-and-text span {
+        margin-left: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #5c5b5b;
+    }
+
+    .icon-and-text i {
+        margin-top: 5px;
+        position: absolute;
+        color: #a6a1a1;
+        font-size: 20px;
+    }
+
+.bookmark-container {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 30px;
+    width: 20px;
+    display: grid;
+    place-items: center;
+}
+
+    .bookmark-container:hover {
+        color: #4d677c;
+    }
+
+    .bookmark-container:active {
+        color: #7f97aa;
+    }
+
+    .bookmark-container input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.front-icon {
+    opacity: 1;
+}
+
+.hiden-icon {
+    opacity: 0;
+}
+
+.bookmark-container input:checked + .front-icon {
+    opacity: 0;
+    z-index: -1;
+}
+
+.bookmark-container input:checked + .hiden-icon {
+    opacity: 1;
+    z-index: 1;
+}
+
+.bookmark-container i {
+    position: absolute;
+    font-size: 2em;
+}
+
+.application-header-container-minimize {
+    display: flex;
+    padding: 10px;
+    justify-content: start;
+}
+
+.application-info-container nav {
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+    align-items: center;
+    background: #ffffff;
+}
+
+.application-content-container {
+    width: 100%;
+    overflow: auto;
+    justify-content: start;
+    scroll-behavior: smooth;
+    padding: 20px;
+}
+
+.content-box {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* SIDEBAR SESSION */
+.application-info-sidebar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 17px;
+}
+
+#btnApplyNow {
+    border: none;
+    outline: none;
+    height: 55px;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.application-info-summary {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+    .application-info-summary h3,
+    .application-info-summary > div {
+        padding: 18px 18px 0 18px;
+    }
+
+    .application-info-summary h3 {
+        font-size: 1.2em;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #868484;
+        color: #5c5b5b;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .application-info-summary > div {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .application-info-summary h4 {
+        font-size: 1.1em;
+        font-weight: 700;
+    }
+
+    .application-info-summary span {
+        font-size: 1.1em;
+        font-weight: 400;
+    }
+
+.skill-requirement-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+    .skill-requirement-container a {
+        font-weight: 400;
+        background: #edfbff;
+        padding: 1px 6px;
+        text-decoration: none;
+        color: #1047b2;
+        border: 1px solid #ffffff;
+        transition: 0.3s;
+    }
+
+        .skill-requirement-container a:hover {
+            border: 1px solid #0f3e9d;
         }
-
-        .application-info-summary {
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-
-            .application-info-summary h3,
-            .application-info-summary > div {
-                padding: 18px 18px 0 18px;
-            }
-
-            .application-info-summary h3 {
-                font-size: 1.2em;
-                padding-bottom: 18px;
-                border-bottom: 1px solid #868484;
-                color: #5c5b5b;
-                font-weight: 700;
-                margin: 0;
-            }
-                .application-info-summary > div {
-                    display: flex;
-                    justify-content: left;
-                    flex-direction: column;
-                    align-items: start;
-                }
-                    .application-info-summary h4 {
-                        font-size: 1.1em;
-                        font-weight: 700;
-                    }
-
-                    .application-info-summary span {
-                        font-size: 1.1em;
-                        font-weight: 400;
-                    }
-
-                    .skill-requirement-container {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 10px;
-                        margin-bottom: 20px;
-                        flex: 1;
-                    }
-
-                    .skill-requirement-container a {
-                        font-weight: 400;
-                        background: #edfbff;
-                        padding: 1px 6px;
-                        text-decoration: none;
-                        color: #1047b2;
-                        border: 1px solid #ffffff;
-                        transition: 0.3s;
-                    }
-
-                    .skill-requirement-container a:hover {
-                        border: 1px solid #0f3e9d;
-                    }
 
 /* ------------- */
 

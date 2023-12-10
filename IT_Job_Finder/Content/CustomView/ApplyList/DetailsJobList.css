@@ -1,0 +1,54 @@
+﻿.details-container {
+    display: grid;
+    grid-template-columns: calc(100% - 400px - 1rem) 400px;
+}
+
+.details-job-info {
+    background: #fff;
+    height: fit-content;
+}
+
+    .details-job-info .apply-info-title{
+        border-bottom: 1px solid black;
+    }
+
+    .details-job-info h4 {
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+
+    .details-job-info p {
+        color: #5c5b5b;
+    }
+
+    .sticky-top {
+        position: sticky;
+        top: 65px;
+    }
+
+.skill-requirement-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+    .skill-requirement-container a, .skill-requirement-container p {
+        font-weight: 400;
+        background: #edfbff;
+        padding: 1px 6px;
+        text-decoration: none;
+        color: #1047b2;
+        border: 1px solid #ffffff;
+        transition: 0.3s;
+    }
+
+    .skill-requirement-container p {
+        margin-bottom: 0;
+    }
+
+        .skill-requirement-container a:hover, .skill-requirement-container p:hover {
+            border: 1px solid #0f3e9d;
+        }
+

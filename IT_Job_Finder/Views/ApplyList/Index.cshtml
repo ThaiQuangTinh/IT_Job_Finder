@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
+}
+@{
+    if (ViewBag.ImageUrl == null)
+    {
+        //ViewBag.ImageUrl = "https://t3.ftcdn.net/jpg/01/80/31/10/360_F_180311099_Vlj8ufdHvec4onKSDLxxdrNiP6yX4PnP.jpg";
+        ViewBag.ImageUrl = "../../../Resource/Image/fpt.png";
+    }
+}
+
+<div class="business-info-container shadow border-radius-5px">
+    <h2>Danh sách ứng tuyển</h2>
+    <div class="al-job-container">
+        <a class="card mb-3 al-job" href="/ApplyList/Details/1">
+            <div class="custom-image-container">
+                <img src="@ViewBag.ImageUrl" />
+            </div>
+            <div class="card-body">
+                <div>
+                    <span class="card-title font-bold">Job Posting Title 1</span>
+                </div>
+                <div>
+                    <span class="card-content">Địa chỉ</span>
+                </div>
+                <div>
+                    <span class="card-content al-job-salary">Tiền lương</span>
+                </div>
+                <div>
+                    <span class="card-content">Ngày đăng</span>
+                </div>
+            </div>
+        </a>
+
+        <a class="card mb-3 al-job" href="/ApplyList/Details/2">
+            <div class="custom-image-container">
+                <img src="@ViewBag.ImageUrl" />
+            </div>
+            <div class="card-body">
+                <div>
+                    <span class="card-title font-bold">Job Posting Title 2</span>
+                </div>
+                <div>
+                    <span class="card-content">Địa chỉ</span>
+                </div>
+                <div>
+                    <span class="card-content al-job-salary">Tiền lương</span>
+                </div>
+                <div>
+                    <span class="card-content">Ngày đăng</span>
+                </div>
+            </div>
+        </a>
+
+        <a class="card mb-3 al-job" href="/ApplyList/Details/3">
+            <div class="custom-image-container">
+                <img src="@ViewBag.ImageUrl" />
+            </div>
+            <div class="card-body">
+                <div>
+                    <span class="card-title font-bold">Job Posting Title 3</span>
+                </div>
+                <div>
+                    <span class="card-content">Địa chỉ</span>
+                </div>
+                <div>
+                    <span class="card-content al-job-salary">Tiền lương</span>
+                </div>
+                <div>
+                    <span class="card-content">Ngày đăng</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+    resetNavOption("linApplyList");
+</script>

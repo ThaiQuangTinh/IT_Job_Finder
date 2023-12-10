@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
+}
+@{
+    if (ViewBag.ImageUrl == null)
+    {
+        ViewBag.ImageUrl = "https://t3.ftcdn.net/jpg/01/80/31/10/360_F_180311099_Vlj8ufdHvec4onKSDLxxdrNiP6yX4PnP.jpg";
+    }
+}
+
+<div class="business-info-container shadow border-radius-5px">
+    <h2>Thông tin doanh nghiệp</h2>
+    <form class="custom-employer-input-group mb-3" method="post" action="">
+        <div class="card image-container flex-center">
+            <img src="@ViewBag.ImageUrl" id="BusinessImage" alt="...">
+        </div>
+        <div>
+            <div class="mb-3 input-file-container">
+                <label for="formFileInput" class="form-label">Chọn ảnh bìa doanh nghiệp</label>
+                <input class="form-control form-control-sm" id="formFileInput" type="file">
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group">
+                    <label for="txtBusinessName">Tên doanh nghiệp</label>
+                    <input type="text" class="form-control input-text" id="txtBusinessName" aria-describedby="emailHelp" placeholder="Nhập tên doanh nghiệp">
+                </div>
+                <div class="form-group">
+                    <label for="txtIndustry">Hoạt động kinh doanh</label>
+                    <input type="text" class="form-control input-text" id="txtIndustry" aria-describedby="emailHelp" placeholder="Nhập hoạt động kinh doanh">
+                </div>
+                <div class="form-group">
+                    <label for="txtWebsite">Website</label>
+                    <input type="text" class="form-control input-text" id="txtWebsite" aria-describedby="emailHelp" placeholder="Nhập địa chỉ website">
+                </div>
+            </div>
+        </div>
+        <div class="business-button-zone mb-3">
+            <label class="business-custom-checkbox btn btn-primary" for="isEditing">
+                <input type="checkbox" name="isEditing" id="isEditing" value="" />
+                <span class="edit-switch">Chỉnh sửa</span>
+            </label>
+            <input class="btn btn-primary" type="submit" name="btnBusinessInfoSubmit" id="btnBusinessInfoSubmit" value="Lưu" />
+        </div>
+    </form>
+    <div class="card-container ">
+        <div class="card flex-direction-column mb-3 job" style="width: auto">
+            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
+                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
+            </div>
+            <div class="card-body ">
+                <div>
+                    <a href="#" class="card-title font-bold job-title">Job Posting Title</a>
+                </div>
+                <div>
+                    <span class="company-name">Company name</span>
+                </div>
+                <div>
+                    <span class="job-salary">2 tỏi</span>
+                </div>
+                <div>
+                    <span class="address">Hồ Chí Minh</span>
+                </div>
+                <div class="skill-container">
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card flex-direction-column mb-3 job" style="width: auto">
+            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
+                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
+            </div>
+            <div class="card-body ">
+                <div>
+                    <a href="#" class="card-title font-bold job-title">Job Posting Title</a>
+                </div>
+                <div>
+                    <span class="company-name">Company name</span>
+                </div>
+                <div>
+                    <span class="job-salary">2 tỏi</span>
+                </div>
+                <div>
+                    <span class="address">Hồ Chí Minh</span>
+                </div>
+                <div class="skill-container">
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card flex-direction-column mb-3 job" style="width: auto">
+            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
+                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
+            </div>
+            <div class="card-body ">
+                <div>
+                    <a href="#" class="card-title font-bold job-title">Job Posting Title</a>
+                </div>
+                <div>
+                    <span class="company-name">Company name</span>
+                </div>
+                <div>
+                    <span class="job-salary">2 tỏi</span>
+                </div>
+                <div>
+                    <span class="address">Hồ Chí Minh</span>
+                </div>
+                <div class="skill-container">
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+
+                    <a href="#" class="border-radius-5px mb-3">C#</a>
+                    <a href="#" class="border-radius-5px mb-3">Java</a>
+                    <a href="#" class="border-radius-5px mb-3">C++</a>
+                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
+                    <a href="#" class="border-radius-5px mb-3">.Net</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var checkbox = document.getElementById("isEditing");
+    var form = document.getElementsByClassName("custom-employer-input-group")[0];
+    //var inputFileContainer = document.getElementsByClassName("input-file-container");
+    //var textInputs = form.querySelectorAll('.input-text');
+    var inputs = form.querySelectorAll('.form-control');
+
+    function disableInput(inputs, isDisable) {
+        inputs.forEach((input) => {
+            input.disabled = isDisable;
+        })
+    };
+
+    var replaceInput = function (isEditable) {
+        let textInputs = form.querySelectorAll('.input-text');
+        if (isEditable) {
+            inputFileContainer[0].style.display = 'block';
+            textInputs.forEach(elm => {
+                let inputElm = document.createElement('input');
+                inputElm.type = 'text';
+                inputElm.id = elm.id;
+                inputElm.className = elm.className;
+                inputElm.name = elm.name;
+                inputElm.value = elm.textContent;
+                elm.parentNode.replaceChild(inputElm, elm);
+            })
+        } else {
+            textInputs.forEach(elm => {
+                inputFileContainer[0].style.display = 'none';
+                let spanElm = document.createElement('p');
+                spanElm.id = elm.id;
+                spanElm.className = elm.className;
+                spanElm.name = elm.name;
+                spanElm.textContent = elm.value;
+                elm.parentNode.replaceChild(spanElm, elm);
+            })
+        }
+    };
+
+    resetNavOption("linYourBusiness");
+
+    //replaceInput(false);
+
+    disableInput([...inputs, btnBusinessInfoSubmit], true);
+
+    checkbox.addEventListener("click", () => {
+        let checkboxSpan = document.getElementsByClassName("edit-switch")[0];
+        let checkboxLabel = document.getElementsByClassName("business-custom-checkbox")[0];
+        let btnBusinessInfoSubmit = document.getElementById("btnBusinessInfoSubmit");
+        if (checkbox.checked == true) {
+            disableInput([...inputs, btnBusinessInfoSubmit], false);
+            //replaceInput(true);
+            checkboxSpan.textContent = "Hủy";
+            checkboxLabel.classList.remove("btn-primary");
+            checkboxLabel.classList.add("btn-secondary")
+        } else {
+            disableInput([...inputs, btnBusinessInfoSubmit], true);
+            //replaceInput(false);
+            checkboxSpan.textContent = "Chỉnh sửa";
+            checkboxLabel.classList.remove("btn-secondary")
+            checkboxLabel.classList.add("btn-primary");
+        }
+    })
+
+</script>
+

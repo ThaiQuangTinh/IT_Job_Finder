@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IT_JOB_FINDERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CandidateProfiles">
+    <Key>
+      <PropertyRef Name="candidate_id" />
+    </Key>
+    <Property Name="candidate_id" Type="int" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="skills" Type="nvarchar" MaxLength="255" />
+    <Property Name="experience" Type="nvarchar(max)" />
+    <Property Name="education" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Employers">
+    <Key>
+      <PropertyRef Name="employer_id" />
+    </Key>
+    <Property Name="employer_id" Type="int" Nullable="false" />
+    <Property Name="company_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="industry" Type="nvarchar" MaxLength="255" />
+    <Property Name="website" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Favorites">
+    <Key>
+      <PropertyRef Name="favorite_id" />
+    </Key>
+    <Property Name="favorite_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="candidate_id" Type="int" />
+    <Property Name="job_id" Type="int" />
+  </EntityType>
+  <EntityType Name="JobApplications">
+    <Key>
+      <PropertyRef Name="job_id" />
+      <PropertyRef Name="candidate_id" />
+    </Key>
+    <Property Name="job_id" Type="int" Nullable="false" />
+    <Property Name="candidate_id" Type="int" Nullable="false" />
+    <Property Name="date_applied" Type="date" />
+    <Property Name="cover_letter" Type="nvarchar(max)" />
+    <Property Name="cvURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="JobPostings">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employer_id" Type="int" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="location" Type="nvarchar" MaxLength="255" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="experience_year" Type="int" />
+    <Property Name="level_id" Type="int" />
+    <Property Name="contract_type" Type="nvarchar" MaxLength="255" />
+    <Property Name="date_posted" Type="date" />
+  </EntityType>
+  <EntityType Name="JobSkills">
+    <Key>
+      <PropertyRef Name="job_skill_id" />
+    </Key>
+    <Property Name="job_skill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="job_id" Type="int" />
+    <Property Name="skill_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Levels">
+    <Key>
+      <PropertyRef Name="level_id" />
+    </Key>
+    <Property Name="level_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="level_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillRequirement">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="skill_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="full_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="imageURL" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__Candidate__candi__3C69FB99">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="CandidateProfiles">
+        <PropertyRef Name="candidate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employers__emplo__3F466844">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Employers">
+        <PropertyRef Name="employer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorites__candi__4D94879B">
+    <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="0..1" />
+    <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CandidateProfiles">
+        <PropertyRef Name="candidate_id" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="candidate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorites__job_i__4E88ABD4">
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="0..1" />
+    <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPostings">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="job_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobApplic__candi__4AB81AF0">
+    <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="1" />
+    <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CandidateProfiles">
+        <PropertyRef Name="candidate_id" />
+      </Principal>
+      <Dependent Role="JobApplications">
+        <PropertyRef Name="candidate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobApplic__job_i__49C3F6B7">
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="1" />
+    <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPostings">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="JobApplications">
+        <PropertyRef Name="job_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobPostin__emplo__4222D4EF">
+    <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employers">
+        <PropertyRef Name="employer_id" />
+      </Principal>
+      <Dependent Role="JobPostings">
+        <PropertyRef Name="employer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobPostin__level__4316F928">
+    <End Role="Levels" Type="Self.Levels" Multiplicity="0..1" />
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="JobPostings">
+        <PropertyRef Name="level_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobSkills__job_i__45F365D3">
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="0..1" />
+    <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPostings">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="JobSkills">
+        <PropertyRef Name="job_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobSkills__skill__46E78A0C">
+    <End Role="SkillRequirement" Type="Self.SkillRequirement" Multiplicity="0..1" />
+    <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillRequirement">
+        <PropertyRef Name="skill_id" />
+      </Principal>
+      <Dependent Role="JobSkills">
+        <PropertyRef Name="skill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IT_JOB_FINDERModelStoreContainer">
+    <EntitySet Name="CandidateProfiles" EntityType="Self.CandidateProfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Favorites" EntityType="Self.Favorites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobApplications" EntityType="Self.JobApplications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobPostings" EntityType="Self.JobPostings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobSkills" EntityType="Self.JobSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SkillRequirement" EntityType="Self.SkillRequirement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Candidate__candi__3C69FB99" Association="Self.FK__Candidate__candi__3C69FB99">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employers__emplo__3F466844" Association="Self.FK__Employers__emplo__3F466844">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employers" EntitySet="Employers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorites__candi__4D94879B" Association="Self.FK__Favorites__candi__4D94879B">
+      <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorites__job_i__4E88ABD4" Association="Self.FK__Favorites__job_i__4E88ABD4">
+      <End Role="JobPostings" EntitySet="JobPostings" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobApplic__candi__4AB81AF0" Association="Self.FK__JobApplic__candi__4AB81AF0">
+      <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
+      <End Role="JobApplications" EntitySet="JobApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobApplic__job_i__49C3F6B7" Association="Self.FK__JobApplic__job_i__49C3F6B7">
+      <End Role="JobPostings" EntitySet="JobPostings" />
+      <End Role="JobApplications" EntitySet="JobApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobPostin__emplo__4222D4EF" Association="Self.FK__JobPostin__emplo__4222D4EF">
+      <End Role="Employers" EntitySet="Employers" />
+      <End Role="JobPostings" EntitySet="JobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobPostin__level__4316F928" Association="Self.FK__JobPostin__level__4316F928">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="JobPostings" EntitySet="JobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobSkills__job_i__45F365D3" Association="Self.FK__JobSkills__job_i__45F365D3">
+      <End Role="JobPostings" EntitySet="JobPostings" />
+      <End Role="JobSkills" EntitySet="JobSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobSkills__skill__46E78A0C" Association="Self.FK__JobSkills__skill__46E78A0C">
+      <End Role="SkillRequirement" EntitySet="SkillRequirement" />
+      <End Role="JobSkills" EntitySet="JobSkills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

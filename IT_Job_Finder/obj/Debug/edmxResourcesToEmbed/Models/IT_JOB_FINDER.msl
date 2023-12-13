@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IT_JOB_FINDERModelStoreContainer" CdmEntityContainer="IT_JOB_FINDEREntities">
+    <EntitySetMapping Name="CandidateProfiles">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.CandidateProfile">
+        <MappingFragment StoreEntitySet="CandidateProfiles">
+          <ScalarProperty Name="candidate_id" ColumnName="candidate_id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="skills" ColumnName="skills" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="education" ColumnName="education" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employers">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.Employer">
+        <MappingFragment StoreEntitySet="Employers">
+          <ScalarProperty Name="employer_id" ColumnName="employer_id" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="industry" ColumnName="industry" />
+          <ScalarProperty Name="website" ColumnName="website" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favorites">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.Favorite">
+        <MappingFragment StoreEntitySet="Favorites">
+          <ScalarProperty Name="favorite_id" ColumnName="favorite_id" />
+          <ScalarProperty Name="candidate_id" ColumnName="candidate_id" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobApplications">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.JobApplication">
+        <MappingFragment StoreEntitySet="JobApplications">
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="candidate_id" ColumnName="candidate_id" />
+          <ScalarProperty Name="date_applied" ColumnName="date_applied" />
+          <ScalarProperty Name="cover_letter" ColumnName="cover_letter" />
+          <ScalarProperty Name="cvURL" ColumnName="cvURL" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobPostings">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.JobPosting">
+        <MappingFragment StoreEntitySet="JobPostings">
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="employer_id" ColumnName="employer_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="experience_year" ColumnName="experience_year" />
+          <ScalarProperty Name="level_id" ColumnName="level_id" />
+          <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+          <ScalarProperty Name="date_posted" ColumnName="date_posted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobSkills">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.JobSkill">
+        <MappingFragment StoreEntitySet="JobSkills">
+          <ScalarProperty Name="job_skill_id" ColumnName="job_skill_id" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.Level">
+        <MappingFragment StoreEntitySet="Levels">
+          <ScalarProperty Name="level_id" ColumnName="level_id" />
+          <ScalarProperty Name="level_name" ColumnName="level_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SkillRequirements">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.SkillRequirement">
+        <MappingFragment StoreEntitySet="SkillRequirement">
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+          <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IT_JOB_FINDERModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

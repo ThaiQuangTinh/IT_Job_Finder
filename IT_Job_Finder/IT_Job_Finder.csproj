@@ -213,6 +213,9 @@
     <Compile Include="Models\SkillRequirement.cs">
       <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
     </Compile>

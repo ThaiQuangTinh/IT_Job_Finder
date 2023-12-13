@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="334bf8f651ef4df09f7dba7b3c8bf1bd" Name="Diagram1">
+      <Diagram DiagramId="ebf7e4a815e34be68fff5ea82bfde976" Name="Diagram1">
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.CandidateProfile" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.Employer" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.Favorite" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
@@ -13,17 +13,18 @@
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.JobSkill" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.Level" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.SkillRequirement" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IT_JOB_FINDERModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="IT_JOB_FINDERModel.User" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Candidate__candi__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Favorites__candi__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobApplic__candi__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Employers__emplo__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobPostin__emplo__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Favorites__job_i__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobApplic__job_i__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobPostin__level__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobSkills__job_i__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobSkills__skill__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Candidate__candi__6D9742D9" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Favorites__candi__7EC1CEDB" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobApplic__candi__7BE56230" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Employers__emplo__7073AF84" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobPostin__emplo__73501C2F" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__Favorites__job_i__7FB5F314" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobApplic__job_i__7AF13DF7" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobPostin__level__74444068" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobSkills__job_i__7720AD13" ManuallyRouted="false" />
+        <AssociationConnector Association="IT_JOB_FINDERModel.FK__JobSkills__skill__7814D14C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,7 +25,8 @@ namespace IT_Job_Finder.Models
         public string skill_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
+        [JsonIgnore]        
+        
         public virtual ICollection<JobSkill> JobSkills { get; set; }
     }
 }

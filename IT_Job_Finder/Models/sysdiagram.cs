@@ -9,19 +9,15 @@
 
 namespace IT_Job_Finder.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class JobSkill
+    public partial class sysdiagram
     {
-        public int job_skill_id { get; set; }
-        public Nullable<int> job_id { get; set; }
-        public Nullable<int> skill_id { get; set; }
-
-        [JsonIgnore]
-        public virtual JobPosting JobPosting { get; set; }
-        [JsonIgnore]
-        public virtual SkillRequirement SkillRequirement { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

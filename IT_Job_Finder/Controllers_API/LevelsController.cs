@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Threading.Tasks;
+using System.Web.Http.Controllers;
 
 namespace IT_Job_Finder.Controllers_API
 {
@@ -15,7 +17,8 @@ namespace IT_Job_Finder.Controllers_API
         [HttpGet]
         public IHttpActionResult GetAllLevels()
         {
-            return Ok(db.Levels.ToList());
+            var list = db.Levels.ToList();
+            return Ok(list);
         }
     }
 }

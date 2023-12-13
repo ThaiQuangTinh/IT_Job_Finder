@@ -12,7 +12,7 @@ namespace IT_Job_Finder.Models
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class JobApplication
     {
         public int job_id { get; set; }
@@ -21,7 +21,6 @@ namespace IT_Job_Finder.Models
         public string cover_letter { get; set; }
         public string cvURL { get; set; }
         public Nullable<bool> status { get; set; }
-
         [JsonIgnore]
         public virtual CandidateProfile CandidateProfile { get; set; }
         [JsonIgnore]

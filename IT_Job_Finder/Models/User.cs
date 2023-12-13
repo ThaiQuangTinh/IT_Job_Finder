@@ -22,7 +22,7 @@ namespace IT_Job_Finder.Models
         public string full_name { get; set; }
         public string role { get; set; }
         public string imageURL { get; set; }
-    
+
         [JsonIgnore]
         public virtual CandidateProfile CandidateProfile { get; set; }
         [JsonIgnore]

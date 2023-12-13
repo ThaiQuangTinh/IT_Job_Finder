@@ -12,7 +12,7 @@ namespace IT_Job_Finder.Models
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class CandidateProfile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,14 +21,14 @@ namespace IT_Job_Finder.Models
             this.Favorites = new HashSet<Favorite>();
             this.JobApplications = new HashSet<JobApplication>();
         }
-
+    
         public int candidate_id { get; set; }
         public string address { get; set; }
         public Nullable<bool> gender { get; set; }
         public string skills { get; set; }
         public string experience { get; set; }
         public string education { get; set; }
-
+    
         [JsonIgnore]
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

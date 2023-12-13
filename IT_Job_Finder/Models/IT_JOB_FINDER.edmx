@@ -82,6 +82,16 @@
           <Property Name="skill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="skill_name" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
@@ -94,7 +104,7 @@
           <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="imageURL" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__Candidate__candi__3C69FB99">
+        <Association Name="FK__Candidate__candi__6D9742D9">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -106,7 +116,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employers__emplo__3F466844">
+        <Association Name="FK__Employers__emplo__7073AF84">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -118,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorites__candi__4D94879B">
+        <Association Name="FK__Favorites__candi__7EC1CEDB">
           <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="0..1" />
           <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorites__job_i__4E88ABD4">
+        <Association Name="FK__Favorites__job_i__7FB5F314">
           <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="0..1" />
           <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobApplic__candi__4AB81AF0">
+        <Association Name="FK__JobApplic__candi__7BE56230">
           <End Role="CandidateProfiles" Type="Self.CandidateProfiles" Multiplicity="1" />
           <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobApplic__job_i__49C3F6B7">
+        <Association Name="FK__JobApplic__job_i__7AF13DF7">
           <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="1" />
           <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobPostin__emplo__4222D4EF">
+        <Association Name="FK__JobPostin__emplo__73501C2F">
           <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
           <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobPostin__level__4316F928">
+        <Association Name="FK__JobPostin__level__74444068">
           <End Role="Levels" Type="Self.Levels" Multiplicity="0..1" />
           <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__job_i__45F365D3">
+        <Association Name="FK__JobSkills__job_i__7720AD13">
           <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__skill__46E78A0C">
+        <Association Name="FK__JobSkills__skill__7814D14C">
           <End Role="SkillRequirement" Type="Self.SkillRequirement" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,44 +233,45 @@
           <EntitySet Name="JobSkills" EntityType="Self.JobSkills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SkillRequirement" EntityType="Self.SkillRequirement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Candidate__candi__3C69FB99" Association="Self.FK__Candidate__candi__3C69FB99">
+          <AssociationSet Name="FK__Candidate__candi__6D9742D9" Association="Self.FK__Candidate__candi__6D9742D9">
             <End Role="Users" EntitySet="Users" />
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employers__emplo__3F466844" Association="Self.FK__Employers__emplo__3F466844">
+          <AssociationSet Name="FK__Employers__emplo__7073AF84" Association="Self.FK__Employers__emplo__7073AF84">
             <End Role="Users" EntitySet="Users" />
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorites__candi__4D94879B" Association="Self.FK__Favorites__candi__4D94879B">
+          <AssociationSet Name="FK__Favorites__candi__7EC1CEDB" Association="Self.FK__Favorites__candi__7EC1CEDB">
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
             <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorites__job_i__4E88ABD4" Association="Self.FK__Favorites__job_i__4E88ABD4">
+          <AssociationSet Name="FK__Favorites__job_i__7FB5F314" Association="Self.FK__Favorites__job_i__7FB5F314">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobApplic__candi__4AB81AF0" Association="Self.FK__JobApplic__candi__4AB81AF0">
+          <AssociationSet Name="FK__JobApplic__candi__7BE56230" Association="Self.FK__JobApplic__candi__7BE56230">
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
             <End Role="JobApplications" EntitySet="JobApplications" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobApplic__job_i__49C3F6B7" Association="Self.FK__JobApplic__job_i__49C3F6B7">
+          <AssociationSet Name="FK__JobApplic__job_i__7AF13DF7" Association="Self.FK__JobApplic__job_i__7AF13DF7">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="JobApplications" EntitySet="JobApplications" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobPostin__emplo__4222D4EF" Association="Self.FK__JobPostin__emplo__4222D4EF">
+          <AssociationSet Name="FK__JobPostin__emplo__73501C2F" Association="Self.FK__JobPostin__emplo__73501C2F">
             <End Role="Employers" EntitySet="Employers" />
             <End Role="JobPostings" EntitySet="JobPostings" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobPostin__level__4316F928" Association="Self.FK__JobPostin__level__4316F928">
+          <AssociationSet Name="FK__JobPostin__level__74444068" Association="Self.FK__JobPostin__level__74444068">
             <End Role="Levels" EntitySet="Levels" />
             <End Role="JobPostings" EntitySet="JobPostings" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__job_i__45F365D3" Association="Self.FK__JobSkills__job_i__45F365D3">
+          <AssociationSet Name="FK__JobSkills__job_i__7720AD13" Association="Self.FK__JobSkills__job_i__7720AD13">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__skill__46E78A0C" Association="Self.FK__JobSkills__skill__46E78A0C">
+          <AssociationSet Name="FK__JobSkills__skill__7814D14C" Association="Self.FK__JobSkills__skill__7814D14C">
             <End Role="SkillRequirement" EntitySet="SkillRequirement" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
@@ -280,9 +291,9 @@
           <Property Name="skills" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="experience" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Candidate__candi__3C69FB99" FromRole="CandidateProfiles" ToRole="Users" />
-          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__candi__4D94879B" FromRole="CandidateProfiles" ToRole="Favorites" />
-          <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__candi__4AB81AF0" FromRole="CandidateProfiles" ToRole="JobApplications" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Candidate__candi__6D9742D9" FromRole="CandidateProfiles" ToRole="Users" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__candi__7EC1CEDB" FromRole="CandidateProfiles" ToRole="Favorites" />
+          <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__candi__7BE56230" FromRole="CandidateProfiles" ToRole="JobApplications" />
         </EntityType>
         <EntityType Name="Employer">
           <Key>
@@ -292,8 +303,8 @@
           <Property Name="company_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="industry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Employers__emplo__3F466844" FromRole="Employers" ToRole="Users" />
-          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__emplo__4222D4EF" FromRole="Employers" ToRole="JobPostings" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Employers__emplo__7073AF84" FromRole="Employers" ToRole="Users" />
+          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__emplo__73501C2F" FromRole="Employers" ToRole="JobPostings" />
         </EntityType>
         <EntityType Name="Favorite">
           <Key>
@@ -302,8 +313,8 @@
           <Property Name="favorite_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="candidate_id" Type="Int32" />
           <Property Name="job_id" Type="Int32" />
-          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__Favorites__candi__4D94879B" FromRole="Favorites" ToRole="CandidateProfiles" />
-          <NavigationProperty Name="JobPosting" Relationship="Self.FK__Favorites__job_i__4E88ABD4" FromRole="Favorites" ToRole="JobPostings" />
+          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__Favorites__candi__7EC1CEDB" FromRole="Favorites" ToRole="CandidateProfiles" />
+          <NavigationProperty Name="JobPosting" Relationship="Self.FK__Favorites__job_i__7FB5F314" FromRole="Favorites" ToRole="JobPostings" />
         </EntityType>
         <EntityType Name="JobApplication">
           <Key>
@@ -316,8 +327,8 @@
           <Property Name="cover_letter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="cvURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__JobApplic__candi__4AB81AF0" FromRole="JobApplications" ToRole="CandidateProfiles" />
-          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobApplic__job_i__49C3F6B7" FromRole="JobApplications" ToRole="JobPostings" />
+          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__JobApplic__candi__7BE56230" FromRole="JobApplications" ToRole="CandidateProfiles" />
+          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobApplic__job_i__7AF13DF7" FromRole="JobApplications" ToRole="JobPostings" />
         </EntityType>
         <EntityType Name="JobPosting">
           <Key>
@@ -333,11 +344,11 @@
           <Property Name="level_id" Type="Int32" />
           <Property Name="contract_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="date_posted" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employer" Relationship="Self.FK__JobPostin__emplo__4222D4EF" FromRole="JobPostings" ToRole="Employers" />
-          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__job_i__4E88ABD4" FromRole="JobPostings" ToRole="Favorites" />
-          <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__job_i__49C3F6B7" FromRole="JobPostings" ToRole="JobApplications" />
-          <NavigationProperty Name="Level" Relationship="Self.FK__JobPostin__level__4316F928" FromRole="JobPostings" ToRole="Levels" />
-          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__job_i__45F365D3" FromRole="JobPostings" ToRole="JobSkills" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK__JobPostin__emplo__73501C2F" FromRole="JobPostings" ToRole="Employers" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__job_i__7FB5F314" FromRole="JobPostings" ToRole="Favorites" />
+          <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__job_i__7AF13DF7" FromRole="JobPostings" ToRole="JobApplications" />
+          <NavigationProperty Name="Level" Relationship="Self.FK__JobPostin__level__74444068" FromRole="JobPostings" ToRole="Levels" />
+          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__job_i__7720AD13" FromRole="JobPostings" ToRole="JobSkills" />
         </EntityType>
         <EntityType Name="JobSkill">
           <Key>
@@ -346,8 +357,8 @@
           <Property Name="job_skill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="job_id" Type="Int32" />
           <Property Name="skill_id" Type="Int32" />
-          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobSkills__job_i__45F365D3" FromRole="JobSkills" ToRole="JobPostings" />
-          <NavigationProperty Name="SkillRequirement" Relationship="Self.FK__JobSkills__skill__46E78A0C" FromRole="JobSkills" ToRole="SkillRequirement" />
+          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobSkills__job_i__7720AD13" FromRole="JobSkills" ToRole="JobPostings" />
+          <NavigationProperty Name="SkillRequirement" Relationship="Self.FK__JobSkills__skill__7814D14C" FromRole="JobSkills" ToRole="SkillRequirement" />
         </EntityType>
         <EntityType Name="Level">
           <Key>
@@ -355,7 +366,7 @@
           </Key>
           <Property Name="level_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="level_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__level__4316F928" FromRole="Levels" ToRole="JobPostings" />
+          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__level__74444068" FromRole="Levels" ToRole="JobPostings" />
         </EntityType>
         <EntityType Name="SkillRequirement">
           <Key>
@@ -363,7 +374,17 @@
           </Key>
           <Property Name="skill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="skill_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__skill__46E78A0C" FromRole="SkillRequirement" ToRole="JobSkills" />
+          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__skill__7814D14C" FromRole="SkillRequirement" ToRole="JobSkills" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -376,10 +397,10 @@
           <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="imageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__Candidate__candi__3C69FB99" FromRole="Users" ToRole="CandidateProfiles" />
-          <NavigationProperty Name="Employer" Relationship="Self.FK__Employers__emplo__3F466844" FromRole="Users" ToRole="Employers" />
+          <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__Candidate__candi__6D9742D9" FromRole="Users" ToRole="CandidateProfiles" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK__Employers__emplo__7073AF84" FromRole="Users" ToRole="Employers" />
         </EntityType>
-        <Association Name="FK__Candidate__candi__3C69FB99">
+        <Association Name="FK__Candidate__candi__6D9742D9">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="CandidateProfiles" Type="Self.CandidateProfile" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -391,7 +412,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorites__candi__4D94879B">
+        <Association Name="FK__Favorites__candi__7EC1CEDB">
           <End Role="CandidateProfiles" Type="Self.CandidateProfile" Multiplicity="0..1" />
           <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,7 +424,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobApplic__candi__4AB81AF0">
+        <Association Name="FK__JobApplic__candi__7BE56230">
           <End Role="CandidateProfiles" Type="Self.CandidateProfile" Multiplicity="1" />
           <End Role="JobApplications" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
@@ -415,7 +436,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employers__emplo__3F466844">
+        <Association Name="FK__Employers__emplo__7073AF84">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Employers" Type="Self.Employer" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -427,7 +448,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobPostin__emplo__4222D4EF">
+        <Association Name="FK__JobPostin__emplo__73501C2F">
           <End Role="Employers" Type="Self.Employer" Multiplicity="0..1" />
           <End Role="JobPostings" Type="Self.JobPosting" Multiplicity="*" />
           <ReferentialConstraint>
@@ -439,7 +460,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Favorites__job_i__4E88ABD4">
+        <Association Name="FK__Favorites__job_i__7FB5F314">
           <End Role="JobPostings" Type="Self.JobPosting" Multiplicity="0..1" />
           <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -451,7 +472,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobApplic__job_i__49C3F6B7">
+        <Association Name="FK__JobApplic__job_i__7AF13DF7">
           <End Role="JobPostings" Type="Self.JobPosting" Multiplicity="1" />
           <End Role="JobApplications" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
@@ -463,7 +484,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobPostin__level__4316F928">
+        <Association Name="FK__JobPostin__level__74444068">
           <End Role="Levels" Type="Self.Level" Multiplicity="0..1" />
           <End Role="JobPostings" Type="Self.JobPosting" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +496,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__job_i__45F365D3">
+        <Association Name="FK__JobSkills__job_i__7720AD13">
           <End Role="JobPostings" Type="Self.JobPosting" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -487,7 +508,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__skill__46E78A0C">
+        <Association Name="FK__JobSkills__skill__7814D14C">
           <End Role="SkillRequirement" Type="Self.SkillRequirement" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -508,44 +529,45 @@
           <EntitySet Name="JobSkills" EntityType="Self.JobSkill" />
           <EntitySet Name="Levels" EntityType="Self.Level" />
           <EntitySet Name="SkillRequirements" EntityType="Self.SkillRequirement" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Candidate__candi__3C69FB99" Association="Self.FK__Candidate__candi__3C69FB99">
+          <AssociationSet Name="FK__Candidate__candi__6D9742D9" Association="Self.FK__Candidate__candi__6D9742D9">
             <End Role="Users" EntitySet="Users" />
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorites__candi__4D94879B" Association="Self.FK__Favorites__candi__4D94879B">
+          <AssociationSet Name="FK__Favorites__candi__7EC1CEDB" Association="Self.FK__Favorites__candi__7EC1CEDB">
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
             <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobApplic__candi__4AB81AF0" Association="Self.FK__JobApplic__candi__4AB81AF0">
+          <AssociationSet Name="FK__JobApplic__candi__7BE56230" Association="Self.FK__JobApplic__candi__7BE56230">
             <End Role="CandidateProfiles" EntitySet="CandidateProfiles" />
             <End Role="JobApplications" EntitySet="JobApplications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employers__emplo__3F466844" Association="Self.FK__Employers__emplo__3F466844">
+          <AssociationSet Name="FK__Employers__emplo__7073AF84" Association="Self.FK__Employers__emplo__7073AF84">
             <End Role="Users" EntitySet="Users" />
             <End Role="Employers" EntitySet="Employers" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobPostin__emplo__4222D4EF" Association="Self.FK__JobPostin__emplo__4222D4EF">
+          <AssociationSet Name="FK__JobPostin__emplo__73501C2F" Association="Self.FK__JobPostin__emplo__73501C2F">
             <End Role="Employers" EntitySet="Employers" />
             <End Role="JobPostings" EntitySet="JobPostings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Favorites__job_i__4E88ABD4" Association="Self.FK__Favorites__job_i__4E88ABD4">
+          <AssociationSet Name="FK__Favorites__job_i__7FB5F314" Association="Self.FK__Favorites__job_i__7FB5F314">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobApplic__job_i__49C3F6B7" Association="Self.FK__JobApplic__job_i__49C3F6B7">
+          <AssociationSet Name="FK__JobApplic__job_i__7AF13DF7" Association="Self.FK__JobApplic__job_i__7AF13DF7">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="JobApplications" EntitySet="JobApplications" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobPostin__level__4316F928" Association="Self.FK__JobPostin__level__4316F928">
+          <AssociationSet Name="FK__JobPostin__level__74444068" Association="Self.FK__JobPostin__level__74444068">
             <End Role="Levels" EntitySet="Levels" />
             <End Role="JobPostings" EntitySet="JobPostings" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__job_i__45F365D3" Association="Self.FK__JobSkills__job_i__45F365D3">
+          <AssociationSet Name="FK__JobSkills__job_i__7720AD13" Association="Self.FK__JobSkills__job_i__7720AD13">
             <End Role="JobPostings" EntitySet="JobPostings" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__skill__46E78A0C" Association="Self.FK__JobSkills__skill__46E78A0C">
+          <AssociationSet Name="FK__JobSkills__skill__7814D14C" Association="Self.FK__JobSkills__skill__7814D14C">
             <End Role="SkillRequirement" EntitySet="SkillRequirements" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
@@ -637,6 +659,17 @@
               <MappingFragment StoreEntitySet="SkillRequirement">
                 <ScalarProperty Name="skill_id" ColumnName="skill_id" />
                 <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IT_JOB_FINDERModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

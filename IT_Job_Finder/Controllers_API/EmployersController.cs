@@ -15,7 +15,7 @@ namespace IT_Job_Finder.Controllers_API
         [HttpGet]
         public IHttpActionResult GetAllEmployers()
         {
-            return Ok(db.Employers.ToList());
+           return Ok(db.Employers.ToList());
         }
     }
 }

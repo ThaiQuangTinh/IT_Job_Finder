@@ -162,6 +162,7 @@
     <Compile Include="Controllers\ApplyListController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobDetailsController.cs" />
     <Compile Include="Controllers_API\CandidateProfilesController.cs" />
     <Compile Include="Controllers_API\EmployersController.cs" />
     <Compile Include="Controllers_API\FavouritesController.cs" />
@@ -287,13 +288,11 @@
     <Content Include="Views\ApplyList\Details.cshtml" />
     <Content Include="Views\ApplyList\Index.cshtml" />
     <Content Include="Views\Business\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\JobDetails\Details.cshtml" />
     <None Include="Views\Shared\_MaintainEmployerLayout.cshtml" />
     <Content Include="Views\Profile\Candidate_Profile.html" />
     <Content Include="Views\Profile\Employer_Profile.html" />
-    <Content Include="Views\Shared\_NoneSigninHomeLayout.html" />
-    <Content Include="Views\Shared\_NoneSigninJobApplicationLayout.html" />
-    <Content Include="Views\Shared\_SignedinHomeLayout.html" />
-    <Content Include="Views\Shared\_SignedinJobApplicationLayout.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -307,9 +306,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_NoneSigninHomeLayout.cshtml" />
+    <Content Include="Views\Shared\_NoneSigninJobApplicationLayout.cshtml" />
+    <Content Include="Views\Shared\_SignedinHomeLayout.cshtml" />
+    <Content Include="Views\Shared\_SignedinJobApplicationLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

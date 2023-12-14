@@ -6,27 +6,27 @@ using System.Web.Mvc;
 
 namespace IT_Job_Finder.Controllers
 {
-    public class HomeController : Controller
+    public class JobDetailsController : Controller
     {
-        // GET: Home
+        // GET: JobDetails
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Home/Details/5
+        // GET: JobDetails/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Home/Create
+        // GET: JobDetails/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: JobDetails/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -42,13 +42,13 @@ namespace IT_Job_Finder.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        // GET: JobDetails/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: JobDetails/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -64,13 +64,13 @@ namespace IT_Job_Finder.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: JobDetails/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: JobDetails/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

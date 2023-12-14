@@ -1,6 +1,25 @@
-﻿.flex-direction-column{
+﻿.flex-direction-column {
     display: flex;
     flex-direction: column;
+}
+
+.card {
+    transition: 0.2s;
+}
+
+    .card:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+.card-body {
+    width: 100%;
+}
+
+.img-container {
+    width: 100%;
+    display: flex;
+    padding-inline: 1rem;
+    justify-content: start;
 }
 
 .job .card-body a {
@@ -29,9 +48,12 @@
 }
 
 .skill-container {
+    width: 100%;
     display: flex;
+    flex-wrap: nowrap;
     overflow: hidden;
-    gap: .5rem;
+    gap: 0.5rem;
+    justify-content: start;
 }
 
     .skill-container a {
@@ -47,3 +69,15 @@
         .skill-container a:hover {
             border: 1px solid #0f3e9d;
         }
+
+
+.image-fit-width {
+    height: 90px;
+    width: fit-content;
+    object-fit: contain
+}
+
+.image-fit-height {
+    height: 100%;
+    object-fit: contain;
+}

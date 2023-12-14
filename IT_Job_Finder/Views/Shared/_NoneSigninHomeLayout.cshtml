@@ -7,15 +7,14 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="../../Content/CustomLayout/_HomeLayout.cshtml.css">
     <link rel="stylesheet" href="../../Content/FormLoginAndSignUp/LoginAndSignUp.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <!-- @Styles.Render("~/Content/css") -->
+    <link href="~/Content/CustomLayout/Component/Card.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 
-<body>
-    <nav class="_NoneSigninLayout-nav">
+<body style="background: #f5f5f5">
+    <nav class="_NoneSigninLayout-nav shadow">
         <div class="image-logo-container">
             <a href="" class="logo-name">Logo</a>
         </div>
@@ -85,7 +84,7 @@
 
 
     <main class="_NoneSigninLayout-main">
-        <form method="get" action="" class="search-fliter-container">
+        <form method="get" action="" class="search-fliter-container shadow">
             <div class="search-container s-f-emlement-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" name="txtSearch" id="txtSearch" placeholder="Tìm công việc của bạn">
@@ -107,63 +106,66 @@
             </div>
         </form>
 
-        <aside class="filter-side-bar">
-            <div class="work-city-container filter-box">
-                <label>Nơi làm việc</label>
-                <div id="work-city-ul" class="checkbox-list">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="cityCheckbox1" value="option1">
-                        <label class="form-check-label" for="cityCheckbox1">TP.Hồ Chí Minh</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="cityCheckbox2" value="option2">
-                        <label class="form-check-label" for="cityCheckbox2">Hà Nội</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="cityCheckbox3" value="option3">
-                        <label class="form-check-label" for="cityCheckbox3">Quy Nhơn</label>
-                    </div>
-                </div>
-            </div>
-            <div class="requirement-container filter-box">
-                <label>Yêu cầu</label>
-                <div id="requirement-ul" class="checkbox-list">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="requirementCheckbox1" value="option1">
-                        <label class="form-check-label" for="requirementCheckbox1">C++</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="requirementCheckbox2" value="option2">
-                        <label class="form-check-label" for="requirementCheckbox2">Java</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="requirementCheckbox3" value="option3">
-                        <label class="form-check-label" for="requirementCheckbox3">JavaScript</label>
+        <div class="grid-20-80-gap20">
+            <aside class="filter-side-bar shadow">
+                <div class="work-city-container filter-box">
+                    <label>Nơi làm việc</label>
+                    <div id="work-city-ul" class="checkbox-list">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="cityCheckbox1" value="option1">
+                            <label class="form-check-label" for="cityCheckbox1">TP.Hồ Chí Minh</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="cityCheckbox2" value="option2">
+                            <label class="form-check-label" for="cityCheckbox2">Hà Nội</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="cityCheckbox3" value="option3">
+                            <label class="form-check-label" for="cityCheckbox3">Quy Nhơn</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="salary-container filter-box">
-                <label>Lương</label>
-                <div id="salary-ul" class="checkbox-list">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="salaryCheckbox1" value="option1">
-                        <label class="form-check-label" for="salaryCheckbox1">> 15 triệu</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="salaryCheckbox2" value="option2">
-                        <label class="form-check-label" for="salaryCheckbox2">> 10 triệu</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="salaryCheckbox3" value="option3">
-                        <label class="form-check-label" for="salaryCheckbox3"><= 10 triệu</label>
+                <div class="requirement-container filter-box">
+                    <label>Yêu cầu</label>
+                    <div id="requirement-ul" class="checkbox-list">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="requirementCheckbox1" value="option1">
+                            <label class="form-check-label" for="requirementCheckbox1">C++</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="requirementCheckbox2" value="option2">
+                            <label class="form-check-label" for="requirementCheckbox2">Java</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="requirementCheckbox3" value="option3">
+                            <label class="form-check-label" for="requirementCheckbox3">JavaScript</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </aside>
+                <div class="salary-container filter-box">
+                    <label>Lương</label>
+                    <div id="salary-ul" class="checkbox-list">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="salaryCheckbox1" value="option1">
+                            <label class="form-check-label" for="salaryCheckbox1">> 15 triệu</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="salaryCheckbox2" value="option2">
+                            <label class="form-check-label" for="salaryCheckbox2">> 10 triệu</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="salaryCheckbox3" value="option3">
+                            <label class="form-check-label" for="salaryCheckbox3"><= 10 triệu</label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
 
-        <div class="render-body">
-            @RenderBody()
+            <div class="render-body shadow job card-container">
+                @RenderBody()
+            </div>
         </div>
+
     </main>
 
     <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/CommonForm.js"></script>

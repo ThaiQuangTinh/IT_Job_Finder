@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    //ViewBag.Layout = "~/Views/Shared/_NoneSigninJobApplicationLayout.cshtml";
+    //if (Session.Account != null)
+    //{
+    ViewBag.Layout = "~/Views/Shared/_SignedinJobApplicationLayout.cshtml";
+    //}
+
+    //ViewBag declare
+    ViewBag.ImgUrl = "https://yt3.googleusercontent.com/ytc/APkrFKalw8-UrTQalgiW3u7dPj35IWZUDT-N2XSkPa1xhw=s900-c-k-c0x00ffffff-no-rj";
+    ViewBag.JobTitle = "Senior Developer (C#, Unity 3D, Sign-On Bonus)";
+    ViewBag.Location = "Tầng 2, toà Rivera Park, 69 Vũ Trọng Phụng, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội";
+    ViewBag.CompanyName = "Fpt Software";
+    ViewBag.Description = "";
+    ViewBag.BussinessInfo = "";
+    ViewBag.Experient = "2";
+    ViewBag.Level = "Senior";
+    ViewBag.ContractType = "Dài hạn";
+    ViewBag.Skills = ("Java C# C++ JavaScript Sql").Split(' ');
+    ViewBag.IsFavorite = false ? "checked" : "";
+
+    Layout = ViewBag.Layout;
+}
+
+<div class="application-info-container">
+    <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
+        <div class="application-header-container border-radius-5px shadow">
+            <div class="business-image-container">
+                <img src=@ViewBag.ImgUrl alt="">
+            </div>
+            <div class="application-title-container">
+                <div><h1 class="application-header">@ViewBag.JobTitle</h1></div>
+                <div><h2 class="bussiness-name">@ViewBag.CompanyName</h2></div>
+                <div class="icon-and-text">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>
+                        @ViewBag.Location
+                    </span>
+                </div>
+                <div class="icon-and-text">
+                    <i class="fa-solid fa-money-bills"></i>
+                    <span>2 tỷ</span>
+                </div>
+            </div>
+            <label class="bookmark-container" for="favorite">
+                <input type="checkbox"
+                       name="favorite"
+                       id="favorite"
+                       @ViewBag.IsFavorite>
+                <i class="fa-solid fa-bookmark hiden-icon" style="color: #4d677c;"></i>
+                <i class="fa-regular fa-bookmark front-icon"></i>
+            </label>
+        </div>
+        <nav class="shadow">
+            <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer">Mô tả công việc</div>
+            <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer">Giới thiệu về công ty</div>
+        </nav>
+    </div>
+    <div class="application-content-container flex-direction-column">
+        <div id="jobDescription" class="flex-direction-column content-box">
+            @ViewBag.Description
+        </div>
+        <div id="bussinessInfo" class="flex-direction-column content-box">
+            @ViewBag.BussinessInfo
+        </div>
+    </div>
+</div>
+
+<aside class="application-info-sidebar sticky-top">
+    <button id="btnApplyNow" class="blue-button shadow">Ứng tuyển ngay</button>
+    <section class="application-info-summary border-radius-5px shadow">
+        <h3>Thông tin chung</h3>
+        <div>
+            <h4>Năm kinh nghiệm tối thiểu</h4>
+            <span>Từ @ViewBag.Experient năm</span>
+        </div>
+        <div>
+            <h4>Cấp bậc</h4>
+            <span>@ViewBag.Level</span>
+        </div>
+        <div>
+            <h4>Loại hợp đồng</h4>
+            <span>@ViewBag.ContractType</span>
+        </div>
+        <div>
+            <h4>Các công nghệ sử dụng</h4>
+            <div class="skill-requirement-container">
+                @{
+                    foreach (string skill in ViewBag.Skills)
+                    {
+                        <a href="" class="border-radius-5px">@skill</a>
+                    }
+                }
+
+            </div>
+        </div>
+    </section>
+</aside>

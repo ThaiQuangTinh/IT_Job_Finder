@@ -61,7 +61,7 @@ div {
 ._JobApplicationLayout-nav {
     height: 70px;
     width: 100%;
-    background: #ffffff;
+    background: #1f95fd;
     display: flex;
     padding-inline: 45px;
     justify-content: space-between;
@@ -81,8 +81,12 @@ div {
 
 .logo-name {
     text-decoration: none;
-    color: #1f96ff;
+    color: #f5f5f5;
 }
+
+    .logo-name:hover {
+        color: #fff;
+    }
 
 .account-container {
     height: 40px;
@@ -127,6 +131,14 @@ div {
     .login-signup a {
         margin-inline: 5px;
     }
+
+    .login-signup .signup-link {
+        color: #f5f5f5;
+    }
+
+        .login-signup .signup-link:hover {
+            color: #fff;
+        }
 
 .login-link {
     height: 100%;
@@ -292,7 +304,7 @@ img {
     overflow: auto;
     justify-content: start;
     scroll-behavior: smooth;
-    padding: 20px;
+    margin-top: 15px;
 }
 
 .content-box {
@@ -393,7 +405,10 @@ img {
     flex-wrap: nowrap;
 }
 
-
+.content-box {
+    background: #fff;
+    padding: 20px;
+}
 /*..............*/
 .hide-jobApp-main {
     position: relative;

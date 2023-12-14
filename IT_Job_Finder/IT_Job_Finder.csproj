@@ -236,6 +236,7 @@
     <Content Include="Content\CustomView\JobPosting\JobPosting.css" />
     <Content Include="Content\FormLoginAndSignUp\ForgotPW.css" />
     <Content Include="Content\FormLoginAndSignUp\LoginAndSignUp.css" />
+    <Content Include="Content\Profile\Profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,6 +269,7 @@
     <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\CommonForm.js" />
     <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\ForgotPW.js" />
     <Content Include="Scripts\CustomScripts\JobPosting\JobApplicationUI.js" />
+    <Content Include="Scripts\CustomScripts\Profile\Profile.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -286,6 +288,8 @@
     <Content Include="Views\ApplyList\Index.cshtml" />
     <Content Include="Views\Business\Index.cshtml" />
     <None Include="Views\Shared\_MaintainEmployerLayout.cshtml" />
+    <Content Include="Views\Profile\Candidate_Profile.html" />
+    <Content Include="Views\Profile\Employer_Profile.html" />
     <Content Include="Views\Shared\_NoneSigninHomeLayout.html" />
     <Content Include="Views\Shared\_NoneSigninJobApplicationLayout.html" />
     <Content Include="Views\Shared\_SignedinHomeLayout.html" />

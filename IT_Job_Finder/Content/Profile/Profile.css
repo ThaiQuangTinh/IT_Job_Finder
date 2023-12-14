@@ -1,0 +1,467 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif, Courier, monospace;
+}
+
+
+/* Vertical-line */
+
+.vertical-line {
+    height: 100%;
+    width: 2px;
+    background-color: black;
+}
+
+
+/* Nav  */
+
+._NoneSigninLayout-nav {
+    z-index: 10;
+    height: 70px;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    padding-inline: 45px;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-logo-container {
+    height: 100%;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.logo-name {
+    text-decoration: none;
+    color: #1f96ff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.logo-name:hover {
+    color: #0a58ca;
+}
+
+.account-container {
+    height: 40px;
+    width: 400px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+    font-weight: bold;
+}
+
+.account-container a {
+    display: flex;
+    align-items: center;
+}
+
+.account-container a:hover {
+    color: #0a58ca;
+}
+
+.user-info {
+    height: 40px;
+    width: 200px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: right;
+    position: relative;
+}
+
+.user-info i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.users-name-info {
+    margin-left: 10px;
+    color: #323c4e;
+    text-decoration: none;
+}
+
+.login-signup {
+    height: 40px;
+    display: flex;
+}
+
+.login-signup a {
+    margin-inline: 5px;
+    color: #0d6efd;
+}
+
+.login-link {
+    height: 100%;
+    width: 90px;
+}
+
+._NoneSigninLayout-main {
+    padding: 30px 40px 0 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    position: relative;
+    height: calc(100vh - 100px);
+    overflow: auto;
+    scrollbar-width: 10px;
+    background: #f5f5f5;
+}
+
+._NoneSigninLayout-main::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* CSS for main profile */
+
+.delete_disable_effect {
+    color: initial;
+    background-color: #fff;
+    opacity: 1;
+}
+
+.contain_profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.main_profile {
+    margin: 90px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.left_profile {
+    margin-right: 20px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.right_profile {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+
+/* CSS for left profile */
+
+.contain_avatar {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar_Profile {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+}
+
+.avatar_name {
+    font-size: 24px;
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user_infor {
+    margin: 20px;
+    font-size: 16px;
+}
+
+.ip_Profile,
+.ip_Profile_textarea {
+    min-width: 280px;
+    margin: 5px 0;
+    padding: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.ip_hover:hover {
+    outline: none;
+    border: 1px solid #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ip_profile_rowIp {
+    display: block;
+    margin: 15px;
+}
+
+.lb_ip_profile {
+    display: block;
+    margin-right: 10px;
+    min-width: 40px;
+    font-weight: bold;
+}
+
+.ip_right_profile {
+    width: 100%;
+    line-height: 1.5;
+}
+
+.contain_button_profile {
+    display: flex;
+    justify-content: center;
+}
+
+#btn_edit {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: #1f96ff;
+    color: #fff;
+    border-radius: 10px;
+}
+
+#btn_edit:hover {
+    background-color: #045bc5;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+/* CSS for right profile */
+
+.tab_list {
+    display: flex;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    margin: 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #1f96ff;
+    color: #fff;
+}
+
+.tab_content_container {
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid #ccc;
+}
+
+.ip_Profile_textarea {
+    min-height: 140px;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif, Courier, monospace;
+}
+
+.containRadios {
+    display: inline-block;
+    font-size: 18px;
+}
+
+#lb_radioFemale {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+#ip_txtImageUrl {
+    font-size: 14px;
+}
+
+.lb_gender {
+    display: inline-block;
+}
+
+.ip_profile_rowIp_hide {
+    display: none;
+}
+
+
+/* CSS for btn cancel and save */
+
+.btnCancelSave {
+    display: none;
+    margin: 25px 5px 10px 0;
+    padding: 4px 8px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    float: right;
+}
+
+#btn_cancel {
+    background-color: rgb(238, 37, 37);
+}
+
+#btn_cancel:hover {
+    background-color: rgb(209, 25, 25);
+    transition: 0.5s;
+}
+
+#btn_save {
+    background-color: rgb(33, 209, 33);
+}
+
+#btn_save:hover {
+    background-color: rgb(20, 158, 20);
+    transition: 0.5s;
+}
+
+
+/* CSS for jobs applicated */
+
+.conatain_job_applicated,
+.conatain_job_favourite {
+    min-height: 400px;
+    margin: 10px 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.job_applicated_list,
+.job_favourite_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.job_applicated_item,
+.fouvarite_job_item {
+    margin: 20px 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.job_applicated_item:hover {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo_company img {
+    width: 200px;
+    height: auto;
+}
+
+.job_title {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.employeer_name {
+    font-weight: bold;
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+.employer_description {
+    line-height: 1.5;
+}
+
+.location_icon,
+.dolar_icon {
+    opacity: 0.7;
+}
+
+.main_contain {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.row_content {
+    margin: 15px 0;
+}
+
+
+/* CSS for edit button */
+
+.btn_edit_list {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: #1f96ff;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.btn_edit_list:hover {
+    background-color: #045bc5;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.fouvarite_job_item:hover {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.japp_delete_icon,
+.fav_delete_icon {
+    display: none;
+    font-size: 20px;
+}
+
+.delete_icon:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.fav_delete_icon:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+/* CSS for btn cancel of job apply and job favourite */
+
+.btn_cacel_japp_fav {
+    display: none;
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: #e64439;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.btn_cacel_japp_fav:hover {
+    opacity: 0.7;
+    cursor: pointer;
+    transition: 0.7s;
+}

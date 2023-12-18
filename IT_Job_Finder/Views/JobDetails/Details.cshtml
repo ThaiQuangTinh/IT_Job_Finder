@@ -23,77 +23,116 @@
     Layout = ViewBag.Layout;
 }
 
-<div class="application-info-container">
-    <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
-        <div class="application-header-container border-radius-5px shadow">
-            <div class="business-image-container">
-                <img src=@ViewBag.ImgUrl alt="">
-            </div>
-            <div class="application-title-container">
-                <div><h1 class="application-header">@ViewBag.JobTitle</h1></div>
-                <div><h2 class="bussiness-name">@ViewBag.CompanyName</h2></div>
-                <div class="icon-and-text">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>
-                        @ViewBag.Location
-                    </span>
-                </div>
-                <div class="icon-and-text">
-                    <i class="fa-solid fa-money-bills"></i>
-                    <span>2 tỷ</span>
-                </div>
-            </div>
-            <label class="bookmark-container" for="favorite">
-                <input type="checkbox"
-                       name="favorite"
-                       id="favorite"
-                       @ViewBag.IsFavorite>
-                <i class="fa-solid fa-bookmark hiden-icon" style="color: #4d677c;"></i>
-                <i class="fa-regular fa-bookmark front-icon"></i>
-            </label>
-        </div>
-        <nav class="shadow">
-            <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer">Mô tả công việc</div>
-            <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer">Giới thiệu về công ty</div>
-        </nav>
-    </div>
-    <div class="application-content-container flex-direction-column">
-        <div id="jobDescription" class="flex-direction-column content-box">
-            @ViewBag.Description
-        </div>
-        <div id="bussinessInfo" class="flex-direction-column content-box">
-            @ViewBag.BussinessInfo
-        </div>
-    </div>
-</div>
 
-<aside class="application-info-sidebar sticky-top">
-    <button id="btnApplyNow" class="blue-button shadow">Ứng tuyển ngay</button>
-    <section class="application-info-summary border-radius-5px shadow">
-        <h3>Thông tin chung</h3>
-        <div>
-            <h4>Năm kinh nghiệm tối thiểu</h4>
-            <span>Từ @ViewBag.Experient năm</span>
-        </div>
-        <div>
-            <h4>Cấp bậc</h4>
-            <span>@ViewBag.Level</span>
-        </div>
-        <div>
-            <h4>Loại hợp đồng</h4>
-            <span>@ViewBag.ContractType</span>
-        </div>
-        <div>
-            <h4>Các công nghệ sử dụng</h4>
-            <div class="skill-requirement-container">
-                @{
-                    foreach (string skill in ViewBag.Skills)
-                    {
-                        <a href="" class="border-radius-5px">@skill</a>
-                    }
-                }
+<script>
+    let candidate_id = 2
+    let path = location.pathname;
+    let job_id = path.split('/JobDetails/Details/')[1];
+    let url = ("http://localhost:56673/api/JobPostings/GetJobPosting/" + job_id).trim();
 
-            </div>
-        </div>
-    </section>
-</aside>
+    var isChecked = (favorite_list, candidate_id) => {
+        for (let i = 0; i < favorite_list.length; i++) {
+            if (favorite_list[i].candidate_id == candidate_id) {
+                return "checked";
+            }
+        }
+        return "";
+    }
+    fetch(url)
+    .then(function (res) {
+        return res.json();
+    })
+        .then(function (datas) {
+            console.log(datas);
+        let htmls = datas.map(function (data) {
+            return `<div class="application-info-container">
+                        <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
+                            <div class="application-header-container border-radius-5px shadow">
+                                <div class="business-image-container">
+                                    <img src=${data.Employer.User.imageURL} alt="">
+                                </div>
+                                <div class="application-title-container">
+                                    <div><h1 class="application-header">${data.title}</h1></div>
+                                    <div><h2 class="bussiness-name">${data.Employer.company_name}</h2></div>
+                                    <div class="icon-and-text">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <span>
+                                            ${data.location}
+                                        </span>
+                                    </div>
+                                    <div class="icon-and-text">
+                                        <i class="fa-solid fa-money-bills"></i>
+                                        <span>2 tỷ</span>
+                                    </div>
+                                </div>
+                                <label class="bookmark-container" for="favorite">
+                                    <input type="checkbox"
+                                           name="favorite"
+                                           id="favorite"
+                                           ${isChecked(data.Favorites,candidate_id)}>
+                                    <i class="fa-solid fa-bookmark hiden-icon" style="color: #4d677c;"></i>
+                                    <i class="fa-regular fa-bookmark front-icon"></i>
+                                </label>
+                            </div>
+                            <nav class="shadow">
+                                <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer">Mô tả công việc</div>
+                                <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer">Giới thiệu về công ty</div>
+                            </nav>
+                        </div>
+                        <div class="application-content-container flex-direction-column">
+                            <div id="jobDescription" class="flex-direction-column content-box">
+                                ${data.description}
+                            </div>
+                            <div id="bussinessInfo" class="flex-direction-column content-box">
+                                <h3>Thông tin doanh nghiệp</h3>
+                                <div>
+                                    <h4>Tên công ty</h4>
+                                    <span>${data.Employer.company_name}</span>
+                                </div>
+                                <div>
+                                    <h4>Hoạt động kinh doanh</h4>
+                                    <span>${data.Employer.industry}</span>
+                                </div>
+                                <div>
+                                    <h4>Website công ty</h4>
+                                    <span>${data.Employer.website}</span>
+                                </div>
+                                <div>
+                                    <h4>Mô tả công ty</h4>
+                                    <span>${"Mô tả công ty"}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="application-info-sidebar sticky-top">
+                        <button id="btnApplyNow" class="blue-button shadow">Ứng tuyển ngay</button>
+                        <section class="application-info-summary border-radius-5px shadow">
+                            <h3>Thông tin chung</h3>
+                            <div>
+                                <h4>Năm kinh nghiệm tối thiểu</h4>
+                                <span>Từ ${data.experience_year} năm</span>
+                            </div>
+                            <div>
+                                <h4>Cấp bậc</h4>
+                                <span>${data.Level.level_name}</span>
+                            </div>
+                            <div>
+                                <h4>Loại hợp đồng</h4>
+                                <span>${data.contract_type}</span>
+                            </div>
+                            <div>
+                                <h4>Các công nghệ sử dụng</h4>
+                                <div class="skill-requirement-container">
+                                    ${data.JobSkills.map(function (skill) {
+                                    return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </section>
+                    </aside>`;
+        });
+        html = htmls.join('');
+        document.getElementById("renderBody").innerHTML = html;
+    });
+</script>

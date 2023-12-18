@@ -12,7 +12,7 @@ namespace IT_Job_Finder.Models
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class JobSkill
     {
         public int job_skill_id { get; set; }
@@ -21,7 +21,6 @@ namespace IT_Job_Finder.Models
 
         [JsonIgnore]
         public virtual JobPosting JobPosting { get; set; }
-        [JsonIgnore]
         public virtual SkillRequirement SkillRequirement { get; set; }
     }
 }

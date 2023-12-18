@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
+}
+
+<link href="~/Content/CustomView/BusinessView/BusinessJobDetails.css" rel="stylesheet" />
+
+<div class="application-info-container">
+    <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
+        <div class="application-header-container border-radius-5px shadow">
+            <div class="business-image-container">
+                <img src=${data.Employer.User.imageURL} alt="">
+            </div>
+            <div class="application-title-container">
+                <div><h1 class="application-header">${data.title}</h1></div>
+                <div><h2 class="bussiness-name">${data.Employer.company_name}</h2></div>
+                <div class="icon-and-text">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>
+                        ${data.location}
+                    </span>
+                </div>
+                <div class="icon-and-text">
+                    <i class="fa-solid fa-money-bills"></i>
+                    <span>2 tỷ</span>
+                </div>
+            </div>
+        </div>
+        <nav class="shadow">
+            <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer">Mô tả công việc</div>
+            <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer">Giới thiệu về công ty</div>
+        </nav>
+    </div>
+    <div class="application-content-container flex-direction-column">
+        <div id="jobDescription" class="flex-direction-column content-box shadow">
+            ${data.description}
+        </div>
+        <div id="bussinessInfo" class="flex-direction-column content-box shadow">
+            <h3>Thông tin doanh nghiệp</h3>
+            <div>
+                <h4>Tên công ty</h4>
+                <span>${data.Employer.company_name}</span>
+            </div>
+            <div>
+                <h4>Hoạt động kinh doanh</h4>
+                <span>${data.Employer.industry}</span>
+            </div>
+            <div>
+                <h4>Website công ty</h4>
+                <span>${data.Employer.website}</span>
+            </div>
+            <div>
+                <h4>Mô tả công ty</h4>
+                <span>${"Mô tả công ty"}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<aside class="application-info-sidebar sticky-top">
+    <div class="bussiness-edit-btn-container">
+        <a id="btnEdit" class="btn btn-primary shadow" href="/Business/Edit/1">Chỉnh sửa</a>
+        <button id="btnDelete" class="btn btn-danger shadow">Xóa</button>
+    </div>
+    <section class="application-info-summary border-radius-5px shadow">
+        <h3>Thông tin chung</h3>
+        <div>
+            <h4>Năm kinh nghiệm tối thiểu</h4>
+            <span>Từ ${data.experience_year} năm</span>
+        </div>
+        <div>
+            <h4>Cấp bậc</h4>
+            <span>${data.Level.level_name}</span>
+        </div>
+        <div>
+            <h4>Loại hợp đồng</h4>
+            <span>${data.contract_type}</span>
+        </div>
+        <div>
+            <h4>Các công nghệ sử dụng</h4>
+            <div class="skill-requirement-container">
+                ${data.JobSkills.map(function (skill) {
+                return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                }).join('')}
+            </div>
+        </div>
+    </section>
+</aside>
+<script>
+    resetNavOption("linYourBusiness");
+    window.onscroll = function () {
+        if (document.documentElement.scrollTop > 90) {
+            document.getElementsByClassName("application-header-container")[0].classList.add("application-header-container-minimize");
+            document.getElementsByClassName("business-image-container")[0].classList.add("hiden-container");
+            let textAndIcon = document.getElementsByClassName("icon-and-text")
+            for (let i = 0; i < textAndIcon.length; i++) {
+                textAndIcon[i].classList.add("hiden-container")
+            }
+        } else {
+            document.getElementsByClassName("application-header-container")[0].classList.remove("application-header-container-minimize");
+            document.getElementsByClassName("business-image-container")[0].classList.remove("hiden-container");
+            let textAndIcon = document.getElementsByClassName("icon-and-text")
+            for (let i = 0; i < textAndIcon.length; i++) {
+                textAndIcon[i].classList.remove("hiden-container")
+            }
+        }
+    }
+
+    function scrollToElementId(id) {
+        var element = document.getElementById(id);
+        var rect = element.getBoundingClientRect();
+        var offset = rect.top - document.body.getBoundingClientRect().top;
+        console.log(rect.top);
+        if (offset > 165) {
+            window.scrollTo({
+                top: offset - 205,
+                behavior: "smooth"
+            });
+        }
+    }
+</script>

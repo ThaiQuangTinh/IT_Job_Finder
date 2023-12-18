@@ -6,84 +6,62 @@
 
 }
 
-<div class="card flex-direction-column mb-3 job" style="width: auto">
-    <div class="img-container">
-        <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
-    </div>
-    <div class="card-body ">
-        <div>
-            <a href="/JobDetails/Details/1" class="card-title font-bold job-title">Job Posting Title</a>
-        </div>
-        <div>
-            <span class="company-name">Company name</span>
-        </div>
-        <div>
-            <span class="job-salary">2 tỏi</span>
-        </div>
-        <div>
-            <span class="address">Hồ Chí Minh</span>
-        </div>
-        <div class="skill-container">
-            <a href="#" class="border-radius-5px">C#</a>
-            <a href="#" class="border-radius-5px">Java</a>
-            <a href="#" class="border-radius-5px">C++</a>
-            <a href="#" class="border-radius-5px">JavaScript</a>
-            <a href="#" class="border-radius-5px">.Net</a>
-        </div>
-    </div>
-</div>
+<script>
+    let GetAllJobAPI = "http://localhost:56673/api/JobPostings/GetAllJobPostings"
+    let SearchAPI = "http://localhost:56673/api/JobPostings/SearchForJobPosting"
+    var doomHtml = function (APIUrl) {
+        fetch(APIUrl)
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (datas) {
+            let htmls = datas.map(function (data) {
+                return `<div class="card flex-direction-column mb-3 job" style="width: auto">
+                            <div class="img-container">
+                                <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
+                            </div>
+                            <div class="card-body ">
+                                <div>
+                                    <a href="/JobDetails/Details/${data.job_id}" class="card-title font-bold job-title">${data.title}</a>
+                                </div>
+                                <div>
+                                    <span class="company-name">${data.Employer.company_name}</span>
+                                </div>
+                                <div>
+                                    <span class="job-salary">${data.salary}</span>
+                                </div>
+                                <div>
+                                    <span class="address">${data.location}</span>
+                                </div>
+                                <div class="skill-container">
+                                    ${data.JobSkills.map(function (skill) {
+                                        return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </div>`;
+            });
+            html = htmls.join('');
+            document.getElementById("renderBody").innerHTML = html;
+            console.log(datas);
+        });
+    }
 
-<div class="card flex-direction-column mb-3 job" style="width: auto">
-    <div class="img-container">
-        <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
-    </div>
-    <div class="card-body ">
-        <div>
-            <a href="/JobDetails/Details/1" class="card-title font-bold job-title">Job Posting Title</a>
-        </div>
-        <div>
-            <span class="company-name">Company name</span>
-        </div>
-        <div>
-            <span class="job-salary">2 tỏi</span>
-        </div>
-        <div>
-            <span class="address">Hồ Chí Minh</span>
-        </div>
-        <div class="skill-container">
-            <a href="#" class="border-radius-5px">C#</a>
-            <a href="#" class="border-radius-5px">Java</a>
-            <a href="#" class="border-radius-5px">C++</a>
-            <a href="#" class="border-radius-5px">JavaScript</a>
-            <a href="#" class="border-radius-5px">.Net</a>
-        </div>
-    </div>
-</div>
-
-<div class="card flex-direction-column mb-3 job" style="width: auto">
-    <div class="img-container">
-        <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
-    </div>
-    <div class="card-body ">
-        <div>
-            <a href="/JobDetails/Details/1" class="card-title font-bold job-title">Job Posting Title</a>
-        </div>
-        <div>
-            <span class="company-name">Company name</span>
-        </div>
-        <div>
-            <span class="job-salary">2 tỏi</span>
-        </div>
-        <div>
-            <span class="address">Hồ Chí Minh</span>
-        </div>
-        <div class="skill-container">
-            <a href="#" class="border-radius-5px">C#</a>
-            <a href="#" class="border-radius-5px">Java</a>
-            <a href="#" class="border-radius-5px">C++</a>
-            <a href="#" class="border-radius-5px">JavaScript</a>
-            <a href="#" class="border-radius-5px">.Net</a>
-        </div>
-    </div>
-</div>
-
+    doomHtml(GetAllJobAPI);
+    document.querySelector("#btnSearch").addEventListener("click", (e) => {
+        e.preventDefault();
+        let title = document.getElementById("txtSearch").value;
+        let location = document.getElementById("txtCity").value;
+        let skill = document.getElementById("txtPosision").value;
+        let salary = document.getElementById("txtSalary").value;
+        salary = salary == "" ? "0" : salary;
+        const newUrl = new URL(SearchAPI);
+        newUrl.searchParams.append('title', title);
+        newUrl.searchParams.append('location', location);
+        newUrl.searchParams.append('salary', salary); 
+        newUrl.searchParams.append('skill_name', skill);
+        
+        doomHtml(newUrl);
+        
+    })
+</script>

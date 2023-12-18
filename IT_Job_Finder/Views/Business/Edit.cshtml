@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
+}
+
+<div class="business-info-container shadow border-radius-5px">
+    <h2>Chỉnh sửa tin tuyển dụng</h2>
+    <form action="" method="post" class="form-jobposting">
+        <div class="mb-3 form-group" style="padding-bottom: 79px">
+            <label for="editor">Mô tả công việc</label>
+            <textarea class="form-control" id="editor"></textarea>
+        </div>
+        <div class="mb-3 ml-3">
+            <div class="form-group mb-3">
+                <label for="txtTitle">Tên công việc <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtTitle" placeholder="Nhập tên công việc">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtLocation">Địa chỉ làm việc <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtLocation" placeholder="Nhập địa chỉ làm việc">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtSalary">Mức lương <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtSalary" placeholder="Nhập mức lương">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtExperienceYear">Số năm kinh nghiệm <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtExperienceYear" placeholder="Nhập số năm kinh nghiệm">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtLevel">Cấp độ ứng viên <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtLevel" placeholder="Nhập cấp độ ứng viên">
+            </div>
+            <div class="form-group mb-3">
+                <label for="txtContractType">Loại hợp đồng <span class="not-null">(*)</span></label>
+                <input type="text" class="form-control" id="txtContractType" placeholder="Nhập loại hợp đồng">
+            </div>
+            <div class="form-group mb-3">
+                <label for"inputGroupSelect04">Kỹ năng <span class="not-null">(*)</span></label>
+                <div class="input-group">
+                    <select class="custom-select form-select" id="inputGroupSelect">
+                        <option value="null" selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="btnAddOption" type="button">Thêm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3" style="display: none">
+                <input type="text" id="txtSkills">
+            </div>
+            <div id="skillsContainer" class="ml-3 mb-3"></div>
+            <div class="mb-3 two-btn-container">
+                <input type="submit" name="btnSubmit" class="btn btn-primary" value="Thay đổi" />
+                <a href="/Business/Details/1" class="btn btn-secondary">Hủy</a>
+            </div>
+        </div>
+    </form>
+    <div class="form-jobposting">
+
+    </div>
+</div>
+<script src="~/Scripts/CustomScripts/EmployerMaintain/CKEditorSetup.js"></script>
+<script>
+    resetNavOption("linYourBusiness");
+    document.getElementsByClassName("ck-editor__main")[0].classList.add("height-1");
+    var btnAddOption = document.getElementById("btnAddOption");
+    var selectElement = document.getElementById("inputGroupSelect");
+    var txtSkills = document.getElementById("txtSkills");
+    var selected = [];
+
+    Array.prototype.toString = function () {
+        let myString = "";
+        for (let i = 0; i < this.length; i++) {
+            myString += this[i].value + " ";
+        }
+        return myString;
+    };
+
+    var deleteSkill = function (skillID) {
+        let parrent = document.getElementById("skillsContainer");
+        let child = document.getElementById(skillID);
+        parrent.removeChild(child);
+        for (let i = 0; i < selected.length; i++) {
+            if (selected[i].value == skillID) {
+                selected.splice(i, 1);
+            }
+        }
+        txtSkills.value = selected.toString();
+        console.log(txtSkills.value);
+    }
+
+    var createSkillElement = function (option) {
+        let childDiv = document.createElement("div");
+        let childSpan = document.createElement("span");
+        let childButton = document.createElement("button");
+        childDiv.setAttribute('id', option.value);
+        childSpan.innerHTML = option.content;
+        childButton.setAttribute('onclick', 'deleteSkill(' + option.value + ')');
+        childButton.innerHTML = "Xoa";
+        childButton.className = "btn btn-danger";
+        childDiv.appendChild(childSpan);
+        childDiv.appendChild(childButton);
+        document.getElementById("skillsContainer").appendChild(childDiv);
+    }
+
+    btnAddOption.addEventListener("click", () => {
+        let option = {
+            value: selectElement.options[selectElement.selectedIndex].value,
+            content: selectElement.options[selectElement.selectedIndex].text
+        };
+        for (let i = 0; i < selected.length; i++) {
+            if (selected[i].value == option.value) {
+                return;
+            }
+        }
+        if (option.value != "null") {
+            selected.push(option);
+            createSkillElement(option);
+            txtSkills.value = selected.toString();
+            console.log(txtSkills.value);
+        }
+    })
+
+</script>
+
+

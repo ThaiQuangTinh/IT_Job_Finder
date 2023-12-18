@@ -47,6 +47,30 @@ div {
         background: #b6e3ff;
     }
 
+/* White Button */
+.white-button {
+    border-radius: 5px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+    .white-button:hover {
+        background: #efefef;
+        transition: 0s;
+    }
+
+    .white-button:active {
+        background: #dcdcdc;
+    }
+
+    .white-button:disabled {
+        color: #0162fe;
+        background: #525252;
+    }
 
 /* Vertical-line */
 
@@ -62,7 +86,7 @@ div {
 ._NoneSigninLayout-nav {
     height: 70px;
     width: 100%;
-    background: #ffffff;
+    background: #1f95fd;
     display: flex;
     padding-inline: 45px;
     justify-content: space-between;
@@ -85,7 +109,11 @@ div {
 
 .logo-name {
     text-decoration: none;
-    color: #1f96ff;
+    color: #f5f5f5;
+}
+
+.logo-name:hover {
+    color: #fff;
 }
 
 .account-container {
@@ -137,6 +165,13 @@ div {
     width: 90px;
 }
 
+.signup-link {
+    color: #fff;
+}
+    .signup-link:hover {
+        color: #dcdcdc;
+    }
+
 ._NoneSigninLayout-main {
     padding: 100px 40px 0 40px;
     display: flex;
@@ -166,6 +201,7 @@ div {
     align-items: center;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .s-f-emlement-container {

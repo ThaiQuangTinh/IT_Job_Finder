@@ -234,6 +234,7 @@
     <Content Include="Content\CustomView\ApplyList\ApplyCandidate.css" />
     <Content Include="Content\CustomView\ApplyList\DetailsJobList.css" />
     <Content Include="Content\CustomView\BusinessView\BusinessInfo.css" />
+    <Content Include="Content\CustomView\BusinessView\BusinessJobDetails.css" />
     <Content Include="Content\CustomView\JobPosting\JobPosting.css" />
     <Content Include="Content\FormLoginAndSignUp\ForgotPW.css" />
     <Content Include="Content\FormLoginAndSignUp\LoginAndSignUp.css" />
@@ -290,6 +291,8 @@
     <Content Include="Views\Business\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\JobDetails\Details.cshtml" />
+    <Content Include="Views\Business\Details.cshtml" />
+    <Content Include="Views\Business\Edit.cshtml" />
     <None Include="Views\Shared\_MaintainEmployerLayout.cshtml" />
     <Content Include="Views\Profile\Candidate_Profile.html" />
     <Content Include="Views\Profile\Employer_Profile.html" />

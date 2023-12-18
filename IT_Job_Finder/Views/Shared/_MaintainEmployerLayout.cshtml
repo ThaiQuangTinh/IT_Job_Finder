@@ -16,13 +16,15 @@
     <link href="~/Content/CustomView/ApplyList/ALJobList.css" rel="stylesheet" />
     <link href="~/Content/CustomView/ApplyList/DetailsJobList.css" rel="stylesheet" />
     <link href="~/Content/CustomView/ApplyList/ApplyCandidate.css" rel="stylesheet" />
+
 </head>
 <body>
     <header class="header-nav">
     </header>
     <aside class="side-bar shadow">
         <div class="logo-container">
-            <h1>Logo</h1>
+            <h1><a href="/Home">Logo</a></h1>
+            
         </div>
         <div class="username-icon">
             <i class="fa-solid fa-circle-user"></i>
@@ -45,7 +47,7 @@
         </nav>
     </aside>
     <main class="page-content-container">
-        <div class="render-body-container">
+        <div id="renderBody" class="render-body-container">
             @RenderBody()
         </div>
     </main>

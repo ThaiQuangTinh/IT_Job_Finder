@@ -15,7 +15,7 @@
 <body>
     <nav class="_JobApplicationLayout-nav shadow">
         <div class="image-logo-container">
-            <a href="/Home" class="logo-name">Logo</a>
+            <a href="" class="logo-name">Logo</a>
         </div>
 
         <div class="account-container">
@@ -32,50 +32,54 @@
 
     <!-- Login form -->
     <div class="container_Login">
-        <form action="" class="form_Login">
+        <form action="@Url.Action("LoginJobApplication", "Account")" method="post" class="form_Login" id="id_login_form">
             <div class="hi">
-                <p class="title_Login">Login</p>
+                <p class="title_Login">Đăng nhập</p>
             </div>
 
             <!-- User name -->
-            <div class="hi">
+            <div>
                 <div class="title_IpForm">
                     <i class="fa-solid fa-user"></i>
-                    <label for="ipUserName_Login">User name</label>
+                    <label>Tên đăng nhập</label>
                 </div>
 
-                <input type="text" name="txtUserName_Login" required id="ipUserName_Login" class="input_LgSignForm">
+                <input type="text" name="txtUserName_Login" required id="ipUserName_Login" placeholder="Nhập tài khoản" class="input_LgSignForm">
             </div>
 
             <!-- Password -->
-            <div class="hi">
+            <div>
                 <div class="title_IpForm">
                     <i class="fa-solid fa-key"></i>
-                    <label for="ipPassword_Login">Password</label>
+                    <label>Mật khẩu</label>
                 </div>
                 <div class="contain_Password_Eye">
-                    <input type="password" name="txtPassword_Login" required id="ipPassword_Login" class="input_LgSignForm">
+                    <input type="password" name="txtPassword_Login" required id="ipPassword_Login" placeholder="Nhập mật khẩu" class="input_LgSignForm">
                     <i class="fa-solid fa-eye" id="eye_in_FormLogin"></i>
                 </div>
             </div>
 
+            <p class="error_message"></p>
+
             <div class="Rember_Forgot_Form">
                 <div>
                     <input type="checkbox" name="" id="chk_RememberMe">
-                    <label class="labelFoChk" for="chk_RememberMe">Remember me</label>
+                    <label class="labelFoChk">Nhớ mật khẩu</label>
                 </div>
 
                 <div class="hi">
-                    <a href="./_ForgotPW.html" class="link_In_Form">Forgot password</a>
+                    <a href="./_ForgotPW.html" class="link_In_Form">Quên mật khẩu</a>
                 </div>
             </div>
 
             <div class="button_Form">
-                <input type="button" value="Login" id="btnLoginForm">
+                <input type="submit" value="Đăng nhập" id="btnLoginForm">
             </div>
 
+            <input type="hidden" name="jobAppID" value="hhhh" id="hiden_id">
+
             <div class="direct_SignUp_Form">
-                <label>Don't have an account?</label> <a href="./_SignUp.html" class="link_In_Form">Sign up</a>
+                <label>Bạn chưa có tài khoản?</label> <a href="./_SignUp.html" class="link_In_Form">Đăng kí</a>
             </div>
 
         </form>
@@ -86,6 +90,6 @@
         @RenderBody()
     </main>
 
-    <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/CommonForm.js"></script>
+    <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/SignIn.js"></script>
 </body>
 </html>

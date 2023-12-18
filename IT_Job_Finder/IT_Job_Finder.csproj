@@ -163,6 +163,7 @@
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobDetailsController.cs" />
+    <Compile Include="Controllers\MaintainCandidateController.cs" />
     <Compile Include="Controllers_API\CandidateProfilesController.cs" />
     <Compile Include="Controllers_API\EmployersController.cs" />
     <Compile Include="Controllers_API\FavouritesController.cs" />
@@ -238,6 +239,7 @@
     <Content Include="Content\CustomView\JobPosting\JobPosting.css" />
     <Content Include="Content\FormLoginAndSignUp\ForgotPW.css" />
     <Content Include="Content\FormLoginAndSignUp\LoginAndSignUp.css" />
+    <Content Include="Content\FormLoginAndSignUp\LoginMessage.css" />
     <Content Include="Content\Profile\Profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -268,8 +270,10 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\EmployerMaintain\CKEditorSetup.js" />
     <Content Include="Scripts\CustomScripts\EmployerMaintain\MaintainEmployerLayout.js" />
-    <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\CommonForm.js" />
     <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\ForgotPW.js" />
+    <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\MessageLogin.js" />
+    <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\SignIn.js" />
+    <Content Include="Scripts\CustomScripts\FormLoginAndSignUp\SignUp.js" />
     <Content Include="Scripts\CustomScripts\JobPosting\JobApplicationUI.js" />
     <Content Include="Scripts\CustomScripts\Profile\Profile.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -293,9 +297,9 @@
     <Content Include="Views\JobDetails\Details.cshtml" />
     <Content Include="Views\Business\Details.cshtml" />
     <Content Include="Views\Business\Edit.cshtml" />
+    <Content Include="Views\MaintainCandidate\Candidate_Profile.html" />
+    <Content Include="Views\MaintainCandidate\Index.cshtml" />
     <None Include="Views\Shared\_MaintainEmployerLayout.cshtml" />
-    <Content Include="Views\Profile\Candidate_Profile.html" />
-    <Content Include="Views\Profile\Employer_Profile.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

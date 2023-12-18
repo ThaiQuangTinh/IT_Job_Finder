@@ -22,11 +22,13 @@ div {
     flex-wrap: wrap;
 }
 
+
 /* Blue-Button */
+
 .blue-button {
     border-radius: 5px;
-    background: #1f96ff;
-    color: #ffffff;
+    background: #fff;
+    color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,30 +36,34 @@ div {
     transition: 0.2s;
 }
 
-    .blue-button:hover {
-        background: #0776ff;
-        transition: 0s;
-        color: #ffffff;
-    }
+.blue-button:hover {
+    background: #0776ff;
+    transition: 0s;
+    color: #ffffff;
+}
 
-    .blue-button:active {
-        background: #0162fe;
-        color: #ffffff;
-    }
+.blue-button:active {
+    background: #0162fe;
+    color: #ffffff;
+}
 
-    .blue-button:disabled {
-        color: #0162fe;
-        background: #b6e3ff;
-    }
+.blue-button:disabled {
+    color: #0162fe;
+    background: #b6e3ff;
+}
+
 
 /* Vertical-line */
+
 .vertical-line {
     height: 100%;
     width: 2px;
     background-color: black;
 }
 
+
 /* Nav  */
+
 ._JobApplicationLayout-nav {
     height: 70px;
     width: 100%;
@@ -84,9 +90,9 @@ div {
     color: #f5f5f5;
 }
 
-    .logo-name:hover {
-        color: #fff;
-    }
+.logo-name:hover {
+    color: #fff;
+}
 
 .account-container {
     height: 40px;
@@ -97,10 +103,10 @@ div {
     position: relative;
 }
 
-    .account-container a {
-        display: flex;
-        align-items: center;
-    }
+.account-container a {
+    display: flex;
+    align-items: center;
+}
 
 .user-info {
     height: 40px;
@@ -112,10 +118,10 @@ div {
     position: relative;
 }
 
-    .user-info i {
-        font-size: 1.5em;
-        margin-right: 10px;
-    }
+.user-info i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
 
 .users-name-info {
     margin-left: 10px;
@@ -128,24 +134,26 @@ div {
     display: flex;
 }
 
-    .login-signup a {
-        margin-inline: 5px;
-    }
+.login-signup a {
+    margin-inline: 5px;
+}
 
-    .login-signup .signup-link {
-        color: #f5f5f5;
-    }
+.login-signup .signup-link {
+    color: #f5f5f5;
+}
 
-        .login-signup .signup-link:hover {
-            color: #fff;
-        }
+.login-signup .signup-link:hover {
+    color: #fff;
+}
 
 .login-link {
     height: 100%;
     width: 90px;
 }
 
+
 /* Main */
+
 ._JobApplicationLayout-main {
     padding: 20px 140px 0px 140px;
     display: grid;
@@ -166,7 +174,9 @@ div {
     flex-direction: column;
 }
 
+
 /* HEADER SESSION  */
+
 .application-header-container {
     display: grid;
     grid-template-columns: 188px calc(100% - 188px);
@@ -196,21 +206,21 @@ img {
     align-items: start;
 }
 
-    .application-title-container div {
-        width: 100%;
-        justify-content: left;
-    }
+.application-title-container div {
+    width: 100%;
+    justify-content: left;
+}
 
-    .application-title-container h1 {
-        font-size: 24px;
-        font-weight: 700;
-    }
+.application-title-container h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
 
-    .application-title-container h2 {
-        font-size: 17px;
-        font-weight: 700;
-        color: #5c5b5b;
-    }
+.application-title-container h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #5c5b5b;
+}
 
 .icon-and-text {
     display: flex;
@@ -219,19 +229,19 @@ img {
     margin-bottom: 5px;
 }
 
-    .icon-and-text span {
-        margin-left: 30px;
-        font-size: 16px;
-        font-weight: 500;
-        color: #5c5b5b;
-    }
+.icon-and-text span {
+    margin-left: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5c5b5b;
+}
 
-    .icon-and-text i {
-        margin-top: 5px;
-        position: absolute;
-        color: #a6a1a1;
-        font-size: 20px;
-    }
+.icon-and-text i {
+    margin-top: 5px;
+    position: absolute;
+    color: #a6a1a1;
+    font-size: 20px;
+}
 
 .bookmark-container {
     position: absolute;
@@ -246,19 +256,19 @@ img {
     place-items: center;
 }
 
-    .bookmark-container:hover {
-        color: #4d677c;
-    }
+.bookmark-container:hover {
+    color: #4d677c;
+}
 
-    .bookmark-container:active {
-        color: #7f97aa;
-    }
+.bookmark-container:active {
+    color: #7f97aa;
+}
 
-    .bookmark-container input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+.bookmark-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
 .front-icon {
     opacity: 1;
@@ -268,12 +278,12 @@ img {
     opacity: 0;
 }
 
-.bookmark-container input:checked + .front-icon {
+.bookmark-container input:checked+.front-icon {
     opacity: 0;
     z-index: -1;
 }
 
-.bookmark-container input:checked + .hiden-icon {
+.bookmark-container input:checked+.hiden-icon {
     opacity: 1;
     z-index: 1;
 }
@@ -313,9 +323,12 @@ img {
     justify-content: start;
     width: 100%;
     margin-bottom: 20px;
+    font-weight: 400;
 }
 
+
 /* SIDEBAR SESSION */
+
 .application-info-sidebar {
     display: flex;
     flex-direction: column;
@@ -336,36 +349,36 @@ img {
     flex-direction: column;
 }
 
-    .application-info-summary h3,
-    .application-info-summary > div {
-        padding: 18px 18px 0 18px;
-    }
+.application-info-summary h3,
+.application-info-summary>div {
+    padding: 18px 18px 0 18px;
+}
 
-    .application-info-summary h3 {
-        font-size: 1.2em;
-        padding-bottom: 18px;
-        border-bottom: 1px solid #868484;
-        color: #5c5b5b;
-        font-weight: 700;
-        margin: 0;
-    }
+.application-info-summary h3 {
+    font-size: 1.2em;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #868484;
+    color: #5c5b5b;
+    font-weight: 700;
+    margin: 0;
+}
 
-    .application-info-summary > div {
-        display: flex;
-        justify-content: left;
-        flex-direction: column;
-        align-items: start;
-    }
+.application-info-summary>div {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: start;
+}
 
-    .application-info-summary h4 {
-        font-size: 1.1em;
-        font-weight: 700;
-    }
+.application-info-summary h4 {
+    font-size: 1.1em;
+    font-weight: 700;
+}
 
-    .application-info-summary span {
-        font-size: 1.1em;
-        font-weight: 400;
-    }
+.application-info-summary span {
+    font-size: 1.1em;
+    font-weight: 400;
+}
 
 .skill-requirement-container {
     display: flex;
@@ -375,34 +388,37 @@ img {
     flex: 1;
 }
 
-    .skill-requirement-container a {
-        font-weight: 400;
-        background: #edfbff;
-        padding: 1px 6px;
-        text-decoration: none;
-        color: #1047b2;
-        border: 1px solid #ffffff;
-        transition: 0.3s;
-    }
+.skill-requirement-container a {
+    font-weight: 400;
+    background: #edfbff;
+    padding: 1px 6px;
+    text-decoration: none;
+    color: #1047b2;
+    border: 1px solid #ffffff;
+    transition: 0.3s;
+}
 
-        .skill-requirement-container a:hover {
-            border: 1px solid #0f3e9d;
-        }
+.skill-requirement-container a:hover {
+    border: 1px solid #0f3e9d;
+}
 
-#bussinessInfo > div {
+#bussinessInfo>div {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: start
 }
 
-    #bussinessInfo span {
-        font-weight: 400;
-    }
-    /* ------------- */
-    .hiden-container {
-        display: none;
-    }
+#bussinessInfo span {
+    font-weight: 400;
+}
+
+
+/* ------------- */
+
+.hiden-container {
+    display: none;
+}
 
 .border-radius-5px {
     border-radius: 5px;
@@ -418,7 +434,10 @@ img {
     background: #fff;
     padding: 20px;
 }
+
+
 /*..............*/
+
 .hide-jobApp-main {
     position: relative;
     z-index: 0;

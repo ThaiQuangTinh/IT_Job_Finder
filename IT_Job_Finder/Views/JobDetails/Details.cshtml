@@ -1,11 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Details";
-    //ViewBag.Layout = "~/Views/Shared/_NoneSigninJobApplicationLayout.cshtml";
-    //if (Session.Account != null)
-    //{
-    ViewBag.Layout = "~/Views/Shared/_SignedinJobApplicationLayout.cshtml";
-    //}
+    if (Session["Username"] != null)
+    {
+        ViewBag.Layout = "~/Views/Shared/_SignedinJobApplicationLayout.cshtml";
+    }
+    else
+    {
+        ViewBag.Layout = "~/Views/Shared/_NoneSigninJobApplicationLayout.cshtml";
+    }
 
     //ViewBag declare
     ViewBag.ImgUrl = "https://yt3.googleusercontent.com/ytc/APkrFKalw8-UrTQalgiW3u7dPj35IWZUDT-N2XSkPa1xhw=s900-c-k-c0x00ffffff-no-rj";

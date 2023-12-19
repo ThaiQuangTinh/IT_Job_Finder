@@ -24,8 +24,8 @@ div {
 
 .blue-button {
     border-radius: 5px;
-    background-color: #fff;
-    color: #000;
+    background-color: #289aff;
+    color: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,8 +43,34 @@ div {
     }
 
     .blue-button:disabled {
-        color: #0162fe;
+        color: #f5f5f5;
         background: #b6e3ff;
+    }
+
+.login-link {
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+    .login-link:hover {
+        background: #f5f5f5;
+        color: #323c4e;
+        transition: 0s;
+    }
+
+    .login-link:active {
+        background: #efefef;
+    }
+
+    .login-link:disabled {
+        color: #0162fe;
+        background: #dcdcdc;
     }
 
 /* White Button */

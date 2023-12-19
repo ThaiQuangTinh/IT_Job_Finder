@@ -15,7 +15,7 @@
 <body>
     <nav class="_JobApplicationLayout-nav shadow">
         <div class="image-logo-container">
-            <a href="" class="logo-name">Logo</a>
+            <a href="/Home" class="logo-name">Logo</a>
         </div>
 
         <div class="account-container">
@@ -24,11 +24,12 @@
             </div>
             <div class="vertical-line"></div>
             <div class="login-signup">
-                <a href="" class="login-link blue-button">Log in</a>
-                <a href="./_SignUp.html" class="signup-link">Sign Up</a>
+                <a href="" class="login-link">Đăng nhập</a>
+                <a href="@Url.Action("SignUp", "Account")" class="signup-link">Đăng ký</a>
             </div>
         </div>
     </nav>
+    <input type="hidden" name="txtUserIdSession" value="" />
 
     <!-- Login form -->
     <div class="container_Login">

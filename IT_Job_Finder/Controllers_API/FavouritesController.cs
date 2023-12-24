@@ -17,5 +17,35 @@ namespace IT_Job_Finder.Controllers_API
         {
             return Ok(db.Favorites.ToList());
         }
+
+        [HttpPost]
+        public IHttpActionResult PostFavorite(Favorite favorite)
+        {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+            db.Favorites.Add(new Favorite
+            {
+                candidate_id = favorite.candidate_id,
+                job_id = favorite.job_id
+            });
+            db.SaveChanges();
+            return Ok("Add Favorite suscess");
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteFavorite(Favorite favorite) {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+            favorite = db.Favorites
+                .Where(f => f.candidate_id == favorite.candidate_id && f.job_id == favorite.job_id)
+                .ToList()[0];
+            db.Favorites.Remove(favorite);
+            db.SaveChanges();
+            return Ok("Delete Favorite suscess");
+        }
     }
 }

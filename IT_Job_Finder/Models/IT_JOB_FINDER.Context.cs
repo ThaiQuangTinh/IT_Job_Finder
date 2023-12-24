@@ -33,7 +33,6 @@ namespace IT_Job_Finder.Models
         public virtual DbSet<JobSkill> JobSkills { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<SkillRequirement> SkillRequirements { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

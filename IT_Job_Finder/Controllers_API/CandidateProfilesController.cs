@@ -17,5 +17,20 @@ namespace IT_Job_Finder.Controllers_API
         {
             return Ok(db.CandidateProfiles.ToList());
         }
+
+        [HttpGet]
+        public IHttpActionResult GetCandidateProfileById(int id) {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+            var candidateProfile = db.CandidateProfiles
+                .Where(c => c.candidate_id == id)
+                .SingleOrDefault();
+            if(candidateProfile == null) { 
+                return NotFound();
+            }
+            return Ok(candidateProfile);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace IT_Job_Finder.Controllers
         {
             // Gán giá trị cho session
             Session["Username"] = txtUserName_Login;
+            Session["Userid"] = GetUserByUsername(txtUserName_Login);
             return RedirectToAction("Index", "Home");
         }
 
@@ -22,6 +23,7 @@ namespace IT_Job_Finder.Controllers
         {
             // Gán giá trị cho session
             Session["Username"] = txtUserName_Login;
+            Session["Userid"] = GetUserByUsername(txtUserName_Login);
             return RedirectToAction("Details", "JobDetails", new { id = jobAppID});
         }
 
@@ -66,6 +68,19 @@ namespace IT_Job_Finder.Controllers
                 }
             }
             return null;
+        }
+
+        public int GetUserByUsername(string Username)
+        {
+            if (Username != "")
+            {
+                using (var db = new IT_JOB_FINDEREntities())
+                {
+                    var user = db.Users.FirstOrDefault(u => u.username == Username);
+                    return user.user_id;
+                }
+            }
+            return -1;
         }
 
         public string GetRole(string Username)

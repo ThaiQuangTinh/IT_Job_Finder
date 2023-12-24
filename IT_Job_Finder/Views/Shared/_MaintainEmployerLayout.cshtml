@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    ViewBag.UserId = Session["Userid"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +31,7 @@
         </div>
         <div class="username-icon">
             <i class="fa-solid fa-circle-user"></i>
-            <span>Employer name</span>
+            <span id="employerNameBox">Employer name</span>
         </div>
         <nav class="nav-container">
             <span>Quản lý</span>
@@ -48,6 +51,7 @@
     </aside>
     <main class="page-content-container">
         <div id="renderBody" class="render-body-container">
+            <input type="hidden" name="userId" id="userId" value="@ViewBag.UserId" />
             @RenderBody()
         </div>
     </main>

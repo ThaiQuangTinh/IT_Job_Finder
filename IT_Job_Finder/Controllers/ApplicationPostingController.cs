@@ -1,5 +1,7 @@
-﻿using System;
+﻿using IT_Job_Finder.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,19 +29,33 @@ namespace IT_Job_Finder.Controllers
         }
 
         // POST: ApplicationPosting/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult PostApply(HttpPostedFileBase formFileInput)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            int jobId = Convert.ToInt32(Request.Form["txtJobId"]);
+            int candidateId = Convert.ToInt32(Request.Form["txtCandidateId"]);
+            string coverLetter = Request.Form["txtCoverLetter"];
+            string CvURL = Request.Form["txtCvURL"];
+            IT_JOB_FINDEREntities db = new IT_JOB_FINDEREntities();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (formFileInput != null && formFileInput.ContentLength > 0)
             {
-                return View();
+                var fileName = $"{jobId}_{candidateId}.pdf";
+                var filePath = Path.Combine(Server.MapPath("~/Resource/Pdfs"), fileName);
+                formFileInput.SaveAs(filePath);
             }
+
+            db.JobApplications.Add(new JobApplication()
+            {
+                job_id = jobId,
+                candidate_id = candidateId,
+                cover_letter = coverLetter,
+                date_applied = DateTime.Now,
+                cvURL = CvURL
+            });
+            db.SaveChanges();
+
+            return Redirect($"/JobDetails/Details/{jobId}");
         }
 
         // GET: ApplicationPosting/Edit/5

@@ -10,6 +10,7 @@
     height: 200px;
     position: relative;
     margin-top: 30px;
+    overflow: hidden;
 }
 
 .business-info-container .image-container img {

@@ -4,22 +4,19 @@
     Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
 }
 @{
-    if (ViewBag.ImageUrl == null)
-    {
-        ViewBag.ImageUrl = "https://t3.ftcdn.net/jpg/01/80/31/10/360_F_180311099_Vlj8ufdHvec4onKSDLxxdrNiP6yX4PnP.jpg";
-    }
+    ViewBag.ImageUrl = "../../Resource/Images/BusinessBlankImg.jpg";
 }
 
 <div class="business-info-container shadow border-radius-5px">
     <h2>Thông tin doanh nghiệp</h2>
-    <form class="custom-employer-input-group mb-3" method="post" action="">
+    <form class="custom-employer-input-group mb-3" id="employerInfoFrom" name="employerInfoFrom" method="post" action="">
         <div class="card image-container flex-center">
             <img src="@ViewBag.ImageUrl" id="BusinessImage" alt="...">
         </div>
         <div>
             <div class="mb-3 input-file-container">
                 <label for="formFileInput" class="form-label">Chọn ảnh bìa doanh nghiệp</label>
-                <input class="form-control form-control-sm" id="formFileInput" type="file">
+                <input class="form-control form-control-sm" id="formFileInput" type="file" accept="image/*">
             </div>
 
             <div class="mb-3">
@@ -149,8 +146,10 @@
 </div>
 
 <script>
-    var checkbox = document.getElementById("isEditing");
-    var form = document.getElementsByClassName("custom-employer-input-group")[0];
+    let checkbox = document.getElementById("isEditing");
+    let form = document.getElementsByClassName("custom-employer-input-group")[0];
+    let userId = document.getElementById("userId").value;
+    let getEmployerUrl = `http://localhost:56673/api/Employers/GetEmployerById/${userId}`;
     //var inputFileContainer = document.getElementsByClassName("input-file-container");
     //var textInputs = form.querySelectorAll('.input-text');
     var inputs = form.querySelectorAll('.form-control');
@@ -161,7 +160,11 @@
         })
     };
 
-    var replaceInput = function (isEditable) {
+    let fetchMethodGet = async (url) => {
+        return (await fetch(url)).json();
+    }
+
+    let replaceInput = function (isEditable) {
         let textInputs = form.querySelectorAll('.input-text');
         if (isEditable) {
             inputFileContainer[0].style.display = 'block';
@@ -187,11 +190,21 @@
         }
     };
 
+    let doomEmployerInfo = async function () {
+        let user = await fetchMethodGet(getEmployerUrl);
+        document.getElementById("employerNameBox").innerHTML = user.User.username;
+        document.getElementById("BusinessImage").src = user.User.imageURL ? user.User.imageURL : "@ViewBag.ImageUrl";
+        document.getElementById("txtBusinessName").value = user.company_name;
+        document.getElementById("txtIndustry").value = user.industry;
+        document.getElementById("txtWebsite").value = user.website;
+    }
+
     resetNavOption("linYourBusiness");
 
     //replaceInput(false);
 
     disableInput([...inputs, btnBusinessInfoSubmit], true);
+    doomEmployerInfo();
 
     checkbox.addEventListener("click", () => {
         let checkboxSpan = document.getElementsByClassName("edit-switch")[0];
@@ -210,7 +223,35 @@
             checkboxLabel.classList.remove("btn-secondary")
             checkboxLabel.classList.add("btn-primary");
         }
-    })
+    });
 
+    document.getElementById("btnBusinessInfoSubmit").addEventListener("click", (e) => {
+        e.preventDefault();
+        let img = document.getElementById("formFileInput").files[0];
+        let business_name = document.getElementById("txtBusinessName").value;
+        let industry = document.getElementById("txtIndustry").value;
+        let website = document.getElementById("txtWebsite").value;
+        let formData = new FormData();
+        let PutEmployerUrl = "http://localhost:56673/api/Employers/PutEployer"
+        formData.append("Employer_id", userId);
+        formData.append("Company_name", business_name);
+        formData.append("Industry", industry);
+        formData.append("Website", website);
+        formData.append("Image", img);
+        fetch(PutEmployerUrl, {
+            method: "PUT",
+            body: formData
+        })
+        employerInfoFrom.submit();
+    });
+
+    document.getElementById("formFileInput").addEventListener("change", () => {
+        let img = document.getElementById("formFileInput").files[0];
+        if (img) {
+            document.getElementById("BusinessImage").src = URL.createObjectURL(img);
+        } else {
+            document.getElementById("BusinessImage").src = "@ViewBag.ImageUrl"
+        }
+    })
 </script>
 

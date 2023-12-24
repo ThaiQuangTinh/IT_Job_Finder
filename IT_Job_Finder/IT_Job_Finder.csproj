@@ -51,7 +51,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=5.0.17.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.5.0.17\lib\net461\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.1\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -64,6 +70,9 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -74,8 +83,8 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -177,49 +186,46 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CandidateProfile.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employer.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Favorite.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IT_JOB_FINDER.Context.cs">
+    <Compile Include="Models\It_Job_Finder.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IT_JOB_FINDER.Context.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IT_JOB_FINDER.cs">
+    <Compile Include="Models\It_Job_Finder.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IT_JOB_FINDER.Designer.cs">
+    <Compile Include="Models\It_Job_Finder.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IT_JOB_FINDER.edmx</DependentUpon>
+      <DependentUpon>It_Job_Finder.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\JobApplication.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobPosting.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobSkill.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Level.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SkillRequirement.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>IT_JOB_FINDER.tt</DependentUpon>
+      <DependentUpon>It_Job_Finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,27 +251,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\IT_JOB_FINDER.Context.tt">
+    <Content Include="Models\It_Job_Finder.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>IT_JOB_FINDER.edmx</DependentUpon>
-      <LastGenOutput>IT_JOB_FINDER.Context.cs</LastGenOutput>
+      <DependentUpon>It_Job_Finder.edmx</DependentUpon>
+      <LastGenOutput>It_Job_Finder.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\IT_JOB_FINDER.tt">
+    <Content Include="Models\It_Job_Finder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>IT_JOB_FINDER.edmx</DependentUpon>
-      <LastGenOutput>IT_JOB_FINDER.cs</LastGenOutput>
+      <DependentUpon>It_Job_Finder.edmx</DependentUpon>
+      <LastGenOutput>It_Job_Finder.cs</LastGenOutput>
     </Content>
-    <Content Include="Resource\Image\fpt.png" />
+    <Content Include="Resource\Images\BusinessBlankImg.jpg" />
+    <Content Include="Resource\Images\fpt.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\CustomLayout\_MaintainEmployerLayout.cshtml.css" />
-    <Content Include="Resource\Pdf\Render.pdf" />
-    <EntityDeploy Include="Models\IT_JOB_FINDER.edmx">
+    <Content Include="Resource\Pdfs\Render.pdf" />
+    <EntityDeploy Include="Models\It_Job_Finder.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>IT_JOB_FINDER.Designer.cs</LastGenOutput>
+      <LastGenOutput>It_Job_Finder.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\IT_JOB_FINDER.edmx.diagram">
-      <DependentUpon>IT_JOB_FINDER.edmx</DependentUpon>
+    <Content Include="Models\It_Job_Finder.edmx.diagram">
+      <DependentUpon>It_Job_Finder.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\EmployerMaintain\CKEditorSetup.js" />

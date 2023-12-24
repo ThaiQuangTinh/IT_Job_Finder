@@ -11,48 +11,33 @@
     }
 
     //ViewBag declare
-    ViewBag.ImgUrl = "https://yt3.googleusercontent.com/ytc/APkrFKalw8-UrTQalgiW3u7dPj35IWZUDT-N2XSkPa1xhw=s900-c-k-c0x00ffffff-no-rj";
-    ViewBag.JobTitle = "Senior Developer (C#, Unity 3D, Sign-On Bonus)";
-    ViewBag.Location = "Tầng 2, toà Rivera Park, 69 Vũ Trọng Phụng, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội";
-    ViewBag.CompanyName = "Fpt Software";
-    ViewBag.Description = "";
-    ViewBag.BussinessInfo = "";
-    ViewBag.Experient = "2";
-    ViewBag.Level = "Senior";
-    ViewBag.ContractType = "Dài hạn";
-    ViewBag.Skills = ("Java C# C++ JavaScript Sql").Split(' ');
-    ViewBag.IsFavorite = false ? "checked" : "";
+    ViewBag.UserID = Session["Userid"] + " " + Session["Username"];
 
     Layout = ViewBag.Layout;
 }
-
-
 <script>
-    let candidate_id = 2
+    let editor;
+    let isCKOpen = false;
+    let candidate_id = document.getElementById("txtUserIdSession").value.split(' ')[0];
     let path = location.pathname;
     let job_id = path.split('/JobDetails/Details/')[1];
+    let cvURL = `../../../Resource/Pdfs/${job_id}_${candidate_id}.pdf`;
     let url = ("http://localhost:56673/api/JobPostings/GetJobPosting/" + job_id).trim();
+    let userAPI = ("http://localhost:56673/api/Users/GetUserByID/");
+    
 
-    var isChecked = (favorite_list, candidate_id) => {
-        for (let i = 0; i < favorite_list.length; i++) {
-            if (favorite_list[i].candidate_id == candidate_id) {
-                return "checked";
-            }
-        }
-        return "";
-    }
     fetch(url)
-    .then(function (res) {
-        return res.json();
-    })
+        .then(function (res) {
+            return res.json();
+        })
         .then(function (datas) {
             console.log(datas);
-        let htmls = datas.map(function (data) {
-            return `<div class="application-info-container">
+            let htmls = datas.map(function (data) {
+                return `<div class="application-info-container">
                         <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
                             <div class="application-header-container border-radius-5px shadow">
                                 <div class="business-image-container">
-                                    <img src=${data.Employer.User.imageURL} alt="">
+                                    <img src="${data.Employer.User.imageURL}" alt="">
                                 </div>
                                 <div class="application-title-container">
                                     <div><h1 class="application-header">${data.title}</h1></div>
@@ -72,7 +57,8 @@
                                     <input type="checkbox"
                                            name="favorite"
                                            id="favorite"
-                                           ${isChecked(data.Favorites,candidate_id)}>
+                                           ${isChecked(data.Favorites, candidate_id)}
+                                           onclick="handelUserSession(handelAddFavorite)">
                                     <i class="fa-solid fa-bookmark hiden-icon" style="color: #4d677c;"></i>
                                     <i class="fa-regular fa-bookmark front-icon"></i>
                                 </label>
@@ -109,7 +95,7 @@
                     </div>
 
                     <aside class="application-info-sidebar sticky-top">
-                        <button id="btnApplyNow" class="blue-button shadow">Ứng tuyển ngay</button>
+                        <button id="btnApplyNow" class="blue-button shadow" onclick="handelUserSession(openApplyForm)">Ứng tuyển ngay</button>
                         <section class="application-info-summary border-radius-5px shadow">
                             <h3>Thông tin chung</h3>
                             <div>
@@ -128,14 +114,270 @@
                                 <h4>Các công nghệ sử dụng</h4>
                                 <div class="skill-requirement-container">
                                     ${data.JobSkills.map(function (skill) {
-                                    return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
-                                    }).join('')}
+                    return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                }).join('')}
                                 </div>
                             </div>
                         </section>
-                    </aside>`;
-        });
-        html = htmls.join('');
-        document.getElementById("renderBody").innerHTML = html;
-    });
+                    </aside>
+
+                    <form method="post" action="/ApplicationPosting/PostApply" enctype="multipart/form-data" class="apply_form_container">
+                        <div class="message_box_logout apply-submit-message-container">
+                            <div class="title_box">
+                                <p>Thông báo</p>
+                            </div>
+                            <div class="main_message">
+                                <p class="title_message_logout">Bạn có chắc muốn ứng tuyển không?</p>
+                                <div class="contain_logout_btn">
+                                    <button class="btnSubmitCancel" onclick="cancelSubmitApply()" id="">Hủy</button>
+                                    <button class="btnSubmitOk" type="submit">Gửi</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apply_form">
+                            <div class="close-form-button" onclick="closeApplyForm()">X</div>
+                            <div class="apply-left">
+                                <div class="mb-3 form-group cover-letter-container">
+                                    <label for="editor" class="form-label">Thư giới thiệu</label>
+                                    <textarea class="form-control" id="editor" onload="loadEditor()"></textarea>
+                                </div>
+                                <div class="mb-3 cv-container">
+                                    <embed class="embed-pdf" src="" type="application/pdf" width="100%" height="100%">
+                                </div>
+                            </div>
+                            <div class="apply-right ml-3">
+                                <div class="form-group mb-3">
+                                    <label for="txtFullName" class="form-label">Họ tên</label>
+                                    <p  class="form-control shadow" id="txtFullName" >Họ tên</p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="txtSkills" class="form-label">Kỹ năng</label>
+                                    <p  class="form-control shadow" id="txtSkills" >Kỹ năng</p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="txtExperient" class="form-label">Kinh nghiệm</label>
+                                    <p  class="form-control shadow" id="txtExperient" >Kinh nghiệm</p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="txtEducation" class="form-label">Học vấn</label>
+                                    <p  class="form-control shadow" id="txtEducation" >Học vấn</p>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="formFileInput" class="form-label">Chọn CV(Pdf)</label>
+                                    <input class="form-control shadow" id="formFileInput" name="formFileInput" type="file" onchange="renderPdf()" accept=".pdf">
+                                </div>
+                                    <input id="txtJobId" name="txtJobId" type="hidden">
+                                    <input id="txtCandidateId" name="txtCandidateId" type="hidden">
+                                    <input id="txtCoverLetter" name="txtCoverLetter" type="hidden">
+                                    <input id="txtCvURL" name="txtCvURL" type="hidden">
+
+                                <button class="btn btn-primary mb-3" onclick="openMessageBox()">Gửi ứng tuyển</button>
+                                <div class="alert alert-warning" role="alert" style="display: none">
+                                    Bạn chưa chọn file CV!
+                                </div>
+                            </div>
+                        </div>
+                    </form>`;
+            });
+            html = htmls.join('');
+            document.getElementById("renderBody").innerHTML = html;
+        })
+        .finally(function () {
+            let isApplyUrl = "http://localhost:56673/api/JobApplications/IsAppyed";
+            console.log(`${job_id}_${candidate_id}`);
+            fetch(isApplyUrl, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    job_id: job_id,
+                    candidate_id: candidate_id
+                })
+            })
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    if (data) {
+                        document.getElementById("btnApplyNow").innerHTML = "Đã ứng tuyển";
+                        document.getElementById("btnApplyNow").disabled = true;
+                    }
+                })
+        })
+
+    var isChecked = (favorite_list, candidate_id) => {
+        for (let i = 0; i < favorite_list.length; i++) {
+            if (favorite_list[i].candidate_id == candidate_id) {
+                return "checked";
+            }
+        }
+        return "";
+    }
+
+    var handelUserSession = (callback) => {
+        let userName = document.getElementById("txtUserIdSession").value.split(' ')[1];
+        if (userName !== undefined) {
+            let apiUrl = userAPI + userName;
+            fetch(apiUrl)
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (datas) {
+                    if (datas[0].role == "Candidate") {
+                        callback();
+                        return;
+                    }
+                    else {
+                        // Tình viết nè
+                        // Hiển thị thông báo không phải Candidate 
+                        console.error("Role is not Candidate");
+                    }
+                })
+        } else {
+            // Tình viết nè
+            // Hiển thị thông báo đăng nhập để ứng tuyển
+            console.error("No Session");
+        }
+    }
+
+    var handelAddFavorite = function () {
+        let checkBoxValue = document.getElementById("favorite").checked;
+        if (checkBoxValue) {
+            let postFavoriteAPI = "http://localhost:56673/api/Favourites/PostFavorite"
+            fetch(postFavoriteAPI, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    candidate_id: candidate_id,
+                    job_id: job_id
+                })
+            })
+                .then(function (res) {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json(); // Parse the JSON response
+                })
+                .then(function (data) {
+                    console.log('API Post Response:', data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error:', error);
+                });
+        } else {
+            let deleteFavoriteAPI = "http://localhost:56673/api/Favourites/DeleteFavorite"
+            fetch(deleteFavoriteAPI, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    candidate_id: candidate_id,
+                    job_id: job_id
+                })
+            })
+                .then(function (res) {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json(); // Parse the JSON response
+                })
+                .then(function (data) {
+                    console.log('API Delete Response:', data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+    var openApplyForm = function () {
+        document.querySelector(".apply_form_container").style.display = "grid";
+        setTimeout(function () {
+            document.querySelector(".apply_form_container").style.opacity = 1;
+        }, 100);
+        loadCandidateAPIToDoom();
+        loadEditor();
+
+
+    }
+
+    var renderPdf = function () {
+        let selectedFile = document.getElementById("formFileInput").files[0];
+        let pdfViewer = document.querySelector(".embed-pdf");
+        let pdfContainer = document.querySelector(".cv-container");
+        if (selectedFile && selectedFile.type === 'application/pdf') {
+            pdfViewer.src = URL.createObjectURL(selectedFile);
+            pdfContainer.style.display = "block";
+            document.querySelector(".alert-warning").style.display = "none";
+        } else {
+            pdfContainer.style.display = "none";
+            document.querySelector(".alert-warning").style.display = "block";
+        }
+    }
+
+    var closeApplyForm = function () {
+        document.querySelector(".apply_form_container").style.opacity = 0;
+        setTimeout(function () {
+            document.querySelector(".apply_form_container").style.display = "none";
+        }, 200);
+    }
+
+    var cancelSubmitApply = function () {
+        event.preventDefault();
+        document.querySelector(".apply-submit-message-container").style.display = "none";
+    }
+
+    var openMessageBox = function () {
+        event.preventDefault();
+        let selectedFile = document.getElementById("formFileInput").files[0];
+        if (selectedFile == null || selectedFile == undefined) {
+            document.querySelector(".alert-warning").style.display = "block";
+            return;
+        }
+        document.getElementById("txtJobId").value = job_id;
+        document.getElementById("txtCandidateId").value = candidate_id;
+        document.getElementById("txtCoverLetter").value = editor.getData();
+        document.getElementById("txtCvURL").value = `../../../Resource/Pdfs/${job_id}_${candidate_id}.pdf`;
+        document.querySelector(".apply-submit-message-container").style.display = "block";
+    }
+
+    var loadEditor = function () {
+        if (!isCKOpen) {
+            isCKOpen = true;
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    placeholder: 'Nhập thư giới thiệu'
+                })
+                .then(newEditor => {
+                    editor = newEditor;
+                    console.log(newEditor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
+
+    var loadCandidateAPIToDoom = function () {
+        if (!isCKOpen) {
+            let apiUrl = "http://localhost:56673/api/CandidateProfiles/GetCandidateProfileById/" + candidate_id;
+            fetch(apiUrl)
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (data) {
+                    document.getElementById("txtFullName").innerHTML = data.User.username;
+                    document.getElementById("txtSkills").innerHTML = data.skills;
+                    document.getElementById("txtExperient").innerHTML = data.experience;
+                    document.getElementById("txtEducation").innerHTML = data.education;
+                });
+        }
+    }
 </script>

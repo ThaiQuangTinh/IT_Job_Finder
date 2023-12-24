@@ -15,12 +15,14 @@ namespace IT_Job_Finder.Models
     
     public partial class JobApplication
     {
-        public int job_id { get; set; }
-        public int candidate_id { get; set; }
+        public int job_application_id { get; set; }
+        public Nullable<int> job_id { get; set; }
+        public Nullable<int> candidate_id { get; set; }
         public Nullable<System.DateTime> date_applied { get; set; }
         public string cover_letter { get; set; }
         public string cvURL { get; set; }
         public Nullable<bool> status { get; set; }
+    
         [JsonIgnore]
         public virtual CandidateProfile CandidateProfile { get; set; }
         [JsonIgnore]

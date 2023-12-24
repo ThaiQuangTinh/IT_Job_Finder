@@ -261,8 +261,21 @@
       <DependentUpon>It_Job_Finder.edmx</DependentUpon>
       <LastGenOutput>It_Job_Finder.cs</LastGenOutput>
     </Content>
+    <Content Include="Resource\Images\1649043934783.jpg" />
+    <Content Include="Resource\Images\22201787_p0_master1200.jpg" />
+    <Content Include="Resource\Images\30595273_120353168818567_6118415237461347718_n.jpg" />
+    <Content Include="Resource\Images\6d7f6d16d3dd35f0eee515bacd8e4ade.png" />
+    <Content Include="Resource\Images\Aoi.jpg" />
+    <Content Include="Resource\Images\avatar.png" />
     <Content Include="Resource\Images\BusinessBlankImg.jpg" />
     <Content Include="Resource\Images\fpt.png" />
+    <Content Include="Resource\Images\ilumia.jpg" />
+    <Content Include="Resource\Images\ilumia.png" />
+    <Content Include="Resource\Images\laulili.jpg" />
+    <Content Include="Resource\Images\liliana.jpg" />
+    <Content Include="Resource\Images\sinestria.jpg" />
+    <Content Include="Resource\Images\tieuTho.jpg" />
+    <Content Include="Resource\Images\v.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\CustomLayout\_MaintainEmployerLayout.cshtml.css" />

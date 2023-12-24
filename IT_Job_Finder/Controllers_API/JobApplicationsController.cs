@@ -41,41 +41,56 @@ namespace IT_Job_Finder.Controllers_API
             return Ok(record != null);
         }
 
-        //[HttpPost]
-        //public async Task<IHttpActionResult> PostApplication(ApplyAndFile model) {
-        //    if (!ModelState.IsValid)
-        //    {
-        //        BadRequest(ModelState);
-        //    }
-        //    if(model == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    db.JobApplications.Add(new JobApplication()
-        //    {
-        //        job_id = Int32.Parse(model.Job_id),
-        //        candidate_id = Int32.Parse(model.Candidate_id),
-        //        date_applied = DateTime.Now,
-        //        cover_letter = model.Cover_letter,
-        //        cvURL = model.CvURL,
-        //    });
-        //    await db.SaveChangesAsync();
-        //    if (model.File != null)
-        //    {
-        //        Uploadfile(model.File, Int32.Parse(model.Candidate_id), Int32.Parse(model.Job_id));
-        //    }
-        //    return Ok(model);
-        //}
-        
         private async void Uploadfile(IFormFile file, int candidate_id, int job_id)
         {
             string fileName = $"{candidate_id}_{job_id}.pdf";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(),"Resource\\Pdf");
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Resource\\Pdf");
             var exactPath = Path.Combine(Directory.GetCurrentDirectory(), "Resource\\Pdf", fileName);
             using (var stream = new FileStream(exactPath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetJobApplicatedFromID(int id)
+        {
+            var result = (from ja in db.JobApplications
+                          join cd in db.CandidateProfiles on ja.candidate_id equals cd.candidate_id
+                          join jp in db.JobPostings on ja.job_id equals jp.job_id
+                          join us in db.Users on jp.employer_id equals us.user_id
+                          join emy in db.Employers on jp.employer_id equals emy.employer_id
+                          where cd.candidate_id == id
+                          select new
+                          {
+                              JobApplicationId = ja.job_application_id,
+                              DateApplied = ja.date_applied,
+                              Title = jp.title,
+                              Location = jp.location,
+                              Salary = jp.salary,
+                              Description = jp.description,
+                              ExperienceYear = jp.experience_year,
+                              ImageUrl = us.imageURL,
+                              CompanyName = emy.company_name
+                          }).ToList();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteJobApplication(int id)
+        {
+            var ja = db.JobApplications.FirstOrDefault(j => j.job_application_id == id);
+            if (ja == null)
+            {
+                return NotFound();
+            }
+            db.JobApplications.Remove(ja);
+            db.SaveChanges();
+            return Ok();
         }
     }
 }

@@ -3,6 +3,18 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
 }
+<div class="message_box_logout apply-submit-message-container" style="display: none;">
+    <div class="title_box">
+        <p>Thông báo</p>
+    </div>
+    <div class="main_message">
+        <p class="title_message_logout">Bạn có chắc muốn thêm tin tuyển dụng không?</p>
+        <div class="contain_logout_btn">
+            <button class="btnSubmitCancel" onclick="cancelSubmitApply()">Hủy</button>
+            <button class="btnSubmitOk">Thêm</button>
+        </div>
+    </div>
+</div>
 
 <div class="business-info-container shadow border-radius-5px">
     <h2>Thông tin tuyển dụng</h2>
@@ -22,15 +34,16 @@
             </div>
             <div class="form-group mb-3">
                 <label for="txtSalary">Mức lương <span class="not-null">(*)</span></label>
-                <input type="text" class="form-control" id="txtSalary" placeholder="Nhập mức lương">
+                <input type="number" class="form-control" id="txtSalary" placeholder="Nhập mức lương">
             </div>
             <div class="form-group mb-3">
                 <label for="txtExperienceYear">Số năm kinh nghiệm <span class="not-null">(*)</span></label>
-                <input type="text" class="form-control" id="txtExperienceYear" placeholder="Nhập số năm kinh nghiệm">
+                <input type="number" class="form-control" id="txtExperienceYear" placeholder="Nhập số năm kinh nghiệm">
             </div>
             <div class="form-group mb-3">
                 <label for="txtLevel">Cấp độ ứng viên <span class="not-null">(*)</span></label>
-                <input type="text" class="form-control" id="txtLevel" placeholder="Nhập cấp độ ứng viên">
+                <select class="custom-select form-select" id="txtLevel">
+                </select>
             </div>
             <div class="form-group mb-3">
                 <label for="txtContractType">Loại hợp đồng <span class="not-null">(*)</span></label>
@@ -41,9 +54,6 @@
                 <div class="input-group">
                     <select class="custom-select form-select" id="inputGroupSelect">
                         <option value="null" selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" id="btnAddOption" type="button">Thêm</button>
@@ -54,7 +64,35 @@
                 <input type="text" id="txtSkills">
             </div>
             <div id="skillsContainer" class="ml-3 mb-3"></div>
-            <input type="submit" name="btnSubmit" class="btn btn-primary mb-3" style="width: 100%" value="Đăng tin" />
+            <input type="submit" name="btnCreate" class="btn btn-primary mb-3" id="btnCreate" style="width: 100%" value="Đăng tin" />
+            
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning0">
+                <strong>Tên công việc</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning1">
+                <strong>Địa chỉ làm việc</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning2">
+                <strong>Mức lương</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning3">
+                <strong>Số năm kinh nghiệm tối thiểu</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning4">
+                <strong>Cấp độ ứng viên</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning5">
+                <strong>Loại hợp đồng</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning6">
+                Hãy chọn ít nhất một <strong>Kỹ năng</strong>.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning7">
+                <strong>Mô tả công việc</strong> không được để trống.
+            </div>
+            <div class="alert alert-warning" role="alert" style="display:none" id="warning8">
+                <strong>Mô tả công việc</strong> không được để trống.
+            </div>
         </div>
     </form>
     <div class="form-jobposting">
@@ -69,6 +107,24 @@
     var selectElement = document.getElementById("inputGroupSelect");
     var txtSkills = document.getElementById("txtSkills");
     var selected = [];
+    let jobId = location.pathname.split('Business/Edit/')[1];
+    let userId = document.getElementById("userId").value;
+    let fetchMethodGet = async (url) => {
+        return (await fetch(url)).json();
+    };
+
+    let doomOptions = async () => {
+        let levelSelect = await fetchMethodGet("http://localhost:56673/api/Levels/GetAllLevels");
+        let skillSelect = await fetchMethodGet("http://localhost:56673/api/SkillRequirements/GetAllSkillRequirements");
+        let levelOptions = levelSelect.map((level) => {
+            return `<option value="${level.level_id}" >${level.level_name}</option>`;
+        }).join('');
+        let skillOptions = skillSelect.map((skill) => {
+            return `<option value="${skill.skill_id}" >${skill.skill_name}</option>`;
+        }).join('');
+        document.getElementById("txtLevel").innerHTML = levelOptions;
+        document.getElementById("inputGroupSelect").innerHTML += skillOptions;
+    }
 
     Array.prototype.toString = function () {
         let myString = "";
@@ -105,6 +161,57 @@
         document.getElementById("skillsContainer").appendChild(childDiv);
     }
 
+    let cancelSubmitApply = function () {
+        document.querySelector(".apply-submit-message-container").style.display = "none";
+    }
+
+    let getDataFromForm = () => {
+        return {
+            Title: document.querySelector("#txtTitle").value,
+            Location: document.querySelector("#txtLocation").value,
+            Salary: document.querySelector("#txtSalary").value,
+            ExYear: document.querySelector("#txtExperienceYear").value,
+            LevelId: txtLevel.options[txtLevel.selectedIndex].value,
+            ContractType: document.querySelector("#txtContractType").value,
+            Skills: document.querySelector("#txtSkills").value,
+            Description: myCKEditor.getData(),
+            UserId: userId,
+        };
+    }
+
+    let openAlert = function (id) {
+        document.getElementById(`warning${id}`).style.display = "block";
+    }
+
+    let hideAlert = function (id) {
+        document.getElementById(`warning${id}`).style.display = "none";
+    }
+
+    let isAlertsOpen = function () {
+        let formdata = getDataFromForm();
+        let i = 0;
+        let isOpen = false;
+        for (let key in formdata) {
+            if (formdata[key] == "") {
+                openAlert(i);
+                isOpen = true;
+            }
+            else
+            {
+                hideAlert(i);
+            }
+            i++;
+        }
+        return isOpen;
+    }
+
+    document.getElementById("btnCreate").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!isAlertsOpen()) {
+            document.querySelector(".apply-submit-message-container").style.display = "block";
+        }
+    })
+
     btnAddOption.addEventListener("click", () => {
         let option = {
             value: selectElement.options[selectElement.selectedIndex].value,
@@ -123,4 +230,25 @@
         }
     })
 
+    document.querySelector(".btnSubmitOk").addEventListener("click", async () => {
+        let PostJobPostingAPI = "http://localhost:56673/api/JobPostings/PostJobPosting";
+        let data = getDataFromForm();
+        let formData = new FormData();
+        formData.append("UserId", data.UserId);
+        formData.append("Title", data.Title);
+        formData.append("Location", data.Location);
+        formData.append("LevelId", data.LevelId);
+        formData.append("ContractType", data.ContractType);
+        formData.append("Description", data.Description);
+        formData.append("Salary", data.Salary);
+        formData.append("ExYear", data.ExYear);
+        formData.append("Skills", data.Skills);
+        await fetch(PostJobPostingAPI, {
+            method: "PUT",
+            body: formData
+        })
+        window.location.href = "http://localhost:56673/Business";
+    })
+
+    doomOptions();
 </script>

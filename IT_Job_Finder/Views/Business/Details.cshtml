@@ -5,25 +5,37 @@
 }
 
 <link href="~/Content/CustomView/BusinessView/BusinessJobDetails.css" rel="stylesheet" />
+<div class="message_box_logout apply-submit-message-container" style="display: none;">
+    <div class="title_box">
+        <p>Thông báo</p>
+    </div>
+    <div class="main_message">
+        <p class="title_message_logout">Bạn có chắc muốn xóa tin tuyển dụng không?</p>
+        <div class="contain_logout_btn">
+            <button class="btnSubmitCancel" onclick="cancelSubmitApply()">Hủy</button>
+            <button class="btnSubmitOk">Xóa</button>
+        </div>
+    </div>
+</div>
 
 <div class="application-info-container">
     <div class="sticky-top" style="background: #f5f5f5; width: 100%;">
         <div class="application-header-container border-radius-5px shadow">
             <div class="business-image-container">
-                <img src=${data.Employer.User.imageURL} alt="">
+                <img id="businessImg" src="" alt="">
             </div>
             <div class="application-title-container">
-                <div><h1 class="application-header">${data.title}</h1></div>
-                <div><h2 class="bussiness-name">${data.Employer.company_name}</h2></div>
+                <div><h1 id="applicationHeader" class="application-header"></h1></div>
+                <div><h2 id="bussinessName" class="bussiness-name businessName"></h2></div>
                 <div class="icon-and-text">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>
-                        ${data.location}
+                    <span id="businessLocation">
+                        
                     </span>
                 </div>
                 <div class="icon-and-text">
                     <i class="fa-solid fa-money-bills"></i>
-                    <span>2 tỷ</span>
+                    <span id="jobSalary"></span>
                 </div>
             </div>
         </div>
@@ -33,26 +45,25 @@
         </nav>
     </div>
     <div class="application-content-container flex-direction-column">
-        <div id="jobDescription" class="flex-direction-column content-box shadow">
-            ${data.description}
+        <div class="flex-direction-column content-box shadow">
+            <h3 class="mb-3">Thông tin tuyển dụng</h3>
+            <div id="jobDescription" class="flex-direction-column ">
+
+            </div>
         </div>
         <div id="bussinessInfo" class="flex-direction-column content-box shadow">
-            <h3>Thông tin doanh nghiệp</h3>
-            <div>
+            <h3 class="mb-3">Thông tin doanh nghiệp</h3>
+            <div class="mb-3">
                 <h4>Tên công ty</h4>
-                <span>${data.Employer.company_name}</span>
+                <span class="businessName"></span>
             </div>
-            <div>
+            <div class="mb-3">
                 <h4>Hoạt động kinh doanh</h4>
-                <span>${data.Employer.industry}</span>
+                <span id="industry"></span>
             </div>
-            <div>
+            <div class="mb-3">
                 <h4>Website công ty</h4>
-                <span>${data.Employer.website}</span>
-            </div>
-            <div>
-                <h4>Mô tả công ty</h4>
-                <span>${"Mô tả công ty"}</span>
+                <a href="" id="website"></a>
             </div>
         </div>
     </div>
@@ -60,52 +71,115 @@
 
 <aside class="application-info-sidebar sticky-top">
     <div class="bussiness-edit-btn-container">
-        <a id="btnEdit" class="btn btn-primary shadow" href="/Business/Edit/1">Chỉnh sửa</a>
+        <a id="btnEdit" class="btn btn-primary shadow" href="/Business/Edit/">Chỉnh sửa</a>
         <button id="btnDelete" class="btn btn-danger shadow">Xóa</button>
     </div>
     <section class="application-info-summary border-radius-5px shadow">
         <h3>Thông tin chung</h3>
         <div>
             <h4>Năm kinh nghiệm tối thiểu</h4>
-            <span>Từ ${data.experience_year} năm</span>
+            <span id="exYear"></span>
         </div>
         <div>
             <h4>Cấp bậc</h4>
-            <span>${data.Level.level_name}</span>
+            <span id="level"></span>
         </div>
         <div>
             <h4>Loại hợp đồng</h4>
-            <span>${data.contract_type}</span>
+            <span id="contractType"></span>
         </div>
         <div>
             <h4>Các công nghệ sử dụng</h4>
             <div class="skill-requirement-container">
-                ${data.JobSkills.map(function (skill) {
-                return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
-                }).join('')}
+                
             </div>
         </div>
     </section>
 </aside>
 <script>
+    let jobId = location.pathname.split('/Business/Details/')[1];
+    let userId = document.getElementById("userId").value;
+    let scrollPos = 27;
+    let fetchMethodGet = async (url) => {
+        return (await fetch(url)).json();
+    };
+
+    let doomJobDetails = async () => {
+        let getJobDetailsAPI = new URL("http://localhost:56673/api/JobPostings/GetJobPostingSecure");
+        getJobDetailsAPI.searchParams.set("jobId", jobId);
+        getJobDetailsAPI.searchParams.set("employeeId", userId);
+        document.getElementById("btnEdit").href = `/Business/Edit/${jobId}`;
+        fetch(getJobDetailsAPI)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                document.querySelector("#businessImg").src = data.Employer.User.imageURL;
+                document.querySelector("#applicationHeader").innerHTML = data.title;
+                document.querySelectorAll(".businessName").forEach(box => {
+                    box.innerHTML = data.Employer.company_name;
+                });
+                document.querySelector("#businessLocation").innerHTML = data.location;
+                document.querySelector("#jobSalary").innerHTML = data.salary;
+                document.querySelector("#jobDescription").innerHTML = data.description;
+                document.querySelector("#industry").innerHTML = data.Employer.industry;
+                document.querySelector("#website").innerHTML = data.Employer.website;
+                document.querySelector("#website").href = data.Employer.website;
+                document.querySelector("#exYear").innerHTML = `Từ ${data.experience_year} năm`;
+                document.querySelector("#level").innerHTML = data.Level.level_name;
+                document.querySelector("#contractType").innerHTML = data.contract_type;
+                document.querySelector(".skill-requirement-container").innerHTML =
+                    data.JobSkills.map(function (skill) {
+                        return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                    }).join('');
+            })
+            .catch((err) => {
+                window.location.href = "http://localhost:56673/Business";
+            })
+    }
+
+    var cancelSubmitApply = function () {
+        document.querySelector(".apply-submit-message-container").style.display = "none";
+    }
+
     resetNavOption("linYourBusiness");
+    doomJobDetails();
+
     window.onscroll = function () {
-        if (document.documentElement.scrollTop > 90) {
-            document.getElementsByClassName("application-header-container")[0].classList.add("application-header-container-minimize");
-            document.getElementsByClassName("business-image-container")[0].classList.add("hiden-container");
-            let textAndIcon = document.getElementsByClassName("icon-and-text")
-            for (let i = 0; i < textAndIcon.length; i++) {
-                textAndIcon[i].classList.add("hiden-container")
-            }
+        console.log(parseInt(document.documentElement.scrollTop))
+        if (parseInt(document.documentElement.scrollTop) > scrollPos) {
+            setTimeout(() => {
+                document.getElementsByClassName("application-header-container")[0].classList.add("application-header-container-minimize");
+                document.getElementsByClassName("business-image-container")[0].classList.add("hiden-container");
+                let textAndIcon = document.getElementsByClassName("icon-and-text")
+                for (let i = 0; i < textAndIcon.length; i++) {
+                    textAndIcon[i].classList.add("hiden-container")
+                }
+            }, 100);
         } else {
-            document.getElementsByClassName("application-header-container")[0].classList.remove("application-header-container-minimize");
-            document.getElementsByClassName("business-image-container")[0].classList.remove("hiden-container");
-            let textAndIcon = document.getElementsByClassName("icon-and-text")
-            for (let i = 0; i < textAndIcon.length; i++) {
-                textAndIcon[i].classList.remove("hiden-container")
-            }
+            setTimeout(() => {
+                document.getElementsByClassName("application-header-container")[0].classList.remove("application-header-container-minimize");
+                document.getElementsByClassName("business-image-container")[0].classList.remove("hiden-container");
+                let textAndIcon = document.getElementsByClassName("icon-and-text")
+                for (let i = 0; i < textAndIcon.length; i++) {
+                    textAndIcon[i].classList.remove("hiden-container")
+                }
+            }, 100);
         }
     }
+
+    document.querySelector(".btnSubmitOk").addEventListener("click", async () => {
+        // Load Delete API and Redirect to Business.
+        let deleteJobPostingAPI = `http://localhost:56673/api/JobPostings/DeleteJobPosting/${jobId}`;
+        await fetch(deleteJobPostingAPI, {
+            method: "DELETE"
+        });
+        window.location.href = "http://localhost:56673/Business";
+    })
+
+    document.getElementById("btnDelete").addEventListener("click", () => {
+        document.querySelector(".apply-submit-message-container").style.display = "block";
+    })
 
     function scrollToElementId(id) {
         var element = document.getElementById(id);
@@ -119,4 +193,6 @@
             });
         }
     }
+
+
 </script>

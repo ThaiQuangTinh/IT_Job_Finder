@@ -65,6 +65,7 @@
 .image-fit-width {
     height: 90px;
     width: fit-content;
+    margin-top: 15px;
 }
 
 .card-container {

@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: start;
     position: relative;
+    min-height: 120vh;
 }
 
     #renderBody aside {
@@ -38,6 +39,8 @@
 
 img {
     height: 100px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .application-title-container {
@@ -293,3 +296,5 @@ img {
     position: sticky;
     top: 60px;
 }
+
+/*Arlet*/

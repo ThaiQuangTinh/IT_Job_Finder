@@ -24,7 +24,6 @@
     let cvURL = `../../../Resource/Pdfs/${job_id}_${candidate_id}.pdf`;
     let url = ("http://localhost:56673/api/JobPostings/GetJobPosting/" + job_id).trim();
     let userAPI = ("http://localhost:56673/api/Users/GetUserByID/");
-    
 
     fetch(url)
         .then(function (res) {
@@ -373,7 +372,7 @@
                     return res.json();
                 })
                 .then(function (data) {
-                    document.getElementById("txtFullName").innerHTML = data.User.username;
+                    document.getElementById("txtFullName").innerHTML = data.User.full_name;
                     document.getElementById("txtSkills").innerHTML = data.skills;
                     document.getElementById("txtExperient").innerHTML = data.experience;
                     document.getElementById("txtEducation").innerHTML = data.education;

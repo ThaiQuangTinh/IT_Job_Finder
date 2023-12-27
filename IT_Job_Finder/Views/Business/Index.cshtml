@@ -43,105 +43,6 @@
         </div>
     </form>
     <div class="card-container ">
-        <div class="card flex-direction-column mb-3 job" style="width: auto">
-            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
-                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
-            </div>
-            <div class="card-body ">
-                <div>
-                    <a href="/Business/Details/1" class="card-title font-bold job-title">Job Posting Title</a>
-                </div>
-                <div>
-                    <span class="company-name">Company name</span>
-                </div>
-                <div>
-                    <span class="job-salary">2 tỏi</span>
-                </div>
-                <div>
-                    <span class="address">Hồ Chí Minh</span>
-                </div>
-                <div class="skill-container">
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex-direction-column mb-3 job" style="width: auto">
-            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
-                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
-            </div>
-            <div class="card-body ">
-                <div>
-                    <a href="/Business/Details/2" class="card-title font-bold job-title">Job Posting Title</a>
-                </div>
-                <div>
-                    <span class="company-name">Company name</span>
-                </div>
-                <div>
-                    <span class="job-salary">2 tỏi</span>
-                </div>
-                <div>
-                    <span class="address">Hồ Chí Minh</span>
-                </div>
-                <div class="skill-container">
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card flex-direction-column mb-3 job" style="width: auto">
-            <div style="width: 100%; display: flex; padding-inline: 1rem; ">
-                <img src="@ViewBag.ImageUrl" class="card-img-top image-fit-width" alt="...">
-            </div>
-            <div class="card-body ">
-                <div>
-                    <a href="/Business/Details/3" class="card-title font-bold job-title">Job Posting Title</a>
-                </div>
-                <div>
-                    <span class="company-name">Company name</span>
-                </div>
-                <div>
-                    <span class="job-salary">2 tỏi</span>
-                </div>
-                <div>
-                    <span class="address">Hồ Chí Minh</span>
-                </div>
-                <div class="skill-container">
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-
-                    <a href="#" class="border-radius-5px mb-3">C#</a>
-                    <a href="#" class="border-radius-5px mb-3">Java</a>
-                    <a href="#" class="border-radius-5px mb-3">C++</a>
-                    <a href="#" class="border-radius-5px mb-3">JavaScript</a>
-                    <a href="#" class="border-radius-5px mb-3">.Net</a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 
@@ -199,12 +100,46 @@
         document.getElementById("txtWebsite").value = user.website;
     }
 
+    let doomEmployeeJobPosting = async function () {
+        let getPostingAPI = `http://localhost:56673/api/JobPostings/GetJobPostingByEmployeeId/${userId}`;
+        let postingList = await fetchMethodGet(getPostingAPI);
+        let imageURL = postingList[0].Employer.User.imageURL ? postingList[0].Employer.User.imageURL : "@ViewBag.ImageUrl";
+        let postingCards = postingList.map(function (posting) {
+            return `<div class="card flex-direction-column mb-3 job" style="width: auto">
+                        <div style="width: 100%; display: flex; padding-inline: 1rem; ">
+                            <img src="${imageURL}" class="card-img-top image-fit-width" alt="...">
+                        </div>
+                        <div class="card-body ">
+                            <div>
+                                <a href="/Business/Details/${posting.job_id}" class="card-title font-bold job-title">${posting.title}</a>
+                            </div>
+                            <div>
+                                <span class="company-name">${posting.Employer.company_name}</span>
+                            </div>
+                            <div>
+                                <span class="job-salary">${posting.salary}</span>
+                            </div>
+                            <div>
+                                <span class="address">${posting.location}</span>
+                            </div>
+                            <div class="skill-container">
+                                ${posting.JobSkills.map(function (skill) {
+                                    return `<a href="#" class="border-radius-5px mb-3">${skill.SkillRequirement.skill_name}</a>`
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>`;
+        }).join('');
+        document.querySelector(".card-container").innerHTML = postingCards;
+    }
+
     resetNavOption("linYourBusiness");
 
     //replaceInput(false);
 
     disableInput([...inputs, btnBusinessInfoSubmit], true);
     doomEmployerInfo();
+    doomEmployeeJobPosting();
 
     checkbox.addEventListener("click", () => {
         let checkboxSpan = document.getElementsByClassName("edit-switch")[0];

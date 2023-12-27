@@ -29,7 +29,6 @@ namespace IT_Job_Finder.Models
         public string experience { get; set; }
         public string education { get; set; }
 
-        [JsonIgnore]
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]

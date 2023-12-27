@@ -319,7 +319,6 @@
     <Content Include="Views\JobDetails\Details.cshtml" />
     <Content Include="Views\Business\Details.cshtml" />
     <Content Include="Views\Business\Edit.cshtml" />
-    <Content Include="Views\MaintainCandidate\Candidate_Profile.html" />
     <Content Include="Views\MaintainCandidate\Index.cshtml" />
     <None Include="Views\Shared\_MaintainEmployerLayout.cshtml" />
     <Content Include="Web.config">

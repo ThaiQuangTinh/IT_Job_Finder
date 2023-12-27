@@ -225,23 +225,14 @@ const deleteItem = function(id, type) {
 
 // ==== FUNCTIONS LIST USED TO HANDEL FOR JOB APPLICATED
 //Function used to show status job application 
-const showStatus = (jobID, candidateID) => {
-    let statusValue = document.querySelector('.status_value');
-    fetch(`http://localhost:56673/api/JobApplications/isPrimary?jobID=${jobID}&candidateID=${candidateID}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data == true) {
-                statusValue.innerText = 'Đã được chấp nhận';
-                statusValue.style.backgroundColor = '#2ed529';
-            } else if (data == false) {
-                statusValue.innerText = 'Đã bị từ chối';
-                statusValue.style.backgroundColor = '#eb2424';
-            } else {
-                statusValue.innerText = 'Đang chờ xử lí';
-                statusValue.style.backgroundColor = 'blue';
-            }
-        })
+const showStatus = status => {
+    if (status == true) {
+        return '<span class = "status_value" style="background-color: #2ed529;">Đã được chấp nhận</span> ';
+    } else if (status == false) {
+        return '<span class = "status_value" style="background-color: #eb2424;">Đã bị từ chối</span> ';
+    } else {
+        return '<span class = "status_value" style="background-color: blue;">Đang chờ xử lí</span> ';
+    }
 };
 
 const getJopApplicationFromID = function(id) {
@@ -266,12 +257,13 @@ const getJopApplicationFromID = function(id) {
                                 <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
                             </div>
                             <div class="employer_description row_content main_contain">${element.Description}</div>
-                            <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> <span class = "status_value">Đang chờ xử lí</span> </div>
+                            <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> 
+                                ${showStatus(element.Status)}
+                            </div>
                         </div>
                         <div class="japp_delete_icon" onclick="deleteItem(${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
                     </div>
                 `;
-                showStatus(element.JobID, element.CandidateID);
             });
 
             const japp_delete_icon = document.querySelectorAll('.japp_delete_icon');

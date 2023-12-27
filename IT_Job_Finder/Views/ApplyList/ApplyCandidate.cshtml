@@ -13,11 +13,11 @@
             </div>
             <div class="mb-3 pi-3">
                 <h4>Họ và tên</h4>
-                <span class="ml-3 font-bold ">Nguyễn Văn A</span>
+                <span class="ml-3 font-bold apply_candidate_fullName">Nguyễn Văn A</span>
             </div>
             <div class="mb-3 pi-3">
                 <h4>Kỹ năng</h4>
-                <div class="skill-requirement-container ml-3">
+                <div class="skill-requirement-container ml-3 apply_candidate_skills_list">
                     <a href="" class="border-radius-5px">Java</a>
                     <a href="" class="border-radius-5px">C#</a>
                     <a href="" class="border-radius-5px">C++</a>
@@ -27,11 +27,11 @@
             </div>
             <div class="mb-3 pi-3">
                 <h4>Kinh nghiệm</h4>
-                <span class="ml-3 font-bold">20 tuổi, 21 năm kinh nghiệm</span>
+                <span class="ml-3 font-bold apply_candidate_experience_year">20 tuổi, 21 năm kinh nghiệm</span>
             </div>
             <div class="pi-3">
                 <h4>Trình độ học vấn</h4>
-                <span class="ml-3 font-bold">12/1</span>
+                <span class="ml-3 font-bold apply_candidate_education">12/1</span>
             </div>
         </div>
 
@@ -39,19 +39,8 @@
             <div class="mb-3 pi-3 apply-info-title">
                 <h3>Thư giới thiệu</h3>
             </div>
-            <div class="pi-3">
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
-                Render nội dung thư giới thiệu.
+            <div class="pi-3 apply_candidate_cover_letter">
+                
             </div>
         </div>
 
@@ -60,7 +49,7 @@
                 <h3>Thông tin CV</h3>
             </div>
             <div style="height: 100vh" class="mb-3">
-                <embed src="../../../Resource/Pdf/Render.pdf" type="application/pdf" width="100%" height="100%">
+                <embed src="../../../Resource/Pdfs/Render.pdf" type="application/pdf" width="100%" height="100%" id="cvViewerApplyCandidate">
             </div>
             <div class="button-container">
                 <button class="btn btn-primary mr-3">Chấp nhận</button>
@@ -69,43 +58,39 @@
         </div>  
     </div>
 
-    <aside class="details-job-info shadow sticky-top ml-3 border-radius-5px">
+   <aside class="details-job-info shadow sticky-top ml-3 border-radius-5px">
         <section class="application-info-summary border-radius-5px">
             <div class="mb-3 mt-3 pi-3 apply-info-title">
-                <h3>Thông tin vị trí</h3>
+                <h3>Thông tin chung</h3>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Vị trí ứng tuyển</h4>
-                <p class="font-italic">Senior Developer (C#, Unity 3D, Sign-On Bonus)</p>
+                <p class="font-italic detail_nominee">Senior Developer (C#, Unity 3D, Sign-On Bonus)</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Địa chỉ</h4>
-                <p class="font-italic">Hồ Chí Minh</p>
+                <p class="font-italic detail_location">Hồ Chí Minh</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Mức lương</h4>
-                <p class="font-italic" style="color: red">2 tỏi</p>
+                <p class="font-italic detail_salary" style="color: red">2 tỏi</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Năm kinh nghiệm tối thiểu</h4>
-                <p class="font-italic">Từ 3 năm</p>
+                <p class="font-italic detail_experienceYear">Từ 3 năm</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Cấp bậc</h4>
-                <p class="font-italic">Senior</p>
+                <p class="font-italic detail_level">Senior</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Loại hợp đồng</h4>
-                <p class="font-italic">Fulltime</p>
+                <p class="font-italic detail_contractType">Fulltime</p>
             </div>
             <div class="mb-3 mi-3">
                 <h4>Các công nghệ sử dụng</h4>
-                <div class="skill-requirement-container">
-                    <a href="" class="border-radius-5px">Java</a>
-                    <a href="" class="border-radius-5px">C#</a>
-                    <a href="" class="border-radius-5px">C++</a>
-                    <a href="" class="border-radius-5px">JavaScript</a>
-                    <a href="" class="border-radius-5px">Sql</a>
+                <div class="skill-requirement-container skillReContainOFJobPosting">
+
                 </div>
             </div>
         </section>
@@ -115,3 +100,5 @@
 <script>
     resetNavOption("linApplyList");
 </script>
+
+<script src="~/Scripts/CustomScripts/ApplyList/Details.js"></script>

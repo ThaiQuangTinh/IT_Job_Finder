@@ -20,14 +20,14 @@
     border-radius: 10px;
     background-color: #fff;
     /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(0, 0, 0, 0.4); */
-    animation: fadeIn 1s ease forwards;
+    animation: fadeInLogout 1s ease forwards;
     transition: 1s;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInLogout {
     from {
         opacity: 0;
         transform: translateY(-50px);
@@ -39,7 +39,7 @@
     }
 }
 
-@keyframes fadeOut {
+@keyframes fadeOutLogOut {
     from {
         opacity: 0;
         transform: translateY(10px);

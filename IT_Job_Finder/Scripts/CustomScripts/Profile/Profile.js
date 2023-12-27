@@ -139,13 +139,13 @@ const putCandidateInfor = function() {
             if (response.ok) {
                 candidateInforEditCancel();
                 showCandidateInfor(fillCandidateInfor);
+                location.reload(true);
             }
         })
 };
 
 document.getElementById('btn_save').addEventListener('click', function() {
     putCandidateInfor();
-    location.reload(true);
 });
 
 // == FUNCTION USED TO SHOW AND HIDE DELETE ICON ==
@@ -224,6 +224,26 @@ const deleteItem = function(id, type) {
 
 
 // ==== FUNCTIONS LIST USED TO HANDEL FOR JOB APPLICATED
+//Function used to show status job application 
+const showStatus = (jobID, candidateID) => {
+    let statusValue = document.querySelector('.status_value');
+    fetch(`http://localhost:56673/api/JobApplications/isPrimary?jobID=${jobID}&candidateID=${candidateID}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data == true) {
+                statusValue.innerText = 'Đã được chấp nhận';
+                statusValue.style.backgroundColor = '#2ed529';
+            } else if (data == false) {
+                statusValue.innerText = 'Đã bị từ chối';
+                statusValue.style.backgroundColor = '#eb2424';
+            } else {
+                statusValue.innerText = 'Đang chờ xử lí';
+                statusValue.style.backgroundColor = 'blue';
+            }
+        })
+};
+
 const getJopApplicationFromID = function(id) {
     fetch(`http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`)
         .then(response => response.json())
@@ -246,13 +266,14 @@ const getJopApplicationFromID = function(id) {
                                 <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
                             </div>
                             <div class="employer_description row_content main_contain">${element.Description}</div>
+                            <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> <span class = "status_value">Đang chờ xử lí</span> </div>
                         </div>
                         <div class="japp_delete_icon" onclick="deleteItem(${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
-
                     </div>
                 `;
-
+                showStatus(element.JobID, element.CandidateID);
             });
+
             const japp_delete_icon = document.querySelectorAll('.japp_delete_icon');
             const btn_Edit_job_applicated = document.getElementById('btn_Edit_job_applicated');
             const btn_cancel_edit_jpp = document.getElementById('btn_cancel_edit_jpp');
@@ -316,11 +337,11 @@ const getFavoriteJobFromID = function(id) {
 //Function used to hide login message when user signed in
 const hideMessage = function(btn, message_box, containMesageBox) {
     document.getElementById(btn).addEventListener('click', function() {
-        document.querySelector(message_box).style.animation = 'fadeOut 0.8s ease forwards';
-        setTimeout(function() {
-            document.querySelector(containMesageBox).style.display = 'none';
-            document.querySelector(message_box).style.animation = 'fadeIn 0.8s ease forwards';
-        }, 600);
+        // document.querySelector(message_box).style.animation = 'fadeOut 0.8s ease forwards';
+        // setTimeout(function() {
+        document.querySelector(containMesageBox).style.display = 'none';
+        document.querySelector(message_box).style.animation = 'fadeIn 0.8s ease forwards';
+        // }, 600);
     });
 };
 

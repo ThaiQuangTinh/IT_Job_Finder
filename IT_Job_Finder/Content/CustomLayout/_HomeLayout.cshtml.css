@@ -33,19 +33,19 @@ div {
     transition: 0.2s;
 }
 
-.blue-button:hover {
-    background: #0776ff;
-    transition: 0s;
-}
+    .blue-button:hover {
+        background: #0776ff;
+        transition: 0s;
+    }
 
-.blue-button:active {
-    background: #0162fe;
-}
+    .blue-button:active {
+        background: #0162fe;
+    }
 
-.blue-button:disabled {
-    color: #f5f5f5;
-    background: #b6e3ff;
-}
+    .blue-button:disabled {
+        color: #f5f5f5;
+        background: #b6e3ff;
+    }
 
 .login-link {
     border-radius: 5px;
@@ -58,20 +58,20 @@ div {
     transition: 0.2s;
 }
 
-.login-link:hover {
-    background: #f5f5f5;
-    color: #323c4e;
-    transition: 0s;
-}
+    .login-link:hover {
+        background: #f5f5f5;
+        color: #323c4e;
+        transition: 0s;
+    }
 
-.login-link:active {
-    background: #efefef;
-}
+    .login-link:active {
+        background: #efefef;
+    }
 
-.login-link:disabled {
-    color: #0162fe;
-    background: #dcdcdc;
-}
+    .login-link:disabled {
+        color: #0162fe;
+        background: #dcdcdc;
+    }
 
 
 /* White Button */
@@ -86,19 +86,19 @@ div {
     transition: 0.2s;
 }
 
-.white-button:hover {
-    background: #efefef;
-    transition: 0s;
-}
+    .white-button:hover {
+        background: #efefef;
+        transition: 0s;
+    }
 
-.white-button:active {
-    background: #dcdcdc;
-}
+    .white-button:active {
+        background: #dcdcdc;
+    }
 
-.white-button:disabled {
-    color: #0162fe;
-    background: #525252;
-}
+    .white-button:disabled {
+        color: #0162fe;
+        background: #525252;
+    }
 
 
 /* Vertical-line */
@@ -110,6 +110,15 @@ div {
     width: 5px;
     background-color: #fff;
     border-radius: 6px;
+}
+
+.avatar_mini {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin: 0 10px;
+    border: 2px solid #fff;
+    object-fit: inherit;
 }
 
 
@@ -144,9 +153,9 @@ div {
     color: #f5f5f5;
 }
 
-.logo-name:hover {
-    color: #fff;
-}
+    .logo-name:hover {
+        color: #fff;
+    }
 
 .account-container {
     height: 40px;
@@ -157,10 +166,10 @@ div {
     position: relative;
 }
 
-.account-container a {
-    display: flex;
-    align-items: center;
-}
+    .account-container a {
+        display: flex;
+        align-items: center;
+    }
 
 .user-info {
     height: 40px;
@@ -172,10 +181,10 @@ div {
     position: relative;
 }
 
-.user-info i {
-    font-size: 1.5em;
-    margin-right: 10px;
-}
+    .user-info i {
+        font-size: 1.5em;
+        margin-right: 10px;
+    }
 
 .users-name-info {
     margin-left: 10px;
@@ -183,20 +192,28 @@ div {
     text-decoration: none;
 }
 
-.users-name-info:hover {
-    color: #dcdcdc;
-    transition: all 0.3s linear;
-    cursor: pointer;
-}
+    .users-name-info:hover {
+        color: #dcdcdc;
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
 
 .login-signup {
     height: 40px;
     display: flex;
 }
 
-.login-signup a {
-    margin-inline: 5px;
+    .login-signup a {
+        margin-inline: 5px;
+    }
+
+.tt_Login {
+    color: blue;
 }
+
+    .tt_Login:hover {
+        opacity: 0.7;
+    }
 
 .login-link {
     height: 100%;
@@ -207,11 +224,11 @@ div {
     color: #fff;
 }
 
-.signup-link:hover {
-    color: #dcdcdc;
-    transition: all 0.3s linear;
-    cursor: pointer;
-}
+    .signup-link:hover {
+        color: #dcdcdc;
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
 
 ._NoneSigninLayout-main {
     padding: 100px 40px 0 40px;
@@ -269,12 +286,12 @@ div {
     border-right: 0;
 }
 
-.button-find-job input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    border-radius: 0px;
-}
+    .button-find-job input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        border-radius: 0px;
+    }
 
 .search-fliter-container input[type="text"] {
     height: 40px;
@@ -310,10 +327,10 @@ div {
     padding: 10px;
 }
 
-.filter-side-bar * {
-    font-weight: bold;
-    width: 100%;
-}
+    .filter-side-bar * {
+        font-weight: bold;
+        width: 100%;
+    }
 
 .filter-box label {
     font-weight: 500;
@@ -323,10 +340,10 @@ div {
     padding-left: 20px;
 }
 
-.checkbox-list label {
-    font-weight: 400;
-    color: #9191ab;
-}
+    .checkbox-list label {
+        font-weight: 400;
+        color: #9191ab;
+    }
 
 .render-body {
     background: #fff;

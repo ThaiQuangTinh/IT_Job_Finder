@@ -385,6 +385,15 @@ body {
     }
 }
 
+.status_value {
+    display: inline-block;
+    background-color: blue;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
 .job_applicated_item:hover {
     box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -599,17 +608,19 @@ p {
     }
 
 #btnLogoutCancel {
-    padding: 4px 20px;
+    padding: 6px 20px;
     font-size: 16px;
     background-color: rgba(238, 50, 66, 0.8);
     color: #fff;
+    font-weight: bold;
 }
 
 #btnLogoutOk {
-    padding: 4px 20px;
+    padding: 6px 20px;
     font-size: 16px;
     background-color: #1f96ff;
     color: #fff;
+    font-weight: bold;
 }
 
 .main_message {

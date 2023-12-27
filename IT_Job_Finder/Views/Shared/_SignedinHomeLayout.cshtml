@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="../../Content/CustomLayout/_HomeLayout.cshtml.css">
     <link href="~/Content/CustomLayout/Component/Card.css" rel="stylesheet" />
     <link href="~/Content/FormLoginAndSignUp/LoginMessage.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 <body style="background: #f5f5f5">
@@ -19,12 +22,12 @@
 
         <div class="account-container">
             <div class="user-info">
-                <a href="@Url.Action("redirectToAccount", "Account", new { Username = Session["Username"]})" class="users-name-info" id="userProfile">
-                    <i class="fa-regular fa-circle-user"></i> @Html.Action("GetFullName", "Account", new
-                        {
-                            Username =
-                            Session["Username"]
-                        })
+                <a href="@Url.Action("redirectToAccount", "Account", new { Username = Session["Username"]})"
+                   class="users-name-info" id="userProfile">
+                    <img src="" alt="" class="avatar_mini">
+                    <span class="fullName_mini">
+                        @Html.Action("GetFullName", "Account", new { Username = Session["Username"] })
+                    </span>
                 </a>
             </div>
             <div class="vertical-line"></div>
@@ -106,7 +109,9 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="salaryCheckbox3" value="option3">
-                            <label class="form-check-label" for="salaryCheckbox3"><= 10 triệu</label>
+                            <label class="form-check-label" for="salaryCheckbox3">
+                                <= 10 triệu
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -146,5 +151,6 @@
     </div>
 
     <script src="~/Scripts/CustomScripts/FormLoginAndSignUp/MessageLogin.js"></script>
+
 </body>
 </html>

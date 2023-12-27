@@ -184,3 +184,24 @@ const login = function() {
 };
 
 login();
+
+// Display mini avatar of user
+const showMiniAvar = (fullName) => {
+    fetch('http://localhost:56673/api/Users/GetAllUsers')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            data.forEach(element => {
+                if (element.imageURL != '' && element.full_name == fullName) {
+                    document.querySelector('.avatar_mini').src = element.imageURL;
+                } else if (element.imageURL == '' && element.full_name == fullName) {
+                    document.querySelector('.avatar_mini').src = '../../Resource/Images/avatar.png';
+                }
+            });
+        })
+}
+
+const full_name_mini = document.querySelector('.fullName_mini');
+if (full_name_mini) {
+    showMiniAvar(full_name_mini.innerText.trim());
+}

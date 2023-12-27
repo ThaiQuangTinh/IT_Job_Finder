@@ -406,3 +406,9 @@ D:\Dotnet\New\IT_Job_Finder\IT_Job_Finder\obj\Debug\IT_Job_Finder.csproj.CoreCom
 D:\Dotnet\New\IT_Job_Finder\IT_Job_Finder\obj\Debug\IT_Job_Finder.csproj.CopyComplete
 D:\Dotnet\New\IT_Job_Finder\IT_Job_Finder\obj\Debug\IT_Job_Finder.dll
 D:\Dotnet\New\IT_Job_Finder\IT_Job_Finder\obj\Debug\IT_Job_Finder.pdb
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\Microsoft.Extensions.Primitives.dll
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\System.IO.Pipelines.dll
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\Microsoft.Extensions.Primitives.xml
+D:\Dotnet\ProjectItJob\IT_Job_Finder\IT_Job_Finder\bin\System.IO.Pipelines.xml

@@ -162,5 +162,59 @@ namespace IT_Job_Finder.Controllers_API
             db.SaveChanges();
             return Ok();
         }
+
+
+             //API used to get infor of job posting to display job posting list form employer id
+        [HttpGet]
+        public IHttpActionResult getJobPostingListInfor(int employer_ID)
+        {
+            var result = (from jp in db.JobPostings
+                          join ep in db.Employers on jp.employer_id equals ep.employer_id
+                          join us in db.Users on ep.employer_id equals us.user_id
+                          where jp.employer_id == employer_ID
+                          select new
+                          {
+                              JobID = jp.job_id,
+                              EmployerID = jp.employer_id,
+                              ImageUrl = us.imageURL,
+                              Title = jp.title,
+                              Location = jp.location,
+                              Salary = jp.salary,
+                              DatePosted = jp.date_posted
+                          }
+                           ).ToList();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        //API used to get job posting details from job_id
+        [HttpGet]
+        public IHttpActionResult getJobPostingDetailFromID(int jobID)
+        {
+            //var jobPosting = db.JobPostings.FirstOrDefault(j => j.job_id == jobID);
+
+            var jobPosting = (from jp in db.JobPostings
+                              join lv in db.Levels on jp.level_id equals lv.level_id
+                              where jp.job_id == jobID
+                              select new
+                              {
+                                  JobID = jp.job_id,
+                                  Title = jp.title,
+                                  Location = jp.location,
+                                  Salary = jp.salary,
+                                  ExperienceYear = jp.experience_year,
+                                  ContractType = jp.contract_type,
+                                  Level = lv.level_name
+                              }).ToList();
+            if (jobPosting == null)
+            {
+                return NotFound();
+            }
+            return Ok(jobPosting);
+        }
+
     }
 }

@@ -13,69 +13,18 @@
 
 <div class="business-info-container shadow border-radius-5px">
     <h2>Danh sách ứng tuyển</h2>
+    @*<a href="@Url.Action("redirectToAccount", "Account", new { Username = Session["Username"]})"
+        @*<input type="hidden" id="employer_username" value="@username" />
+         <a class="card mb-3 al-job" href="@Url.Action("Details", "ApplyList", new { jobId = Session["Username"]})">
+
+    *@
     <div class="al-job-container">
-        <a class="card mb-3 al-job" href="/ApplyList/Details/1">
-            <div class="custom-image-container">
-                <img src="@ViewBag.ImageUrl" />
-            </div>
-            <div class="card-body">
-                <div>
-                    <span class="card-title font-bold">Job Posting Title 1</span>
-                </div>
-                <div>
-                    <span class="card-content">Địa chỉ</span>
-                </div>
-                <div>
-                    <span class="card-content al-job-salary">Tiền lương</span>
-                </div>
-                <div>
-                    <span class="card-content">Ngày đăng</span>
-                </div>
-            </div>
-        </a>
 
-        <a class="card mb-3 al-job" href="/ApplyList/Details/2">
-            <div class="custom-image-container">
-                <img src="@ViewBag.ImageUrl" />
-            </div>
-            <div class="card-body">
-                <div>
-                    <span class="card-title font-bold">Job Posting Title 2</span>
-                </div>
-                <div>
-                    <span class="card-content">Địa chỉ</span>
-                </div>
-                <div>
-                    <span class="card-content al-job-salary">Tiền lương</span>
-                </div>
-                <div>
-                    <span class="card-content">Ngày đăng</span>
-                </div>
-            </div>
-        </a>
-
-        <a class="card mb-3 al-job" href="/ApplyList/Details/3">
-            <div class="custom-image-container">
-                <img src="@ViewBag.ImageUrl" />
-            </div>
-            <div class="card-body">
-                <div>
-                    <span class="card-title font-bold">Job Posting Title 3</span>
-                </div>
-                <div>
-                    <span class="card-content">Địa chỉ</span>
-                </div>
-                <div>
-                    <span class="card-content al-job-salary">Tiền lương</span>
-                </div>
-                <div>
-                    <span class="card-content">Ngày đăng</span>
-                </div>
-            </div>
-        </a>
     </div>
 </div>
 
 <script>
     resetNavOption("linApplyList");
 </script>
+
+<script src="~/Scripts/CustomScripts/ApplyList/ApplyList.js"></script>

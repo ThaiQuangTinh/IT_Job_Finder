@@ -64,6 +64,8 @@ namespace IT_Job_Finder.Controllers_API
                           select new
                           {
                               JobApplicationId = ja.job_application_id,
+                              JobID = ja.job_id,
+                              CandidateID = ja.candidate_id,
                               DateApplied = ja.date_applied,
                               Title = jp.title,
                               Location = jp.location,
@@ -92,5 +94,125 @@ namespace IT_Job_Finder.Controllers_API
             db.SaveChanges();
             return Ok();
         }
+
+        //API used to get job applications list of canidate applied to employer from Job ID
+        [HttpGet]
+        public IHttpActionResult getCandidateAppliedFromJobID(int jobID)
+        {
+            var result = (from ja in db.JobApplications
+                          join cp in db.CandidateProfiles on ja.candidate_id equals cp.candidate_id
+                          join us in db.Users on ja.candidate_id equals us.user_id
+                          where ja.job_id == jobID
+                          select new
+                          {
+                              CandidateID = us.user_id,
+                              Fullname = us.full_name,
+                              ImgaeUrl = us.imageURL,
+                              Address = cp.address,
+                              Skills = cp.skills,
+                              Experience = cp.experience,
+                              Education = cp.education,
+                              DateApplied = ja.date_applied,
+                              CoverLetter = ja.cover_letter,
+                              CvUrl = ja.cvURL,
+                              Status = ja.status
+                          }).ToList();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        //API used to get job applications list of canidate applied to employer from Job ID and canidate id
+        [HttpGet]
+        public IHttpActionResult getCandidateAppliedFromJobIdAndCdID(int jobID, int candidateID)
+        {
+            var result = (from ja in db.JobApplications
+                          join cp in db.CandidateProfiles on ja.candidate_id equals cp.candidate_id
+                          join us in db.Users on ja.candidate_id equals us.user_id
+                          where ja.job_id == jobID && cp.candidate_id == candidateID
+                          select new
+                          {
+                              CandidateID = us.user_id,
+                              Fullname = us.full_name,
+                              ImgaeUrl = us.imageURL,
+                              Address = cp.address,
+                              Skills = cp.skills,
+                              Experience = cp.experience,
+                              Education = cp.education,
+                              DateApplied = ja.date_applied,
+                              CoverLetter = ja.cover_letter,
+                              CvUrl = ja.cvURL,
+                              Status = ja.status
+                          }).ToList();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        //API used to change status
+        [HttpPut]
+        public IHttpActionResult confirmStatus()
+        {
+            int candidateID = int.Parse(HttpContext.Current.Request.Form["candidateID"]);
+            int jobID = int.Parse(HttpContext.Current.Request.Form["jobID"]);
+
+            var jobApplly = db.JobApplications.FirstOrDefault(ja => ja.job_id == jobID && ja.candidate_id == candidateID);
+            if (jobApplly == null)
+            {
+                return NotFound();
+            }
+
+            jobApplly.status = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPut]
+        public IHttpActionResult denyStatus()
+        {
+            int candidateID = int.Parse(HttpContext.Current.Request.Form["candidateID"]);
+            int jobID = int.Parse(HttpContext.Current.Request.Form["jobID"]);
+
+            var jobApplly = db.JobApplications.FirstOrDefault(ja => ja.job_id == jobID && ja.candidate_id == candidateID);
+            if (jobApplly == null)
+            {
+                return NotFound();
+            }
+
+            jobApplly.status = false;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        //API used to check status
+        [HttpGet]
+        public IHttpActionResult isPrimary(int jobID, int candidateID)
+        {
+            var jobApplly = db.JobApplications.FirstOrDefault(ja => ja.job_id == jobID && ja.candidate_id == candidateID);
+            if (jobApplly == null)
+            {
+                return NotFound();
+            }
+            if (jobApplly.status == true)
+            {
+                return Ok(true);
+            }
+            else if (jobApplly.status == false)
+            {
+                return Ok(false);
+            }
+            else
+            {
+                return Ok("Wait");
+            }
+        }
+
+        
     }
 }

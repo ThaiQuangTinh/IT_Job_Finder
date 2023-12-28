@@ -25,8 +25,8 @@ const fillDataToCommonJobPosting = (jobID) => {
             data.forEach(element => {
                 document.querySelector('.detail_nominee').innerText = element.Title;
                 document.querySelector('.detail_location').innerText = element.Location;
-                document.querySelector('.detail_salary').innerText = element.Salary;
-                document.querySelector('.detail_experienceYear').innerText = element.ExperienceYear;
+                document.querySelector('.detail_salary').innerText = element.Salary + ` $`;
+                document.querySelector('.detail_experienceYear').innerText = `Từ ${element.ExperienceYear} năm`;
                 document.querySelector('.detail_level').innerText = element.Level;
                 document.querySelector('.detail_contractType').innerText = element.ContractType;
                 getJobSKillListOfJPE(jobID);
@@ -94,7 +94,7 @@ const showApplyOfCandidate = (jobID, candidateID) => {
                 document.querySelector('.apply_candidate_skills_list').innerHTML = skillHtml(element.Skills);
                 document.querySelector('.apply_candidate_experience_year').innerText = element.Experience;
                 document.querySelector('.apply_candidate_education').innerText = element.Education;
-                document.querySelector('.apply_candidate_cover_letter').innerText = element.CoverLetter;
+                document.querySelector('.apply_candidate_cover_letter').innerHTML = element.CoverLetter;
                 document.getElementById('cvViewerApplyCandidate').src = element.CvUrl;
             });
         })

@@ -45,16 +45,16 @@ body {
             text-decoration: none;
         }
 
-        .username-icon {
-            height: 75px;
-            margin-inline: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: #8c8c8c;
-            border-bottom: 1px solid #8c8c8c;
-        }
+.username-icon {
+    height: 75px;
+    margin-inline: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #8c8c8c;
+    border-bottom: 1px solid #8c8c8c;
+}
 
     .username-icon i {
         font-size: 1.7em;
@@ -115,7 +115,7 @@ body {
 
 /* ---  */
 
-.two-btn-container{
+.two-btn-container {
     display: grid;
     grid-template-columns: 49% 49%;
     justify-content: space-between;
@@ -277,3 +277,12 @@ body {
     .btnSubmitOk:hover {
         opacity: 0.7;
     }
+
+.avatar_mini {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin: 0 10px;
+    border: 2px solid #ccc;
+    object-fit: inherit;
+}

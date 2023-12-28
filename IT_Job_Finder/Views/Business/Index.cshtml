@@ -93,7 +93,6 @@
 
     let doomEmployerInfo = async function () {
         let user = await fetchMethodGet(getEmployerUrl);
-        document.getElementById("employerNameBox").innerHTML = user.User.username;
         document.getElementById("BusinessImage").src = user.User.imageURL ? user.User.imageURL : "@ViewBag.ImageUrl";
         document.getElementById("txtBusinessName").value = user.company_name;
         document.getElementById("txtIndustry").value = user.industry;

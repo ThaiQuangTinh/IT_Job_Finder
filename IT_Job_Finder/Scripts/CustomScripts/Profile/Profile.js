@@ -200,7 +200,8 @@ const deleteItem = function(id, type) {
                             element.style.animation = 'deleteItem .7s linear';
                             setTimeout(function() {
                                 element.remove();
-                            }, 800)
+                                showMessageWhenNullLisy(document.getElementById('candidate_id_hide').value, 'jobApp');
+                            }, 800);
                         }
                     })
                 } else {
@@ -210,6 +211,7 @@ const deleteItem = function(id, type) {
                             element.style.animation = 'deleteItem .7s linear';
                             setTimeout(function() {
                                 element.remove();
+                                showMessageWhenNullLisy(document.getElementById('candidate_id_hide').value, 'favJob');
                             }, 800)
                         }
                     })
@@ -235,36 +237,43 @@ const showStatus = status => {
     }
 };
 
+//Function used to show job applicated of canđiate form candidate id
 const getJopApplicationFromID = function(id) {
     fetch(`http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            data.forEach(element => {
-                document.querySelector('.job_applicated_list').innerHTML +=
-                    `
-                    <div class="job_applicated_item" dataID = "${element.JobApplicationId}">
-                        <div class="logo_company">
-                            <img src="${element.ImageUrl}" alt="" class="img_employer">
+            console.log(data.length);
+            if (data.length > 0) {
+                document.querySelector('.btn_edit_list').style.display = 'block';
+                data.forEach(element => {
+                    document.querySelector('.job_applicated_list').innerHTML +=
+                        `
+                        <div class="job_applicated_item" dataID = "${element.JobApplicationId}">
+                            <div class="logo_company">
+                                <img src="${element.ImageUrl}" alt="" class="img_employer">
+                            </div>
+                            <div class="content_job_applicated_item">
+                                <div class="job_title row_content">${element.Title}</div>
+                                <div class="employeer_name row_content">${element.CompanyName}</div>
+                                <div class="employeer_location row_content main_contain">
+                                    <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
+                                </div>
+                                <div class="employeer_salary row_content main_contain">
+                                    <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
+                                </div>
+                                <div class="employer_description row_content main_contain">${element.Description}</div>
+                                <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> 
+                                    ${showStatus(element.Status)}
+                                </div>
+                            </div>
+                            <div class="japp_delete_icon" onclick="deleteItem(${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
                         </div>
-                        <div class="content_job_applicated_item">
-                            <div class="job_title row_content">${element.Title}</div>
-                            <div class="employeer_name row_content">${element.CompanyName}</div>
-                            <div class="employeer_location row_content main_contain">
-                                <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
-                            </div>
-                            <div class="employeer_salary row_content main_contain">
-                                <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
-                            </div>
-                            <div class="employer_description row_content main_contain">${element.Description}</div>
-                            <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> 
-                                ${showStatus(element.Status)}
-                            </div>
-                        </div>
-                        <div class="japp_delete_icon" onclick="deleteItem(${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            } else {
+                document.querySelector('.job_applicated_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa ứng tuyển công việc nào</h2>';
+                document.querySelector('.btn_edit_list').style.display = 'none';
+            }
 
             const japp_delete_icon = document.querySelectorAll('.japp_delete_icon');
             const btn_Edit_job_applicated = document.getElementById('btn_Edit_job_applicated');
@@ -280,46 +289,75 @@ const getJopApplicationFromID = function(id) {
         })
         .catch(error => console.error('Error:', error));
 };
+//Function use to check count job applicated of candidate
+const showMessageWhenNullLisy = (id, type) => {
+    let api = `http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`;
+    if (type === 'favJob') {
+        api = `http://localhost:56673/api/Favourites/GetFavouriteJobFromID/${id}`;
+    }
+    fetch(api)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length == 0) {
+                if (type === 'favJob') {
+                    document.getElementById('btn_Edit_favourite_job').style.display = 'none';
+                    document.getElementById('btn_cancel_edit_fav').style.display = 'none';
+                    document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa yêu thích công việc nào</h2>';
+                } else {
+                    document.getElementById('btn_Edit_job_applicated').style.display = 'none';
+                    document.getElementById('btn_cancel_edit_jpp').style.display = 'none';
+                    document.querySelector('.job_applicated_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa ứng tuyển công việc nào</h2>';
+                }
+            }
+        })
+};
 
+
+//Function used to show favourited job of candidate from candidate id
 const getFavoriteJobFromID = function(id) {
     fetch(`http://localhost:56673/api/Favourites/GetFavouriteJobFromID/${id}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            data.forEach(element => {
-                document.querySelector('.job_favourite_list').innerHTML +=
-                    `   
-                    <div class="fouvarite_job_item" dataID = "${element.FavouriteId}">
-                        <div class="logo_company">
-                            <img src="${element.ImageUrl}" alt="">
+            if (data.length > 0) {
+                data.forEach(element => {
+                    document.querySelector('.job_favourite_list').innerHTML +=
+                        `   
+                        <div class="fouvarite_job_item" dataID = "${element.FavouriteId}">
+                            <div class="logo_company">
+                                <img src="${element.ImageUrl}" alt="">
+                            </div>
+                            <div class="content_favourite_job_item" >
+                                <div class="job_title row_content">${element.Title}</div>
+                                <div class="employeer_name row_content">${element.CompanyName}</div>
+                                <div class="employeer_location row_content main_contain">
+                                    <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
+                                </div>
+                                <div class="employeer_salary row_content main_contain">
+                                    <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
+                                </div>
+                                <div class="employer_description row_content main_contain">
+                                    ${element.Description}
+                                </div>
+                            </div>
+                            <div class="fav_delete_icon" onclick="deleteItem(${element.FavouriteId}, 'favouriteJob')"><i class="fa-regular fa-trash-can"></i></div>
                         </div>
-                        <div class="content_favourite_job_item" >
-                            <div class="job_title row_content">${element.Title}</div>
-                            <div class="employeer_name row_content">${element.CompanyName}</div>
-                            <div class="employeer_location row_content main_contain">
-                                <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
-                            </div>
-                            <div class="employeer_salary row_content main_contain">
-                                <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
-                            </div>
-                            <div class="employer_description row_content main_contain">
-                                ${element.Description}
-                            </div>
-                        </div>
-                        <div class="fav_delete_icon" onclick="deleteItem(${element.FavouriteId}, 'favouriteJob')"><i class="fa-regular fa-trash-can"></i></div>
-                    </div>
-                `;
-                const fav_delete_icon = document.querySelectorAll('.fav_delete_icon');
-                const btn_Edit_favourite_job = document.getElementById('btn_Edit_favourite_job');
-                const btn_cancel_edit_fav = document.getElementById('btn_cancel_edit_fav');
-                btn_Edit_favourite_job.addEventListener('click', function() {
-                    show_icon_delete(btn_Edit_favourite_job, btn_cancel_edit_fav, fav_delete_icon);
-                });
+                    `;
+                    const fav_delete_icon = document.querySelectorAll('.fav_delete_icon');
+                    const btn_Edit_favourite_job = document.getElementById('btn_Edit_favourite_job');
+                    const btn_cancel_edit_fav = document.getElementById('btn_cancel_edit_fav');
+                    btn_Edit_favourite_job.addEventListener('click', function() {
+                        show_icon_delete(btn_Edit_favourite_job, btn_cancel_edit_fav, fav_delete_icon);
+                    });
 
-                btn_cancel_edit_fav.addEventListener('click', function() {
-                    hide_icon_delete(btn_Edit_favourite_job, btn_cancel_edit_fav, fav_delete_icon);
-                });
-            })
+                    btn_cancel_edit_fav.addEventListener('click', function() {
+                        hide_icon_delete(btn_Edit_favourite_job, btn_cancel_edit_fav, fav_delete_icon);
+                    });
+                })
+            } else {
+                document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa yêu thích công việc nào</h2>';
+                document.querySelector('#btn_Edit_favourite_job').style.display = 'none';
+            }
         })
         .catch(error => console.error('Error:', error));
 }

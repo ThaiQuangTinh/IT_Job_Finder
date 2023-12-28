@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     ViewBag.UserId = Session["Userid"];
 }
 <!DOCTYPE html>
@@ -22,17 +22,23 @@
 
 </head>
 <body>
-    <header class="header-nav">
-    </header>
+    <header class="header-nav"></header>
     <aside class="side-bar shadow">
         <div class="logo-container">
             <h1><a href="/Home">Logo</a></h1>
-            
+
         </div>
+
         <div class="username-icon">
-            <i class="fa-solid fa-circle-user"></i>
-            <span id="employerNameBox">Employer name</span>
+            @*<i class="fa-solid fa-circle-user"></i>
+                <span id="employerNameBox">Employer name</span>*@
+
+            <img src="" alt="" class="avatar_mini">
+            <span class="fullName_mini">
+                @Html.Action("GetFullName", "Account", new { Username = Session["Username"] })
+            </span>
         </div>
+
         <nav class="nav-container">
             <span>Quản lý</span>
             <a id="linYourBusiness" href="/Business/Index" class="nav-option ">
@@ -56,5 +62,27 @@
         </div>
     </main>
 
+    <script>
+        // Display mini avatar of user
+        const showMiniAvar = (fullName) => {
+            fetch('http://localhost:56673/api/Users/GetAllUsers')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(element => {
+                        if (element.full_name.trim() == fullName && element.imageURL != '') {
+                            document.querySelector('.avatar_mini').src = element.imageURL;
+                        } else if (element.full_name.trim() == fullName && element.imageURL == '') {
+                            document.querySelector('.avatar_mini').src = '../../Resource/Images/avatar.png';
+                        }
+                    });
+                })
+        }
+
+        // showMiniAvar('Liliana');
+        const full_name_mini = document.querySelector('.fullName_mini');
+        if (full_name_mini) {
+            showMiniAvar(full_name_mini.innerText.trim());
+        }
+    </script>
 </body>
 </html>

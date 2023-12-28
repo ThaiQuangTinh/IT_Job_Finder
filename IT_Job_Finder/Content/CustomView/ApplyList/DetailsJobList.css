@@ -52,3 +52,8 @@
             border: 1px solid #0f3e9d;
         }
 
+.apply_candidate_cover_letter {
+    text-indent: 40px;
+    text-align: justify;
+    line-height: 1.56;
+}

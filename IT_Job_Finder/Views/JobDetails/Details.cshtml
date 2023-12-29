@@ -113,8 +113,8 @@
                                 <h4>Các công nghệ sử dụng</h4>
                                 <div class="skill-requirement-container">
                                     ${data.JobSkills.map(function (skill) {
-                    return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
-                }).join('')}
+                                        return `<a href="/Home/Index/${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                                    }).join('')}
                                 </div>
                             </div>
                         </section>

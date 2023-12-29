@@ -76,7 +76,8 @@
 .image-fit-width {
     height: 90px;
     width: fit-content;
-    object-fit: contain
+    object-fit: contain;
+    margin-top: 15px;
 }
 
 .image-fit-height {

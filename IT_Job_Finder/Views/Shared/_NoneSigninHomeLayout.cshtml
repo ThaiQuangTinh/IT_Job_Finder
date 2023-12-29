@@ -101,7 +101,7 @@
             </div>
             <div class="all-salary-container s-f-emlement-container">
                 <i class="fa-solid fa-wallet"></i>
-                <input type="text" name="txtSalary" id="txtSalary" placeholder="Tất cả lương">
+                <input type="number" style="border: none; outline: none;" name="txtSalary" id="txtSalary" placeholder="Tất cả lương">
             </div>
             <div class="button-find-job s-f-emlement-container">
                 <input type="submit" id="btnSearch" value="Find Job" class="blue-button">
@@ -112,55 +112,56 @@
             <aside class="filter-side-bar shadow">
                 <div class="work-city-container filter-box">
                     <label>Nơi làm việc</label>
-                    <div id="work-city-ul" class="checkbox-list">
+                    <div id="work_city_ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="cityCheckbox1" value="option1">
+                            <input class="form-check-input" type="radio" name="cityRadio" id="cityCheckbox1" value="option1">
                             <label class="form-check-label" for="cityCheckbox1">TP.Hồ Chí Minh</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="cityCheckbox2" value="option2">
+                            <input class="form-check-input" type="radio" name="cityRadio" id="cityCheckbox2" value="option2">
                             <label class="form-check-label" for="cityCheckbox2">Hà Nội</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="cityCheckbox3" value="option3">
+                            <input class="form-check-input" type="radio" name="cityRadio" id="cityCheckbox3" value="option3">
                             <label class="form-check-label" for="cityCheckbox3">Quy Nhơn</label>
                         </div>
                     </div>
                 </div>
                 <div class="requirement-container filter-box">
                     <label>Yêu cầu</label>
-                    <div id="requirement-ul" class="checkbox-list">
+                    <div id="requirement_ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="requirementCheckbox1" value="option1">
+                            <input class="form-check-input" type="radio" name="requirementRadio" id="requirementCheckbox1" value="option1">
                             <label class="form-check-label" for="requirementCheckbox1">C++</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="requirementCheckbox2" value="option2">
+                            <input class="form-check-input" type="radio" name="requirementRadio" id="requirementCheckbox2" value="option2">
                             <label class="form-check-label" for="requirementCheckbox2">Java</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="requirementCheckbox3" value="option3">
+                            <input class="form-check-input" type="radio" name="requirementRadio" id="requirementCheckbox3" value="option3">
                             <label class="form-check-label" for="requirementCheckbox3">JavaScript</label>
                         </div>
                     </div>
                 </div>
-                <div class="salary-container filter-box">
+                <div class="salary-container filter-box mb-3">
                     <label>Lương</label>
                     <div id="salary-ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="salaryCheckbox1" value="option1">
-                            <label class="form-check-label" for="salaryCheckbox1">> 15 triệu</label>
+                            <input class="form-check-input" type="radio" name="salaryRadio" id="salaryCheckbox1" value="20000000">
+                            <label class="form-check-label" for="salaryCheckbox1">>= 20 triệu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="salaryCheckbox2" value="option2">
-                            <label class="form-check-label" for="salaryCheckbox2">> 10 triệu</label>
+                            <input class="form-check-input" type="radio" name="salaryRadio" id="salaryCheckbox2" value="15000000">
+                            <label class="form-check-label" for="salaryCheckbox2">>= 15 triệu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="salaryCheckbox3" value="option3">
-                            <label class="form-check-label" for="salaryCheckbox3"><= 10 triệu</label>
+                            <input class="form-check-input" type="radio" name="salaryRadio" id="salaryCheckbox3" value="10000000">
+                            <label class="form-check-label" for="salaryCheckbox3">>= 10 triệu</label>
                         </div>
                     </div>
                 </div>
+                <button id="filterSubmit" class="btn btn-primary">Tìm kiếm</button>
             </aside>
 
             <div id="renderBody" class="render-body shadow job card-container">

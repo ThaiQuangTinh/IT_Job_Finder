@@ -9,7 +9,7 @@
     {
         Layout = "~/Views/Shared/_NoneSigninHomeLayout.cshtml";
     }
-    ViewBag.ImageUrl = "https://yt3.googleusercontent.com/ytc/APkrFKalw8-UrTQalgiW3u7dPj35IWZUDT-N2XSkPa1xhw=s900-c-k-c0x00ffffff-no-rj";
+    ViewBag.ImageUrl = "../../../Resource/Images/BusinessBlankImg.jpg";
 
 }
 
@@ -19,9 +19,29 @@
         console.log(jobID);
         window.location.href = `http://localhost:56673/JobDetails/Details/${jobID}`;
     }
+    let hrefID = location.pathname.split("/")[3];
+    let GetAllJobAPI = "http://localhost:56673/api/JobPostings/GetAllJobPostings";
+    let SearchAPI = "http://localhost:56673/api/JobPostings/SearchForJobPosting";
 
-    let GetAllJobAPI = "http://localhost:56673/api/JobPostings/GetAllJobPostings"
-    let SearchAPI = "http://localhost:56673/api/JobPostings/SearchForJobPosting"
+    let doomSidebar = async function () {
+        let SidebarAPI = "http://localhost:56673/api/JobPostings/GetFilterSidebar";
+        let dataList = (await (await fetch(SidebarAPI)).json());
+        document.getElementById("work_city_ul").innerHTML = "";
+        document.getElementById("requirement_ul").innerHTML = "";
+        for (let i = 0; i < 3; i++) {
+            let workCity = document.getElementById("work_city_ul").innerHTML += `<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="cityRadio" value="${dataList[i].Key}">
+    <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
+</div>`;
+        }
+        for (let i = 3; i < 6; i++) {
+            document.getElementById("requirement_ul").innerHTML += `<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="requirementRadio" value="${dataList[i].Key}">
+    <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
+</div>`;
+        }
+    }
+
     var doomHtml = function (APIUrl) {
         fetch(APIUrl)
         .then(function (res) {
@@ -31,7 +51,7 @@
             let htmls = datas.map(function (data) {
                 return `<div class="card flex-direction-column mb-3 job" style="width: auto" onclick="redirectToJobDetail(${data.job_id})">
                             <div class="img-container">
-                                <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
+                                <img src="${data.Employer.User.imageURL != null ? data.Employer.User.imageURL : "@ViewBag.ImageUrl"}" class="image-fit-width" alt="...">
                             </div>
                             <div class="card-body ">
                                 <div>
@@ -48,7 +68,7 @@
                                 </div>
                                 <div class="skill-container">
                                     ${data.JobSkills.map(function (skill) {
-                                        return `<a href="${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                                        return `<a href="/Home/Index/${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
                                     }).join('')}
                                 </div>
                             </div>
@@ -57,10 +77,22 @@
             html = htmls.join('');
             document.getElementById("renderBody").innerHTML = html;
             console.log(datas);
+        })
+            .catch(() => {
+                document.getElementById("renderBody").innerHTML = "Không tìm thấy công việc phù hợp";
         });
     }
 
-    doomHtml(GetAllJobAPI);
+    // Main()
+    doomSidebar();
+    if (hrefID) {
+        // Load API load Công việc theo kỹ năng:
+        let getJobBySkillAPI = `http://localhost:56673/api/JobPostings/GetJobPostingBySkill/${hrefID}`;
+        doomHtml(getJobBySkillAPI);
+    } else {
+        doomHtml(GetAllJobAPI);
+    }
+
     document.querySelector("#btnSearch").addEventListener("click", (e) => {
         e.preventDefault();
         let title = document.getElementById("txtSearch").value;
@@ -68,13 +100,47 @@
         let skill = document.getElementById("txtPosision").value;
         let salary = document.getElementById("txtSalary").value;
         salary = salary == "" ? "0" : salary;
+        if (!title && !location && !skill) {
+            doomHtml(GetAllJobAPI);
+            return;
+        }
         const newUrl = new URL(SearchAPI);
         newUrl.searchParams.append('title', title);
         newUrl.searchParams.append('location', location);
-        newUrl.searchParams.append('salary', salary); 
+        newUrl.searchParams.append('salary', salary);
         newUrl.searchParams.append('skill_name', skill);
-        
         doomHtml(newUrl);
-        
+    })
+
+    document.getElementById("filterSubmit").addEventListener("click", async () => {
+        let location = "";
+        let skill = "";
+        let salary = "";
+        let locationEl = document.getElementsByName("cityRadio")
+        let skillEL = document.getElementsByName("requirementRadio")
+        let salaryEl = document.getElementsByName("salaryRadio")
+        for (let i = 0; i < 3; i++) {
+            if (locationEl[i].checked) {
+                location = locationEl[i].value;
+                break;
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            if (skillEL[i].checked) {
+                skill = skillEL[i].value;
+                break;
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            if (salaryEl[i].checked) {
+                salary = salaryEl[i].value;
+                break;
+            }
+        }
+        let filterAPI = new URL("http://localhost:56673/api/JobPostings/GetJobPostingWithMultipleFilter");
+        filterAPI.searchParams.append("Location", location);
+        filterAPI.searchParams.append("SkillId", skill);
+        filterAPI.searchParams.append("Salary", salary);
+        doomHtml(filterAPI);
     })
 </script>

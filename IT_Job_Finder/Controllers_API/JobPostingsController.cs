@@ -1,5 +1,6 @@
 ﻿using IT_Job_Finder.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace IT_Job_Finder.Controllers_API
             var jobPostingsWithSkills = db.JobPostings
                 .Include(p => p.JobSkills)
                 .Include(e => e.Employer)
-                .OrderBy(j => j.date_posted)
+                .OrderByDescending(e => e.job_id)
                 .ToList();
             if (jobPostingsWithSkills == null && jobPostingsWithSkills.Count == 0)
             {
@@ -50,6 +51,80 @@ namespace IT_Job_Finder.Controllers_API
         }
 
         [HttpGet]
+        public IHttpActionResult GetJobPostingBySkill(int id)
+        {
+            var jobPostings = db.JobPostings
+                .Include(p => p.JobSkills)
+                .Include(e => e.Employer)
+                .Where(job => job.JobSkills.Any(skill => skill.SkillRequirement.skill_id == id))
+                .OrderByDescending(e => e.job_id)
+                .ToList();
+            if (jobPostings == null && jobPostings.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(jobPostings);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetFilterSidebar()
+        {
+            var locations = db.JobPostings
+                .GroupBy(j => j.location)
+                .Select(g => new
+                {
+                    Key = g.Key,
+                    Name = g.Select(sl => sl.location).FirstOrDefault(),
+                    Count = g.Count()
+                })
+                .OrderByDescending(r => r.Count)
+                .Take(3)
+                .ToList();
+
+            var skills = db.JobSkills
+                .Include(s => s.SkillRequirement)
+                .GroupBy(j => j.skill_id)
+                .Select(g => new
+                {
+                    Key = g.Key.ToString(),
+                    Name = g.Select(sl => sl.SkillRequirement.skill_name).FirstOrDefault(),
+                    Count = g.Count()
+                })
+                .OrderByDescending(r => r.Count)
+                .Take(3)
+                .ToList();
+            var myData = locations;
+            foreach (var skill in skills)
+            {
+                myData.Add(skill);
+            }
+            return Ok(myData);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetJobPostingWithMultipleFilter(string Location, int? SkillId = null, int? Salary = null)
+        {
+            var jobPostings = db.JobPostings
+                .Include(p => p.JobSkills)
+                .Include(e => e.Employer);
+            if (Location != null)
+            {
+                jobPostings = jobPostings.Where(j => j.location.Contains(Location));
+            }
+            if (Salary != null)
+            {
+                jobPostings = jobPostings.Where(j => j.salary >= Salary);
+            }
+            if (SkillId != null)
+            {
+                jobPostings = jobPostings.Where(job => job.JobSkills.Any(skill => skill.SkillRequirement.skill_id == SkillId));
+            }
+            jobPostings.ToList();
+
+            return Ok(jobPostings);
+        }
+
+        [HttpGet]
         public IHttpActionResult GetJobPostingSecure(int jobId, int employeeId)
         {
             var jobPosting = db.JobPostings
@@ -70,7 +145,7 @@ namespace IT_Job_Finder.Controllers_API
                 && (string.IsNullOrEmpty(location) ? true : job.location.Contains(location)) 
                 && (job.salary >= salary) 
                 && (string.IsNullOrEmpty(skill_name) ? true : job.JobSkills.Any(skill => skill.SkillRequirement.skill_name.Contains(skill_name)))))
-                .OrderBy(j => j.date_posted)
+                .OrderByDescending(j => j.job_id)
                 .ToList();
             if (jobPostings == null || jobPostings.Count == 0)
             {

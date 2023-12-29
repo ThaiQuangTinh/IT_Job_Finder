@@ -68,7 +68,8 @@ namespace IT_Job_Finder.Controllers_API
                               Description = jp.description,
                               ExperienceYear = jp.experience_year,
                               ImageUrl = us.imageURL,
-                              CompanyName = emy.company_name
+                              CompanyName = emy.company_name,
+                              JobID = fv.job_id
                           }).ToList();
             if (result == null)
             {

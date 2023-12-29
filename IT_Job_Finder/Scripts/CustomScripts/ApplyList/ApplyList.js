@@ -4,29 +4,33 @@ const showListJobByEmployer = function(id) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            data.forEach(function(element) {
-                document.querySelector('.al-job-container').innerHTML += `
-                    <a class="card mb-3 al-job" href="/ApplyList/Details/${element.JobID}">
-                        <div class="custom-image-container">
-                            <img src="${element.ImageUrl}" />
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                <span class="card-title font-bold">${element.Title}</span>
+            if (data.length > 0) {
+                data.forEach(function(element) {
+                    document.querySelector('.al-job-container').innerHTML += `
+                        <a class="card mb-3 al-job" href="/ApplyList/Details/${element.JobID}">
+                            <div class="custom-image-container">
+                                <img src="${element.ImageUrl}" />
                             </div>
-                            <div>
-                                <span class="card-content">${element.Location}</span>
+                            <div class="card-body">
+                                <div>
+                                    <span class="card-title font-bold">${element.Title}</span>
+                                </div>
+                                <div>
+                                    <span class="card-content">${element.Location}</span>
+                                </div>
+                                <div>
+                                    <span class="card-content al-job-salary">${element.Salary}</span>
+                                </div>
+                                <div>
+                                    <span class="card-content">${element.DatePosted}</span>
+                                </div>
                             </div>
-                            <div>
-                                <span class="card-content al-job-salary">${element.Salary}</span>
-                            </div>
-                            <div>
-                                <span class="card-content">${element.DatePosted}</span>
-                            </div>
-                        </div>
-                    </a>
-                `
-            })
+                        </a>
+                    `
+                })
+            } else {
+                document.querySelector('.al-job-container').innerHTML = `<h2 class = "message_applyList_null">Danh sách ứng tuyển trống</h2>`;
+            }
         })
 };
 

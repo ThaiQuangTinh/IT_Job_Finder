@@ -14,6 +14,12 @@
 }
 
 <script>
+    //Function used to riderect to job details page
+    const redirectToJobDetail = (jobID) => {
+        console.log(jobID);
+        window.location.href = `http://localhost:56673/JobDetails/Details/${jobID}`;
+    }
+
     let GetAllJobAPI = "http://localhost:56673/api/JobPostings/GetAllJobPostings"
     let SearchAPI = "http://localhost:56673/api/JobPostings/SearchForJobPosting"
     var doomHtml = function (APIUrl) {
@@ -23,7 +29,7 @@
         })
         .then(function (datas) {
             let htmls = datas.map(function (data) {
-                return `<div class="card flex-direction-column mb-3 job" style="width: auto">
+                return `<div class="card flex-direction-column mb-3 job" style="width: auto" onclick="redirectToJobDetail(${data.job_id})">
                             <div class="img-container">
                                 <img src="@ViewBag.ImageUrl" class="image-fit-width" alt="...">
                             </div>

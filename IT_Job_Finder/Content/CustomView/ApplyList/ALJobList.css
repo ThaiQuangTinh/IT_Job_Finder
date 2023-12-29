@@ -4,25 +4,25 @@
     grid-template-columns: 200px calc(100% - 200px);
 }
 
-    .al-job .custom-image-container {
-        overflow: hidden;
-    }
+.al-job .custom-image-container {
+    overflow: hidden;
+}
 
-    .al-job .custom-image-container img {
-        max-height: 130px;
-        width: 100%;
-        object-fit: cover;
-    }
+.al-job .custom-image-container img {
+    max-height: 130px;
+    width: 100%;
+    object-fit: cover;
+}
 
-    .al-job .card-content {
-        color: #5c5b5b;
-        font-weight: 400;
-    }
+.al-job .card-content {
+    color: #5c5b5b;
+    font-weight: 400;
+}
 
-        .al-job .card-content.al-job-salary {
-            color: red;
-        }
+.al-job .card-content.al-job-salary {
+    color: red;
+}
 
-    .al-job .card-title {
-        font-size: 1.3rem;
-    }
+.al-job .card-title {
+    font-size: 1.3rem;
+}

@@ -54,8 +54,11 @@ const showBasicInforCandidate = (jobID) => {
     fetch(`http://localhost:56673/api/JobApplications/getCandidateAppliedFromJobID?jobID=${jobID}`)
         .then(response => response.json())
         .then(data => {
-            data.forEach(element => {
-                document.querySelector('.candidate_applied_list_container').innerHTML += `
+            if (data.length > 0) {
+                data.forEach(element => {
+                    let candidate_applied_list_container = document.querySelector('.candidate_applied_list_container');
+                    if (candidate_applied_list_container != null) {
+                        candidate_applied_list_container.innerHTML += `
                         <a class="card mb-3 al-job" href="/ApplyList/Details/${getJobIfFromUrl()}/${element.CandidateID}">
                         <div class="custom-image-container">
                             <img src="${element.ImgaeUrl}" />
@@ -76,7 +79,11 @@ const showBasicInforCandidate = (jobID) => {
                         </div>
                     </a>
                     `;
-            });
+                    }
+                });
+            } else {
+                document.querySelector('.candidate_applied_list_container').innerHTML = `<h2 class = "message_applyList_null">Danh sách ứng viên trống</h2>`;
+            }
         })
 };
 
@@ -85,19 +92,21 @@ showBasicInforCandidate(getJobIfFromUrl());
 //Handle for apply candidate 
 
 const showApplyOfCandidate = (jobID, candidateID) => {
-    fetch(`http://localhost:56673/api/JobApplications/getCandidateAppliedFromJobIdAndCdID?jobID=${jobID}&candidateID=${candidateID}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            data.forEach(element => {
-                document.querySelector('.apply_candidate_fullName').innerText = element.Fullname;
-                document.querySelector('.apply_candidate_skills_list').innerHTML = skillHtml(element.Skills);
-                document.querySelector('.apply_candidate_experience_year').innerText = element.Experience;
-                document.querySelector('.apply_candidate_education').innerText = element.Education;
-                document.querySelector('.apply_candidate_cover_letter').innerHTML = element.CoverLetter;
-                document.getElementById('cvViewerApplyCandidate').src = element.CvUrl;
-            });
-        })
+    if (jobID != null && jobID != 'Details' && candidateID != null) {
+        fetch(`http://localhost:56673/api/JobApplications/getCandidateAppliedFromJobIdAndCdID?jobID=${jobID}&candidateID=${candidateID}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(element => {
+                    document.querySelector('.apply_candidate_fullName').innerText = element.Fullname;
+                    document.querySelector('.apply_candidate_skills_list').innerHTML = skillHtml(element.Skills);
+                    document.querySelector('.apply_candidate_experience_year').innerText = element.Experience;
+                    document.querySelector('.apply_candidate_education').innerText = element.Education;
+                    document.querySelector('.apply_candidate_cover_letter').innerHTML = element.CoverLetter;
+                    document.getElementById('cvViewerApplyCandidate').src = element.CvUrl;
+                });
+            })
+    }
 };
 
 const appliCandidatePart = window.location.pathname.split('/');
@@ -139,30 +148,39 @@ const processingRecruitmentRequest = (resquest) => {
 
 };
 
-btnPrimary.addEventListener('click', function() {
-    processingRecruitmentRequest('confirm');
-});
+if (btnPrimary != null) {
+    btnPrimary.addEventListener('click', function() {
+        processingRecruitmentRequest('confirm');
+    });
+}
 
-btnDeny.addEventListener('click', function() {
-    processingRecruitmentRequest('deny');
-});
+if (btnDeny != null) {
+    btnDeny.addEventListener('click', function() {
+        processingRecruitmentRequest('deny');
+    });
+}
+
 
 //Function used to show status confirm or deny
 const showStatus = (jobID, candidateID) => {
-    fetch(`http://localhost:56673/api/JobApplications/isPrimary?jobID=${jobID}&candidateID=${candidateID}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data == true) {
-                btnPrimary.innerText = 'Đã chấp nhận';
-                btnDeny.innerText = 'Từ chối';
-            } else if (data == false) {
-                btnDeny.innerText = 'Đã từ chối';
-                btnPrimary.innerText = 'Chấp nhận';
-            } else {
-                btnDeny.innerText = 'Từ chối';
-                btnPrimary.innerText = 'Chấp nhận';
-            }
-        })
+    if (jobID != null && jobID != 'Details' && candidateID != null) {
+        fetch(`http://localhost:56673/api/JobApplications/isPrimary?jobID=${jobID}&candidateID=${candidateID}`)
+            .then(response => response.json())
+            .then(data => {
+                if (btnPrimary != null && btnDeny != null) {
+                    if (data == true) {
+                        btnPrimary.innerText = 'Đã chấp nhận';
+                        btnDeny.innerText = 'Từ chối';
+                    } else if (data == false) {
+                        btnDeny.innerText = 'Đã từ chối';
+                        btnPrimary.innerText = 'Chấp nhận';
+                    } else {
+                        btnDeny.innerText = 'Từ chối';
+                        btnPrimary.innerText = 'Chấp nhận';
+                    }
+                }
+            })
+    }
 };
 
 showStatus(jobID, candidateID);

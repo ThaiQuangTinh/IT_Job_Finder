@@ -167,17 +167,19 @@ const hide_icon_delete = function(btn_edit_elememt, btn_cancel_element, icon_ele
 
 //Function used to show animation after delete item
 const showAnimationDelete = array => {
-        array.forEach(element => {
-            if (element.getAttribute('dataID') == id) {
-                element.style.animation = 'deleteItem .7s linear';
-                setTimeout(function() {
-                    element.remove();
-                }, 800)
-            }
-        })
-    }
-    //Function used to delete job applicated and favourite job via api
-const deleteItem = function(id, type) {
+    array.forEach(element => {
+        if (element.getAttribute('dataID') == id) {
+            element.style.animation = 'deleteItem .7s linear';
+            setTimeout(function() {
+                element.remove();
+            }, 800)
+        }
+    })
+}
+
+//Function used to delete job applicated and favourite job via api
+const deleteItem = function(event, id, type) {
+    event.stopPropagation();
     let apiUrl = '';
     if (type === 'jobApplication') {
         apiUrl = `http://localhost:56673/api/JobApplications/DeleteJobApplication/${id}`;
@@ -237,18 +239,24 @@ const showStatus = status => {
     }
 };
 
+//Function used to riderect to job details page
+const redirectToJobDetail = (jobID) => {
+    console.log(jobID);
+    window.location.href = `http://localhost:56673/JobDetails/Details/${jobID}`;
+}
+
 //Function used to show job applicated of canđiate form candidate id
 const getJopApplicationFromID = function(id) {
     fetch(`http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data.length);
+            console.log(data);
             if (data.length > 0) {
                 document.querySelector('.btn_edit_list').style.display = 'block';
                 data.forEach(element => {
                     document.querySelector('.job_applicated_list').innerHTML +=
                         `
-                        <div class="job_applicated_item" dataID = "${element.JobApplicationId}">
+                        <div class="job_applicated_item" dataID = "${element.JobApplicationId}"  onclick="redirectToJobDetail(${element.JobID})">
                             <div class="logo_company">
                                 <img src="${element.ImageUrl}" alt="" class="img_employer">
                             </div>
@@ -266,7 +274,7 @@ const getJopApplicationFromID = function(id) {
                                     ${showStatus(element.Status)}
                                 </div>
                             </div>
-                            <div class="japp_delete_icon" onclick="deleteItem(${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
+                            <div class="japp_delete_icon" onclick="deleteItem(event, ${element.JobApplicationId}, 'jobApplication')"><i class="fa-regular fa-trash-can"></i></div>
                         </div>
                     `;
                 });
@@ -289,6 +297,7 @@ const getJopApplicationFromID = function(id) {
         })
         .catch(error => console.error('Error:', error));
 };
+
 //Function use to check count job applicated of candidate
 const showMessageWhenNullLisy = (id, type) => {
     let api = `http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`;
@@ -323,7 +332,7 @@ const getFavoriteJobFromID = function(id) {
                 data.forEach(element => {
                     document.querySelector('.job_favourite_list').innerHTML +=
                         `   
-                        <div class="fouvarite_job_item" dataID = "${element.FavouriteId}">
+                        <div class="fouvarite_job_item" dataID = "${element.FavouriteId}" onclick="redirectToJobDetail(${element.JobID})">
                             <div class="logo_company">
                                 <img src="${element.ImageUrl}" alt="">
                             </div>
@@ -340,7 +349,7 @@ const getFavoriteJobFromID = function(id) {
                                     ${element.Description}
                                 </div>
                             </div>
-                            <div class="fav_delete_icon" onclick="deleteItem(${element.FavouriteId}, 'favouriteJob')"><i class="fa-regular fa-trash-can"></i></div>
+                            <div class="fav_delete_icon" onclick="deleteItem(event, ${element.FavouriteId}, 'favouriteJob')"><i class="fa-regular fa-trash-can"></i></div>
                         </div>
                     `;
                     const fav_delete_icon = document.querySelectorAll('.fav_delete_icon');

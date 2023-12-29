@@ -48,7 +48,7 @@ namespace IT_Job_Finder.Controllers_API
                 string folderpath = HttpContext.Current.Server.MapPath("~/Resource/Images");
                 string filepath = Path.Combine(folderpath, filename);
                 img.SaveAs(filepath);
-                employer.User.imageURL = $"../../Resource/Images/{filename}";
+                employer.User.imageURL = $"../../../Resource/Images/{filename}";
             }
             else
             {

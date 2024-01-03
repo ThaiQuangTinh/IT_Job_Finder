@@ -50,10 +50,6 @@ namespace IT_Job_Finder.Controllers_API
                 img.SaveAs(filepath);
                 employer.User.imageURL = $"../../../Resource/Images/{filename}";
             }
-            else
-            {
-                employer.User.imageURL = null;
-            }
             db.SaveChanges();
 
             return Ok(employer);

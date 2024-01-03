@@ -1,6 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    var username = Session["Username"] as string;
+    var title = Html.Action("GetFullName", "Account", new { Username = username }) + " - Đăng tin tuyển dụng";
+    ViewBag.Title = title;
     Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
 }
 <div class="message_box_logout apply-submit-message-container" style="display: none;">

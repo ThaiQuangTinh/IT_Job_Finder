@@ -116,7 +116,8 @@ namespace IT_Job_Finder.Controllers_API
                               DateApplied = ja.date_applied,
                               CoverLetter = ja.cover_letter,
                               CvUrl = ja.cvURL,
-                              Status = ja.status
+                              Status = ja.status,
+                              CandidateLevel = cp.candidate_level
                           }).ToList();
             if (result == null)
             {

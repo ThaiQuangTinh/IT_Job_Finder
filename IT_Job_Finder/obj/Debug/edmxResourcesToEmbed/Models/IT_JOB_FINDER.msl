@@ -4,6 +4,7 @@
     <EntitySetMapping Name="CandidateProfiles">
       <EntityTypeMapping TypeName="IT_JOB_FINDERModel.CandidateProfile">
         <MappingFragment StoreEntitySet="CandidateProfiles">
+          <ScalarProperty Name="candidate_level" ColumnName="candidate_level" />
           <ScalarProperty Name="candidate_id" ColumnName="candidate_id" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="gender" ColumnName="gender" />
@@ -16,6 +17,7 @@
     <EntitySetMapping Name="Employers">
       <EntityTypeMapping TypeName="IT_JOB_FINDERModel.Employer">
         <MappingFragment StoreEntitySet="Employers">
+          <ScalarProperty Name="employer_description" ColumnName="employer_description" />
           <ScalarProperty Name="employer_id" ColumnName="employer_id" />
           <ScalarProperty Name="company_name" ColumnName="company_name" />
           <ScalarProperty Name="industry" ColumnName="industry" />

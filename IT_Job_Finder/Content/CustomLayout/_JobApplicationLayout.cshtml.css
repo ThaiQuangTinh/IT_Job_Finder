@@ -106,7 +106,6 @@ body {
 
 .image-logo-container {
     height: 100%;
-    width: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,11 +116,12 @@ body {
 
 .logo-name {
     text-decoration: none;
-    color: #f5f5f5;
+    color: #fff;
 }
 
 .logo-name:hover {
-    color: #fff;
+    transition: all linear 0.3s;
+    color: #ffffff9c;
 }
 
 .account-container {
@@ -140,7 +140,7 @@ body {
 
 .user-info {
     height: 40px;
-    width: 200px;
+    width: auto;
     margin-right: 10px;
     display: flex;
     flex-wrap: nowrap;
@@ -202,9 +202,9 @@ body {
     color: blue;
 }
 
-    .tt_Login:hover {
-        opacity: 0.7;
-    }
+.tt_Login:hover {
+    opacity: 0.7;
+}
 
 
 /* Main */
@@ -214,7 +214,7 @@ body {
     display: grid;
     justify-content: center;
     min-width: calc(100vh - 90px);
-    width: 100%;
+    /* width: 100%; */
     background: #f5f5f5;
     position: relative;
     grid-template-columns: 900px calc(100% - 900px);
@@ -398,9 +398,18 @@ img {
     height: 55px;
     font-weight: 600;
     font-size: 1.2em;
+    color: #fff;
+    background-color: #0162fe;
+}
+
+#btnApplyNow:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all linear 0.3s;
 }
 
 .application-info-summary {
+    min-width: 240px;
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -460,6 +469,7 @@ img {
 }
 
 #bussinessInfo>div {
+    margin: 10px 0;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -467,7 +477,12 @@ img {
 }
 
 #bussinessInfo span {
-    font-weight: 400;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.title-common-infor {
+    text-align: center;
 }
 
 
@@ -490,6 +505,29 @@ img {
 .content-box {
     background: #fff;
     padding: 20px;
+}
+
+
+/* #jobDescription {
+    text-indent: 40px;
+    text-align: justify;
+    line-height: 1.8;
+} */
+
+#jobDescription p {
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+#bus_infor_title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#bussinessInfo div h4 {
+    font-weight: 600;
 }
 
 
@@ -614,6 +652,16 @@ img {
 .btnSubmitOk:hover {
     opacity: 0.7;
     transition: 0.2s;
+}
+
+.description_title {
+    opacity: 0.9;
+}
+
+.description_title:hover {
+    transition: all linear 0.3s;
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 

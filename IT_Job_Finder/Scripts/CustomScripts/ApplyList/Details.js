@@ -25,7 +25,7 @@ const fillDataToCommonJobPosting = (jobID) => {
             data.forEach(element => {
                 document.querySelector('.detail_nominee').innerText = element.Title;
                 document.querySelector('.detail_location').innerText = element.Location;
-                document.querySelector('.detail_salary').innerText = element.Salary + ` $`;
+                document.querySelector('.detail_salary').innerText = formatCurrency(element.Salary);
                 document.querySelector('.detail_experienceYear').innerText = `Từ ${element.ExperienceYear} năm`;
                 document.querySelector('.detail_level').innerText = element.Level;
                 document.querySelector('.detail_contractType').innerText = element.ContractType;
@@ -68,7 +68,7 @@ const showBasicInforCandidate = (jobID) => {
                                 <span class="card-title font-bold">${element.Fullname}</span>
                             </div>
                             <div>
-                                <span class="card-content al-job-salary">Junior</span>
+                                <span class="card-content al-job-salary">${element.CandidateLevel}</span>
                             </div>
                             <div>
                                 <span class="card-content">${element.DateApplied}</span>

@@ -1,4 +1,14 @@
-﻿//Function used to show list job by employer id
+﻿//Function used to format currency
+// function formatCurrency(value) {
+//     const stringValue = String(value);
+//     const dotIndex = stringValue.indexOf('.');
+//     const parts = dotIndex === -1 ? [stringValue] : stringValue.split('.');
+//     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+//     const result = parts.join('.') + ' VND';
+//     return result;
+// }
+
+//Function used to show list job by employer id
 const showListJobByEmployer = function(id) {
     fetch(`http://localhost:56673/api/JobPostings/getJobPostingListInfor?employer_ID=${id}`)
         .then(response => response.json())
@@ -19,7 +29,7 @@ const showListJobByEmployer = function(id) {
                                     <span class="card-content">${element.Location}</span>
                                 </div>
                                 <div>
-                                    <span class="card-content al-job-salary">${element.Salary}</span>
+                                    <span class="card-content al-job-salary">${formatCurrency(element.Salary)}</span>
                                 </div>
                                 <div>
                                     <span class="card-content">${element.DatePosted}</span>

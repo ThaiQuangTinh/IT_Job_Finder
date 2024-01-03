@@ -33,10 +33,12 @@ namespace IT_Job_Finder.Models
         public Nullable<int> level_id { get; set; }
         public string contract_type { get; set; }
         public Nullable<System.DateTime> date_posted { get; set; }
+    
         public virtual Employer Employer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         [JsonIgnore]
         public virtual ICollection<JobApplication> JobApplications { get; set; }
         public virtual Level Level { get; set; }

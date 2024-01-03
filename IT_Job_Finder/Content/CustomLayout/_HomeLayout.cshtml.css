@@ -12,12 +12,13 @@ body {
     min-height: 100vh;
 }
 
-div {
+
+/* div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-}
+} */
 
 
 /* Blue-Button */
@@ -33,19 +34,19 @@ div {
     transition: 0.2s;
 }
 
-    .blue-button:hover {
-        background: #0776ff;
-        transition: 0s;
-    }
+.blue-button:hover {
+    background: #0776ff;
+    transition: 0s;
+}
 
-    .blue-button:active {
-        background: #0162fe;
-    }
+.blue-button:active {
+    background: #0162fe;
+}
 
-    .blue-button:disabled {
-        color: #f5f5f5;
-        background: #b6e3ff;
-    }
+.blue-button:disabled {
+    color: #f5f5f5;
+    background: #b6e3ff;
+}
 
 .login-link {
     border-radius: 5px;
@@ -58,20 +59,24 @@ div {
     transition: 0.2s;
 }
 
-    .login-link:hover {
-        background: #f5f5f5;
-        color: #323c4e;
-        transition: 0s;
-    }
+.login-link:hover {
+    background: #f5f5f5;
+    color: #323c4e;
+    transition: 0s;
+}
 
-    .login-link:active {
-        background: #efefef;
-    }
+.login-link:active {
+    background: #efefef;
+}
 
-    .login-link:disabled {
-        color: #0162fe;
-        background: #dcdcdc;
-    }
+.login-link:disabled {
+    color: #0162fe;
+    background: #dcdcdc;
+}
+
+#txtSalary {
+    margin-left: 40px;
+}
 
 
 /* White Button */
@@ -86,19 +91,19 @@ div {
     transition: 0.2s;
 }
 
-    .white-button:hover {
-        background: #efefef;
-        transition: 0s;
-    }
+.white-button:hover {
+    background: #efefef;
+    transition: 0s;
+}
 
-    .white-button:active {
-        background: #dcdcdc;
-    }
+.white-button:active {
+    background: #dcdcdc;
+}
 
-    .white-button:disabled {
-        color: #0162fe;
-        background: #525252;
-    }
+.white-button:disabled {
+    color: #0162fe;
+    background: #525252;
+}
 
 
 /* Vertical-line */
@@ -139,7 +144,6 @@ div {
 
 .image-logo-container {
     height: 100%;
-    width: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,12 +154,13 @@ div {
 
 .logo-name {
     text-decoration: none;
-    color: #f5f5f5;
+    color: #fff;
 }
 
-    .logo-name:hover {
-        color: #fff;
-    }
+.logo-name:hover {
+    transition: all linear 0.3s;
+    color: #ffffff82;
+}
 
 .account-container {
     height: 40px;
@@ -166,14 +171,14 @@ div {
     position: relative;
 }
 
-    .account-container a {
-        display: flex;
-        align-items: center;
-    }
+.account-container a {
+    display: flex;
+    align-items: center;
+}
 
 .user-info {
     height: 40px;
-    width: 200px;
+    width: auto;
     margin-right: 10px;
     display: flex;
     flex-wrap: nowrap;
@@ -181,10 +186,10 @@ div {
     position: relative;
 }
 
-    .user-info i {
-        font-size: 1.5em;
-        margin-right: 10px;
-    }
+.user-info i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
 
 .users-name-info {
     margin-left: 10px;
@@ -192,28 +197,28 @@ div {
     text-decoration: none;
 }
 
-    .users-name-info:hover {
-        color: #dcdcdc;
-        transition: all 0.3s linear;
-        cursor: pointer;
-    }
+.users-name-info:hover {
+    color: #dcdcdc;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
 
 .login-signup {
     height: 40px;
     display: flex;
 }
 
-    .login-signup a {
-        margin-inline: 5px;
-    }
+.login-signup a {
+    margin-inline: 5px;
+}
 
 .tt_Login {
     color: blue;
 }
 
-    .tt_Login:hover {
-        opacity: 0.7;
-    }
+.tt_Login:hover {
+    opacity: 0.7;
+}
 
 .login-link {
     height: 100%;
@@ -224,14 +229,14 @@ div {
     color: #fff;
 }
 
-    .signup-link:hover {
-        color: #dcdcdc;
-        transition: all 0.3s linear;
-        cursor: pointer;
-    }
+.signup-link:hover {
+    color: #dcdcdc;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
 
 ._NoneSigninLayout-main {
-    padding: 100px 40px 0 40px;
+    padding: 100px 40px 40px 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -239,7 +244,6 @@ div {
     align-content: start;
     position: relative;
     background: #f5f5f5;
-    height: 100vh;
 }
 
 
@@ -286,12 +290,12 @@ div {
     border-right: 0;
 }
 
-    .button-find-job input {
-        height: 100%;
-        width: 100%;
-        border: none;
-        border-radius: 0px;
-    }
+.button-find-job input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 0px;
+}
 
 .search-fliter-container input[type="text"] {
     height: 40px;
@@ -327,10 +331,10 @@ div {
     padding: 10px;
 }
 
-    .filter-side-bar * {
-        font-weight: bold;
-        width: 100%;
-    }
+.filter-side-bar * {
+    font-weight: bold;
+    width: 100%;
+}
 
 .filter-box label {
     font-weight: 500;
@@ -340,25 +344,80 @@ div {
     padding-left: 20px;
 }
 
-    .checkbox-list label {
-        font-weight: 400;
-        color: #9191ab;
-    }
+.checkbox-list label {
+    font-weight: 400;
+    color: #9191ab;
+}
 
 .render-body {
     background: #fff;
     border-radius: 5px;
     height: 100%;
-    margin-left: 20px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .card-container {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 1rem;
     align-items: start;
+    /* transition: all linear 0.5s;
+    animation: showCards forwards 0.5s; */
+}
+
+.card.flex-direction-column.mb-3.job {
+    min-height: 270px;
+}
+
+.card.flex-direction-column.mb-3.job:hover {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 
+/* @keyframes showCards {
+    from {
+        transform: translateX(100);
+    }
+    to {
+        transform: translateX(0);
+    }
+} */
+
+
 /* Bookmark */
+
+
+/* CSS for split page */
+
+.container_list_card {
+    position: relative;
+    margin-left: 20px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important;
+    min-height: 100vh;
+}
+
+.pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px 20px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.pagination * {
+    margin-inline: 5px;
+}
+
+.pagination #prev,
+.pagination #next {
+    padding: 6px;
+}
+
+.hover_pointer:hover {
+    cursor: pointer;
+}

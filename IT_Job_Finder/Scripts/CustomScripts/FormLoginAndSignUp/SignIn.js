@@ -18,7 +18,7 @@ const show_Form = function(buttonActive, containerForm, Form) {
 
 //Function hide form Login, Sign Up
 const hide_Form = function(containerForm, Form) {
-    containerForm.addEventListener('click', function() {
+    containerForm.addEventListener('mousedown', function() {
         if (containerForm.style.display === 'flex') {
             Form.style.animation = 'formLogSign_Hide ease 0.8s';
             containerForm.style.animation = 'containerLogSign_Hide ease 0.8s';
@@ -36,12 +36,12 @@ const hide_Form = function(containerForm, Form) {
             document.getElementById('id_login_form').reset();
             document.querySelector('.error_message').innerHTML = '';
         }
-    });
+    })
 }
 
 //Function prevent event bubbling
 const prevent_Event_Bubbling = function(obj) {
-    obj.addEventListener('click', function(e) {
+    obj.addEventListener('mousedown', function(e) {
         e.stopPropagation();
     });
 };

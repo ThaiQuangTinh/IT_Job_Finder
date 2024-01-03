@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Trang chủ";
     if (Session["Username"] != null)
     {
         Layout = "~/Views/Shared/_SignedinHomeLayout.cshtml";
@@ -14,11 +13,39 @@
 }
 
 <script>
+    //Function used to format currency
+    const formatCurrency = value => {
+        const stringValue = String(value);
+        const dotIndex = stringValue.indexOf('.');
+        const parts = dotIndex === -1 ? [stringValue] : stringValue.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        const result = parts.join('.') + ' VND';
+        return result;
+    }
     //Function used to riderect to job details page
-    const redirectToJobDetail = (jobID) => {
-        console.log(jobID);
+    const redirectToJobDetail = (event, jobID) => {
+        event.stopPropagation();
         window.location.href = `http://localhost:56673/JobDetails/Details/${jobID}`;
     }
+
+    //Function used to choose and cancel choose input radio
+    const chooseAndUnchoose = () => {
+        const radioList = document.querySelectorAll('.form-check-input');
+
+        radioList.forEach(element => {
+            element.addEventListener('click', () => {
+                if (!element.checked) {
+                    element.checked = true;
+                } else {
+                    element.checked = false;
+                }
+            });
+        });
+
+    };
+
+
+
     let hrefID = location.pathname.split("/")[3];
     let GetAllJobAPI = "http://localhost:56673/api/JobPostings/GetAllJobPostings";
     let SearchAPI = "http://localhost:56673/api/JobPostings/SearchForJobPosting";
@@ -30,26 +57,29 @@
         document.getElementById("requirement_ul").innerHTML = "";
         for (let i = 0; i < 3; i++) {
             let workCity = document.getElementById("work_city_ul").innerHTML += `<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="cityRadio" value="${dataList[i].Key}">
-    <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
-</div>`;
+                <input class="form-check-input" type="radio" name="cityRadio" value="${dataList[i].Key}">
+                <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
+            </div>`;
         }
         for (let i = 3; i < 6; i++) {
             document.getElementById("requirement_ul").innerHTML += `<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="requirementRadio" value="${dataList[i].Key}">
-    <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
-</div>`;
+                <input class="form-check-input" type="radio" name="requirementRadio" value="${dataList[i].Key}">
+                <label class="form-check-label" for="cityCheckbox1">${dataList[i].Name}</label>
+            </div>`;
         }
     }
 
     var doomHtml = function (APIUrl) {
         fetch(APIUrl)
-        .then(function (res) {
-            return res.json();
-        })
-        .then(function (datas) {
-            let htmls = datas.map(function (data) {
-                return `<div class="card flex-direction-column mb-3 job" style="width: auto" onclick="redirectToJobDetail(${data.job_id})">
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (datas) {
+                if (datas == "") {
+                    document.getElementById("renderBody").innerHTML = "Không tìm thấy công việc phù hợp";
+                } else {
+                    let htmls = datas.map(function (data) {
+                        return `<div class="card flex-direction-column mb-3 job" style="width: auto" onmouseup="redirectToJobDetail(event, ${data.job_id})">
                             <div class="img-container">
                                 <img src="${data.Employer.User.imageURL != null ? data.Employer.User.imageURL : "@ViewBag.ImageUrl"}" class="image-fit-width" alt="...">
                             </div>
@@ -61,30 +91,32 @@
                                     <span class="company-name">${data.Employer.company_name}</span>
                                 </div>
                                 <div>
-                                    <span class="job-salary">${data.salary}</span>
+                                    <span class="job-salary">${formatCurrency(data.salary)}</span>
                                 </div>
                                 <div>
                                     <span class="address">${data.location}</span>
                                 </div>
                                 <div class="skill-container">
                                     ${data.JobSkills.map(function (skill) {
-                                        return `<a href="/Home/Index/${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
-                                    }).join('')}
+                            return `<a href="/Home/Index/${skill.SkillRequirement.skill_id}" class="border-radius-5px">${skill.SkillRequirement.skill_name}</a>`
+                        }).join('')}
                                 </div>
                             </div>
                         </div>`;
-            });
-            html = htmls.join('');
-            document.getElementById("renderBody").innerHTML = html;
-            console.log(datas);
-        })
+                    });
+                    html = htmls.join('');
+                    document.getElementById("renderBody").innerHTML = html;
+                    splitPages();
+                }
+            })
             .catch(() => {
                 document.getElementById("renderBody").innerHTML = "Không tìm thấy công việc phù hợp";
-        });
+            });
     }
 
     // Main()
     doomSidebar();
+
     if (hrefID) {
         // Load API load Công việc theo kỹ năng:
         let getJobBySkillAPI = `http://localhost:56673/api/JobPostings/GetJobPostingBySkill/${hrefID}`;
@@ -99,8 +131,9 @@
         let location = document.getElementById("txtCity").value;
         let skill = document.getElementById("txtPosision").value;
         let salary = document.getElementById("txtSalary").value;
-        salary = salary == "" ? "0" : salary;
-        if (!title && !location && !skill) {
+        salary = (salary == "") ? "0" : salary;
+        console.log(salary);
+        if (!title && !location && !skill && salary == "0") {
             doomHtml(GetAllJobAPI);
             return;
         }
@@ -143,4 +176,102 @@
         filterAPI.searchParams.append("Salary", salary);
         doomHtml(filterAPI);
     })
+
+
+    // PageSplit.js
+    function createRadio(totalP) {
+        let html = '';
+        for (let i = 1; i <= totalP; i++) {
+            if (i === 1) {
+                html += `<input type="radio" class="radio_item" name="page" id="page${i}" checked></input>`
+            } else {
+                html += `<input type="radio" class="radio_item" name="page" id="page${i}"></input>`
+            }
+        }
+        document.querySelector('.radio_list').innerHTML = html;
+    }
+
+
+
+    //Function used to split pages
+    function splitPages() {
+    @* const list_box = document.querySelector(".card-container"); *@
+            let cards = Array.from(document.querySelectorAll(".card")); // convert NodeList to Array
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+
+        let currentPage = 1;
+        let itemsPerPage = 6;
+
+        let totalPages = Math.ceil(cards.length / itemsPerPage);
+
+        if (totalPages > 1) {
+            document.querySelector('.pagination').style.display = 'flex';
+        } else {
+            document.querySelector('.pagination').style.display = 'none';
+            return;
+        }
+
+        if (totalPages === currentPage) {
+            document.getElementById("next").disabled = true;
+        }
+
+        createRadio(totalPages);
+        const radios = document.querySelectorAll(".radio_item");
+
+        function showPage(page) {
+            // hide all boxes
+            cards.forEach(card => {
+                card.style.display = "none";
+            });
+            // show only the boxes in the current page
+            let start = (page - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+            let pageCards = cards.slice(start, end);
+            pageCards.forEach(card => {
+                card.style.display = "inline-block";
+            });
+            // update the radio buttons
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+
+            radios[page - 1].checked = true;
+            // update the prev and next buttons
+            prev.disabled = page === 1;
+            next.disabled = page === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function goToPage(e) {
+            let page = parseInt(e.target.id.slice(4));
+            currentPage = page;
+            showPage(currentPage);
+        }
+
+        // add event listeners
+        prev.addEventListener("click", prevPage);
+        next.addEventListener("click", nextPage);
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", goToPage);
+        });
+
+        // show the first page initially
+        showPage(currentPage);
+    }
+
 </script>

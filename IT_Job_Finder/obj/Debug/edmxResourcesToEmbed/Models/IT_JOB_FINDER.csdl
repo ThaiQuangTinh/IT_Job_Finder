@@ -13,6 +13,7 @@
     <NavigationProperty Name="User" Relationship="Self.FK__Candidate__candi__60083D91" FromRole="CandidateProfiles" ToRole="Users" />
     <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__candi__7132C993" FromRole="CandidateProfiles" ToRole="Favorites" />
     <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__candi__6E565CE8" FromRole="CandidateProfiles" ToRole="JobApplications" />
+    <Property Name="candidate_level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Employer">
     <Key>
@@ -24,6 +25,7 @@
     <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="User" Relationship="Self.FK__Employers__emplo__62E4AA3C" FromRole="Employers" ToRole="Users" />
     <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__emplo__65C116E7" FromRole="Employers" ToRole="JobPostings" />
+    <Property Name="employer_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Favorite">
     <Key>
@@ -104,7 +106,7 @@
     <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="imageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CandidateProfile" Relationship="Self.FK__Candidate__candi__60083D91" FromRole="Users" ToRole="CandidateProfiles" />
     <NavigationProperty Name="Employer" Relationship="Self.FK__Employers__emplo__62E4AA3C" FromRole="Users" ToRole="Employers" />

@@ -11,9 +11,9 @@ body {
 
 .header-nav {
     position: fixed;
-    height: 60px;
+    height: 70px;
     width: 100%;
-    background: #1f95fd;
+    background: #467fc5;
     top: 0;
     z-index: 1;
 }
@@ -21,14 +21,14 @@ body {
 .side-bar {
     position: fixed;
     height: 100dvh;
-    width: 260px;
+    width: 270px;
     background: #ffffff;
     top: 0;
     z-index: 2;
 }
 
 .logo-container {
-    height: 60px;
+    height: 70px;
     background: #1572e8;
     display: flex;
     align-items: center;
@@ -41,6 +41,7 @@ body {
 }
 
 .logo-container h1 a {
+    font-size: 30px;
     color: #ffffff;
     text-decoration: none;
 }

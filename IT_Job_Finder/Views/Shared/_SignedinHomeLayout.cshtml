@@ -17,7 +17,7 @@
 <body style="background: #f5f5f5">
     <nav class="_NoneSigninLayout-nav shadow">
         <div class="image-logo-container">
-            <a href="/Home" class="logo-name">Logo</a>
+            <a href="/Home" class="logo-name">IT Job Finder</a>
         </div>
 
         <div class="account-container">
@@ -41,7 +41,7 @@
         <form method="get" action="" class="search-fliter-container shadow">
             <div class="search-container s-f-emlement-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" name="txtSearch" id="txtSearch" placeholder="Tìm công việc của bạn">
+                <input type="text" name="txtTitle" id="txtSearch" placeholder="Tìm công việc của bạn">
             </div>
             <div class="all-city-container s-f-emlement-container">
                 <i class="fa-solid fa-location-dot"></i>
@@ -56,14 +56,14 @@
                 <input type="number" style="border: none; outline: none;" name="txtSalary" id="txtSalary" placeholder="Tất cả lương">
             </div>
             <div class="button-find-job s-f-emlement-container">
-                <input type="submit" id="btnSearch" value="Find Job" class="blue-button">
+                <input type="submit" id="btnSearch" value="Tìm kiếm" class="blue-button">
             </div>
         </form>
 
         <div class="grid-20-80-gap20">
             <aside class="filter-side-bar shadow">
                 <div class="work-city-container filter-box">
-                    <label for="">Nơi làm việc</label>
+                    <label>Nơi làm việc</label>
                     <div id="work_city_ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="cityRadio" id="cityCheckbox1" value="option1">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="requirement-container filter-box">
-                    <label for="">Yêu cầu</label>
+                    <label>Yêu cầu</label>
                     <div id="requirement_ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="requirementRadio" id="requirementCheckbox1" value="option1">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="salary-container filter-box mb-3">
-                    <label for="">Lương</label>
+                    <label>Lương</label>
                     <div id="salary-ul" class="checkbox-list">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="salaryRadio" id="salaryCheckbox1" value="20000000">
@@ -116,10 +116,25 @@
                 <button id="filterSubmit" class="btn btn-primary">Tìm kiếm</button>
             </aside>
 
-            <div id="renderBody" class="render-body shadow card-container">
-                @RenderBody()
+            <div class="container_list_card">
+                <div id="renderBody" class="render-body job card-container">
+                    @RenderBody()
+                </div>
+
+                <div class="pagination">
+                    <button id="prev" disabled class="btn btn-primary hover_pointer"> <i class="fa-solid fa-chevron-left"></i> </button>
+
+                    <div class="radio_list">
+
+                    </div>
+
+                    <button id="next" class="btn btn-primary hover_pointer"> <i class="fa-solid fa-chevron-right"></i> </button>
+                </div>
             </div>
+
+            <div style="content: ''; clear: both"></div>
         </div>
+
     </main>
 
     <div class="contain_message_box">

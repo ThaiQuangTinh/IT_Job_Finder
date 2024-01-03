@@ -25,10 +25,11 @@ namespace IT_Job_Finder.Models
         public string company_name { get; set; }
         public string industry { get; set; }
         public string website { get; set; }
+        public string employer_description { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        
+
         [JsonIgnore]
         public virtual ICollection<JobPosting> JobPostings { get; set; }
     }

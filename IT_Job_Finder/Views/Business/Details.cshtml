@@ -1,6 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Details";
+    var username = Session["Username"] as string;
+    var title = Html.Action("GetFullName", "Account", new { Username = username }) + " - Chi tiết tin tuyển dụng";
+    ViewBag.Title = title;
     Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
 }
 

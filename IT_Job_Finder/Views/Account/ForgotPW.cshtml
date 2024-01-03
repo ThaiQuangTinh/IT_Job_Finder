@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@{ ViewBag.Title = "Forgot password"; Layout = null; }
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,7 +21,7 @@
 
         </div>
 
-        <div class="contain_ChangePassword" >
+        <div class="contain_ChangePassword">
             <div class="contain_Password_Eye">
                 <input type="password" name="txtPassword_FpForm" placeholder="Password" id="ipPassword_FpForm" class="ip_FpForm">
                 <i class="fa-solid fa-eye" id="eye1_in_FormSignUp"></i>
@@ -32,14 +33,14 @@
             </div>
 
             <!-- <input type="password" name="txtPassword_FpForm" id="ipPassword_FpForm" class="ip_FpForm" placeholder="Nhập mật khẩu">
-        <input type="password" name="txtRePassword_FpForm" id="ipRePassword_FpForm" class="ip_FpForm" placeholder="Nhập lại mật khẩu"> -->
+            <input type="password" name="txtRePassword_FpForm" id="ipRePassword_FpForm" class="ip_FpForm" placeholder="Nhập lại mật khẩu"> -->
             <div class="contain_btn_FpForm">
                 <input type="submit" id="btn_updatePassowrd" class="btn_FpForm" value="Update my password" name="btn_updatePassowrd" />
             </div>
         </div>
 
         <!--<a href="../Shared/_NoneSigninHomeLayout.html">Back to home</a>-->
-    
+
     </form>
 
     <script src="../../Scripts/CustomScripts/FormLoginAndSignUp/ForgotPW.js"></script>

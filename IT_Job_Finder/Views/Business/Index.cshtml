@@ -1,11 +1,14 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    var username = Session["Username"] as string;
+    var title = Html.Action("GetFullName", "Account", new { Username = username }) + " - Doanh nghiệp của bạn";
+    ViewBag.Title = title;
     Layout = "~/Views/Shared/_MaintainEmployerLayout.cshtml";
 }
+
 @{
     ViewBag.ImageUrl = "../../Resource/Images/BusinessBlankImg.jpg";
 }
+
 
 <div class="business-info-container shadow border-radius-5px">
     <h2>Thông tin doanh nghiệp</h2>
@@ -104,7 +107,7 @@
         let postingList = await fetchMethodGet(getPostingAPI);
         let imageURL = postingList[0].Employer.User.imageURL ? postingList[0].Employer.User.imageURL : "@ViewBag.ImageUrl";
         let postingCards = postingList.map(function (posting) {
-            return `<div class="card flex-direction-column mb-3 job" style="width: auto">
+            return `<div class="card flex-direction-column mb-3 job" style="width: auto" onclick="redirectToBusinessDetail(${posting.job_id})">
                         <div style="width: 100%; display: flex; padding-inline: 1rem; ">
                             <img src="${imageURL}" class="card-img-top image-fit-width" alt="...">
                         </div>
@@ -116,7 +119,7 @@
                                 <span class="company-name">${posting.Employer.company_name}</span>
                             </div>
                             <div>
-                                <span class="job-salary">${posting.salary}</span>
+                                <span class="job-salary">${formatCurrency(posting.salary)}</span>
                             </div>
                             <div>
                                 <span class="address">${posting.location}</span>
@@ -171,7 +174,9 @@
         formData.append("Company_name", business_name);
         formData.append("Industry", industry);
         formData.append("Website", website);
-        formData.append("Image", img);
+        if (img != undefined) {
+            formData.append("Image", img);
+        }
         fetch(PutEmployerUrl, {
             method: "PUT",
             body: formData

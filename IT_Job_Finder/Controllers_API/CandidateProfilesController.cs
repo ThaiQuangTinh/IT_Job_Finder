@@ -54,7 +54,8 @@ namespace IT_Job_Finder.Controllers_API
                               Gender = cd.gender,
                               Skills = cd.skills,
                               Experience = cd.experience,
-                              Education = cd.education
+                              Education = cd.education,
+                              CandidateLevel = cd.candidate_level
                           }).ToList();
             if (result == null)
             {
@@ -97,6 +98,7 @@ namespace IT_Job_Finder.Controllers_API
             candidate_infor.skills = HttpContext.Current.Request.Form["Skills"];
             candidate_infor.experience = HttpContext.Current.Request.Form["Experience"];
             candidate_infor.education = HttpContext.Current.Request.Form["Education"];
+            candidate_infor.candidate_level = HttpContext.Current.Request.Form["CandidateLevel"];
 
             db.SaveChanges();
             return Ok();

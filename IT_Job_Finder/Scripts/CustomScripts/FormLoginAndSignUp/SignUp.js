@@ -87,7 +87,7 @@ const getUserData = function() {
         email: email.value,
         full_name: fullName.value,
         role: roleSelect.value,
-        imageURL: ''
+        imageURL: '../../../Resource/Images/avatar.png'
     }
 }
 

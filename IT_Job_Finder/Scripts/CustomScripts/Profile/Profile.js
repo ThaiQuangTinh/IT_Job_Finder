@@ -10,6 +10,27 @@ const disable_element = function() {
 
 disable_element();
 
+//Function used to dom list of levels 
+const domListOfLevel = () => {
+    const list_option = document.getElementById('txt_candidateLevel');
+
+    fetch(`http://localhost:56673/api/Levels/GetAllLevels`)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            let html = '';
+            data.forEach(function(element) {
+                html += `<option value="${element.level_name}">${element.level_name}</option>`;
+            });
+            list_option.innerHTML = html;
+        })
+        .catch(function(error) {
+            console.error('Error fetching levels:', error);
+        });
+};
+
+
 //Declare buttons
 const btn_edit = document.getElementById('btn_edit');
 const btn_cancel = document.getElementById('btn_cancel');
@@ -22,6 +43,7 @@ btn_edit.addEventListener('click', function() {
         element.classList.remove('delete_disable_effect');
     });
     document.querySelector('.ip_profile_rowIp_hide').style.display = 'block';
+    domListOfLevel();
     btn_cancel.style.display = 'block';
     btn_save.style.display = 'block';
     btn_edit.style.display = 'none';
@@ -61,7 +83,7 @@ fileInput.addEventListener('change', function(event) {
 function fillCandidateInfor(data) {
     document.getElementById('candidate_id_hide').value = data.ID;
     if (data.ImgaeUrl === '') {
-        document.querySelector('.avatar_Profile').src = '../../Resource/Image/avatar.png';
+        document.querySelector('.avatar_Profile').src = '../../Resource/Images/avatar.png';
     } else {
         document.querySelector('.avatar_Profile').src = data.ImgaeUrl;
     }
@@ -69,6 +91,7 @@ function fillCandidateInfor(data) {
     document.getElementById('avatar_name_id').innerHTML = data.Fullname;
     document.getElementById('ip_txtFullName').value = data.Fullname;
     document.getElementById('ip_txtEmail').value = data.Email;
+    document.getElementById('txt_candidateLevel').innerHTML = `<option value="${data.CandidateLevel}">${data.CandidateLevel}</option>`;
     if (data.Gender === false) {
         document.getElementById('radioFemale').checked = true;
     } else {
@@ -89,6 +112,7 @@ function showCandidateInfor(callback) {
         .then(function(data) {
             data.forEach(user => {
                 if (user.Username === document.getElementById('username_hide').value) {
+                    console.log(user);
                     callback(user);
                     const Candidate_ID = user.ID;
                     getJopApplicationFromID(Candidate_ID);
@@ -111,7 +135,8 @@ const getCandidateInforFromForm = function() {
         Address: document.getElementById('ip_txtAddress').value,
         Skills: document.getElementById('ip_txtSkills').value,
         Experience: document.getElementById('ip_txtExpericence').value,
-        Education: document.getElementById('ip_txtEducation').value
+        Education: document.getElementById('ip_txtEducation').value,
+        CandidateLevel: document.getElementById('txt_candidateLevel').value
     }
 }
 
@@ -127,6 +152,7 @@ const putCandidateInfor = function() {
     formData.append('Skills', newCandidate.Skills);
     formData.append('Experience', newCandidate.Experience);
     formData.append('Education', newCandidate.Education);
+    formData.append('CandidateLevel', newCandidate.CandidateLevel);
     let inputFileImage = document.getElementById('ip_txtImageUrl');
     if (inputFileImage.files.length > 0) {
         formData.append('ImageUrl', inputFileImage.files[0]);
@@ -245,6 +271,16 @@ const redirectToJobDetail = (jobID) => {
     window.location.href = `http://localhost:56673/JobDetails/Details/${jobID}`;
 }
 
+//Function used to format currency
+function formatCurrency(value) {
+    const stringValue = String(value);
+    const dotIndex = stringValue.indexOf('.');
+    const parts = dotIndex === -1 ? [stringValue] : stringValue.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const result = parts.join('.') + ' VND';
+    return result;
+}
+
 //Function used to show job applicated of canđiate form candidate id
 const getJopApplicationFromID = function(id) {
     fetch(`http://localhost:56673/api/JobApplications/GetJobApplicatedFromID/${id}`)
@@ -267,7 +303,7 @@ const getJopApplicationFromID = function(id) {
                                     <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
                                 </div>
                                 <div class="employeer_salary row_content main_contain">
-                                    <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
+                                    ${formatCurrency(element.Salary)}
                                 </div>
                                 <div class="employer_description row_content main_contain">${element.Description}</div>
                                 <div style="margin-bottom: 15px;"> <span style="font-weight: bold;">Trạng thái: </span> 
@@ -311,11 +347,11 @@ const showMessageWhenNullLisy = (id, type) => {
                 if (type === 'favJob') {
                     document.getElementById('btn_Edit_favourite_job').style.display = 'none';
                     document.getElementById('btn_cancel_edit_fav').style.display = 'none';
-                    document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa yêu thích công việc nào</h2>';
+                    document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa có công việc đã yêu thích</h2>';
                 } else {
                     document.getElementById('btn_Edit_job_applicated').style.display = 'none';
                     document.getElementById('btn_cancel_edit_jpp').style.display = 'none';
-                    document.querySelector('.job_applicated_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa ứng tuyển công việc nào</h2>';
+                    document.querySelector('.job_applicated_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa có công việc đã ứng tuyển</h2>';
                 }
             }
         })
@@ -343,7 +379,7 @@ const getFavoriteJobFromID = function(id) {
                                     <i class="fa-solid fa-location-dot location_icon"></i> ${element.Location}
                                 </div>
                                 <div class="employeer_salary row_content main_contain">
-                                    <i class="fa-solid fa-dollar-sign dolar_icon"></i> ${element.Salary}
+                                    ${formatCurrency(element.Salary)}
                                 </div>
                                 <div class="employer_description row_content main_contain">
                                     ${element.Description}
@@ -364,7 +400,7 @@ const getFavoriteJobFromID = function(id) {
                     });
                 })
             } else {
-                document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa yêu thích công việc nào</h2>';
+                document.querySelector('.job_favourite_list').innerHTML = '<h2 class = "title_list_null">Bạn chưa có công việc đã yêu thích</h2>';
                 document.querySelector('#btn_Edit_favourite_job').style.display = 'none';
             }
         })

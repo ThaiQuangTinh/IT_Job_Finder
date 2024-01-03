@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết tin tuyển dụng";
     if (Session["Username"] != null)
     {
         ViewBag.Layout = "~/Views/Shared/_SignedinJobApplicationLayout.cshtml";
@@ -16,6 +16,16 @@
     Layout = ViewBag.Layout;
 }
 <script>
+    //Function used to format currency
+    const formatCurrency = value => {
+        const stringValue = String(value);
+        const dotIndex = stringValue.indexOf('.');
+        const parts = dotIndex === -1 ? [stringValue] : stringValue.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        const result = parts.join('.') + ' VND';
+        return result;
+    }
+
     let editor;
     let isCKOpen = false;
     let candidate_id = document.getElementById("txtUserIdSession").value.split(' ')[0];
@@ -49,7 +59,7 @@
                                     </div>
                                     <div class="icon-and-text">
                                         <i class="fa-solid fa-money-bills"></i>
-                                        <span>2 tỷ</span>
+                                        <span>${formatCurrency(data.salary)}</span>
                                     </div>
                                 </div>
                                 <label class="bookmark-container" for="favorite">
@@ -63,16 +73,17 @@
                                 </label>
                             </div>
                             <nav class="shadow">
-                                <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer">Mô tả công việc</div>
-                                <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer">Giới thiệu về công ty</div>
+                                <div onclick="scrollToElementId('jobDescription')" style="cursor: pointer" class="description_title">Mô tả công việc</div>
+                                <div onclick="scrollToElementId('bussinessInfo')" style="cursor: pointer" class="description_title">Giới thiệu về công ty</div>
                             </nav>
                         </div>
                         <div class="application-content-container flex-direction-column">
                             <div id="jobDescription" class="flex-direction-column content-box">
+                            <h4 style="font-weight: 600;">Thông tin tuyển dụng</h4>
                                 ${data.description}
                             </div>
                             <div id="bussinessInfo" class="flex-direction-column content-box">
-                                <h3>Thông tin doanh nghiệp</h3>
+                                <p id="bus_infor_title">Thông tin doanh nghiệp</p>                                                    
                                 <div>
                                     <h4>Tên công ty</h4>
                                     <span>${data.Employer.company_name}</span>
@@ -83,11 +94,11 @@
                                 </div>
                                 <div>
                                     <h4>Website công ty</h4>
-                                    <span>${data.Employer.website}</span>
+                                    <span> <a href="${data.Employer.website}">${data.Employer.website}</a> </span>
                                 </div>
                                 <div>
                                     <h4>Mô tả công ty</h4>
-                                    <span>${"Mô tả công ty"}</span>
+                                    <span>${data.Employer.employer_description}</span>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +107,7 @@
                     <aside class="application-info-sidebar sticky-top">
                         <button id="btnApplyNow" class="blue-button shadow" onclick="handelUserSession(openApplyForm)">Ứng tuyển ngay</button>
                         <section class="application-info-summary border-radius-5px shadow">
-                            <h3>Thông tin chung</h3>
+                            <h3 class="title-common-infor">Thông tin chung</h3>
                             <div>
                                 <h4>Năm kinh nghiệm tối thiểu</h4>
                                 <span>Từ ${data.experience_year} năm</span>

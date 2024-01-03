@@ -12,13 +12,21 @@ const getJobSKillListOfJPE = (jobID) => {
         .then(data => {
             data.forEach(element => {
                 document.querySelector('.skillReContainOFJobPosting').innerHTML += `
-                    <a href="" class="border-radius-5px">${element.SkillName}</a>
+                    <a href="/Home/Index/${element.SkillID}" class="border-radius-5px">${element.SkillName}</a>
                 `;
             });
         })
 };
 //Function used to fill data to common job posting
 const fillDataToCommonJobPosting = (jobID) => {
+    const url = window.location.pathname;
+    const parts = url.split('/');
+    if (parts.length === 5) {
+        jobID = parts[parts.length - 2];
+    } else {
+        jobID = parts[parts.length - 1];
+    }
+    
     fetch(`http://localhost:56673/api/JobPostings/getJobPostingDetailFromID?jobID=${jobID}`)
         .then(response => response.json())
         .then(data => {

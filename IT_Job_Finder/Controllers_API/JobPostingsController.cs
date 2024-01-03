@@ -144,7 +144,7 @@ namespace IT_Job_Finder.Controllers_API
                 .Where(job => ((string.IsNullOrEmpty(title)? true : job.title.Contains(title))
                 && (string.IsNullOrEmpty(location) ? true : job.location.Contains(location)) 
                 && (job.salary >= salary) 
-                && (string.IsNullOrEmpty(skill_name) ? true : job.JobSkills.Any(skill => skill.SkillRequirement.skill_name.Contains(skill_name)))))
+                && (string.IsNullOrEmpty(skill_name) ? true : job.JobSkills.Any(skill => skill.SkillRequirement.skill_name == skill_name))))
                 .OrderByDescending(j => j.job_id)
                 .ToList();
             if (jobPostings == null || jobPostings.Count == 0)

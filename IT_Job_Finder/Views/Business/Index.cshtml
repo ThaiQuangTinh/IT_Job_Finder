@@ -126,7 +126,7 @@
                             </div>
                             <div class="skill-container">
                                 ${posting.JobSkills.map(function (skill) {
-                                    return `<a href="#" class="border-radius-5px mb-3">${skill.SkillRequirement.skill_name}</a>`
+                                    return `<a href="/Home/Index/${skill.SkillRequirement.skill_id}" class="border-radius-5px mb-3">${skill.SkillRequirement.skill_name}</a>`
                                 }).join('')}
                             </div>
                         </div>

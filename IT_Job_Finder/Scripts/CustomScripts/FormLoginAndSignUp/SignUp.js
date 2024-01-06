@@ -91,20 +91,19 @@ const getUserData = function() {
     }
 }
 
-
+// Function used to validate sign up form
+const validateForm = () => (fullName.value !== '' && email.value !== '' && username.value !== '' && passowrd.value !== '' && rePassword.value !== '' && roleSelect.value !== '');
 
 document.getElementById('btnSignUpForm').addEventListener('click', function(e) {
-    if (fullName.value !== '' && email.value !== '' && username.value !== '' && passowrd.value !== '' && rePassword.value !== '' && roleSelect.value !== '') {
-        e.preventDefault();
-        if (chk_CreateAgree.checked) {
-            fetch('http://localhost:56673/api/Users/GetAllUsernames')
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
+    e.preventDefault();
+    if (validateForm()) {
+        if (isValidEmail(email.value)) {
+            fetch(`http://localhost:56673/api/Users/GetAllUsernames`)
+                .then(response => response.json())
+                .then(data => {
                     if (!isValidUsername(data, username.value)) {
-                        if (isValidEmail(email.value)) {
-                            if (passowrd.value === rePassword.value) {
+                        if (passowrd.value === rePassword.value) {
+                            if (chk_CreateAgree.checked) {
                                 creatUser(getUserData())
                                     .then(function(success) {
                                         if (success) {
@@ -116,20 +115,20 @@ document.getElementById('btnSignUpForm').addEventListener('click', function(e) {
                                         }
                                     })
                             } else {
-                                error_message.innerHTML = 'Mật khẩu không khớp';
+                                error_message.innerHTML = 'Bạn vui lòng ấn xác nhận tạo tài khoản';
                             }
                         } else {
-                            error_message.innerHTML = 'Email không đúng định dạng';
+                            error_message.innerHTML = 'Mật khẩu không khớp nhau';
                         }
                     } else {
                         error_message.innerHTML = 'Tên đăng nhập đã tồn tại';
                     }
-                });
+                })
         } else {
-            error_message.innerHTML = 'Bạn vui lòng ấn xác nhận tạo tài khoản';
+            error_message.innerHTML = 'Email không đúng định dạng';
         }
     } else {
-        e.preventDefault();
         error_message.innerHTML = 'Bạn vui lòng nhập đầy đủ thông tin';
     }
+
 });
